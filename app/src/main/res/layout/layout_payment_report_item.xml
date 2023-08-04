@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="type"
+            type="String" />
+
+        <variable
+            name="count"
+            type="String" />
+
+        <variable
+            name="price"
+            type="String" />
+
+        <variable
+            name="isHeader"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="20dp">
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{count}"
+            android:textColor="@{isHeader ? @color/blue : @color/dark_color}"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="25" />
+
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{type}"
+            app:layout_constraintStart_toStartOf="@id/number"
+            app:layout_constraintTop_toBottomOf="@id/number"
+            tools:text="Total Orders" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{price}"
+            android:textColor="@{isHeader ? @color/blue : @color/dark_color}"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="25" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Total KWD"
+            app:layout_constraintEnd_toEndOf="@id/total"
+            app:layout_constraintTop_toBottomOf="@id/total" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

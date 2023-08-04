@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.tt.driver.ui.components.main.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.tt.driver.ui.components.main.orders.OrdersFragment"
+        android:label="OrdersFragment">
+        <action
+            android:id="@+id/action_ordersFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentsFragment"
+        android:name="com.tt.driver.ui.components.main.payments.PaymentsFragment"
+        android:label="PaymentsFragment" />
+    <fragment
+        android:id="@+id/clientPlacesFragment"
+        android:name="com.tt.driver.ui.components.main.client_places.ClientPlacesFragment"
+        android:label="ClientPlacesFragment" />
+    <fragment
+        android:id="@+id/contactUsFragment"
+        android:name="com.tt.driver.ui.components.main.contact_us.ContactUsFragment"
+        android:label="ContactUsFragment" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.tt.driver.ui.components.main.notifications.NotificationsFragment"
+        android:label="NotificationsFragment" />
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.tt.driver.ui.components.main.orders.order_details.OrderDetailsFragment"
+        android:label="OrderDetailsFragment">
+        <argument
+            android:name="orderId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_orderDetailsFragment_to_orderDestinationFragment"
+            app:destination="@id/orderDestinationFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_orderDetailsFragment_to_digitalSignatureFragment"
+            app:destination="@id/digitalSignatureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDestinationFragment"
+        android:name="com.tt.driver.ui.components.main.orders.order_details.OrderDestinationFragment"
+        android:label="OrderDestinationFragment">
+        <argument
+            android:name="order"
+            app:argType="com.tt.driver.data.models.entities.Order" />
+        <action
+            android:id="@+id/action_orderDestinationFragment_to_onlinePaymentFragment"
+            app:destination="@id/onlinePaymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onlinePaymentFragment"
+        android:name="com.tt.driver.ui.components.main.orders.payment.OnlinePaymentFragment"
+        android:label="OnlinePaymentFragment">
+        <argument
+            android:name="url"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderReportFragment"
+        android:name="com.tt.driver.ui.components.main.order_report.OrderReportFragment"
+        android:label="OrderReportFragment" />
+    <fragment
+        android:id="@+id/digitalSignatureFragment"
+        android:name="com.tt.driver.ui.components.main.orders.order_details.DigitalSignatureFragment"
+        android:label="DigitalSignatureFragment" >
+        <argument
+            android:name="orderId"
+            app:argType="integer" />
+    </fragment>
+</navigation>

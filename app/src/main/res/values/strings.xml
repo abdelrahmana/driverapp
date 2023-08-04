@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Driver</string>
+    <string name="phone_hint">Phone</string>
+    <string name="password_hint">Password</string>
+    <string name="continue_button">Continue</string>
+    <string name="login_button">Login</string>
+
+    <string name="google_map_key">AIzaSyAC6VWcqZMKpUOfsON2j0BC3WWwRLHEEl0</string>
+    <string name="home_menu_item">Home</string>
+    <string name="orders_menu_item">Orders</string>
+    <string name="payments_menu_item">Payments</string>
+    <string name="client_places_menu_item">Client Places</string>
+    <string name="contact_us_menu_item">Contact Us</string>
+    <string name="notifications_menu_item">Notifications</string>
+    <string name="title_pickup_location">Pickup Location</string>
+    <string name="title_destination_location">Destination Location</string>
+    <string name="goThere">GO THERE</string>
+    <string name="address">address</string>
+    <string name="expectedTime">Expected Time</string>
+    <string name="order_calculated_distance">%.2f Km - %s</string>
+    <string name="you_have_reached_your_destination">You have reached your destination</string>
+    <string name="warnings_label">Warnings</string>
+    <string name="label_amount_required">Amount required</string>
+    <string name="currency">kwd</string>
+    <string name="detailed_location">%s - %s</string>
+    <string name="order_report_menu_item">Order Report</string>
+    <string name="help_menu_item">Help</string>
+</resources>

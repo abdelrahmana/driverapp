@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.tt.driver.data.models.entities.OrderReport" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:navigationIconTint="@android:color/darker_gray"
+            app:title="Order Report"
+            app:titleTextAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            app:titleTextColor="@color/blue" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TODAY" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WEEK" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MONTH" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <ScrollView
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@id/orderSummary"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/totalOrders"
+                    layout="@layout/layout_order_report_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    app:isHeader="@{true}"
+                    app:label="@{`Total orders`}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:value="@{data.total}" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/completedOrders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/totalOrders">
+
+                    <include
+                        layout="@layout/layout_order_report_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:label="@{`Completed`}"
+                        app:value="@{data.completed}" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/inProgressOrders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/completedOrders">
+
+                    <include
+                        layout="@layout/layout_order_report_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:label="@{`In Progress`}"
+                        app:value="@{data.inprogress}" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/upcomingOrders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/inProgressOrders">
+
+                    <include
+                        layout="@layout/layout_order_report_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:label="@{`Upcoming`}"
+                        app:value="@{data.comming}" />
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/orderSummary"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="You Have Credit 25.5 KWD" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/views"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="container, orderSummary"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

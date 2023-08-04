@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/knetButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="K-net"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/visButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Visa"
+        app:layout_constraintTop_toBottomOf="@id/knetButton"
+        android:layout_marginTop="16dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

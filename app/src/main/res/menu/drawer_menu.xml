@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_side_menu_home"
+        android:title="@string/home_menu_item" />
+    <item
+        android:id="@+id/ordersFragment"
+        android:icon="@drawable/ic_side_menu_orders"
+        android:title="@string/orders_menu_item" />
+    <item
+        android:id="@+id/orderReportFragment"
+        android:icon="@drawable/ic_side_menu_orders"
+        android:title="@string/order_report_menu_item" />
+    <item
+        android:id="@+id/paymentsFragment"
+        android:icon="@drawable/ic_side_menu_payments"
+        android:title="@string/payments_menu_item" />
+    <!--    <item-->
+    <!--        android:id="@+id/clientPlacesFragment"-->
+    <!--        android:icon="@drawable/ic_side_menu_client_places"-->
+    <!--        android:title="@string/client_places_menu_item" />-->
+    <item
+        android:id="@+id/contactUs"
+        android:icon="@drawable/ic_side_menu_contact_us"
+        android:title="@string/contact_us_menu_item" />
+    <item
+        android:id="@+id/help"
+        android:icon="@drawable/ic_help_menu_item"
+        android:title="@string/help_menu_item" />
+    <!--    <item-->
+    <!--        android:id="@+id/notificationsFragment"-->
+    <!--        android:icon="@drawable/ic_side_menu_notifications"-->
+    <!--        android:title="@string/notifications_menu_item" />-->
+</menu>
