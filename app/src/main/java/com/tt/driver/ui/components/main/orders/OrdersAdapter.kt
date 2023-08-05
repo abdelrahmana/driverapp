@@ -2,9 +2,12 @@ package com.tt.driver.ui.components.main.orders
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.tt.driver.R
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.databinding.ListItemOrdersBinding
+import com.tt.driver.databinding.OneItemNewListOrderBinding
 import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
 import com.tt.driver.utils.show
 
@@ -24,21 +27,23 @@ class OrdersAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ListItemOrdersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            OneItemNewListOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding) {
             val order = orders[position]
-
-            this.order = order
+            // this should be changed depend on the order status
+            titleImageHeader.backgroundTintList = ContextCompat.getColorStateList(titleImageHeader.context!!,
+                R.color.normal_order_color)
+         /*   this.order = order
             this.callActions = OrderCallActionsWrapper(
                 holder.binding.root.context,
                 holder.binding.dropOffCallButton
             )
             pickUpCallButton.show(!isHistory)
-            dropOffCallButton.show(!isHistory)
+            dropOffCallButton.show(!isHistory)*/
             root.setOnClickListener { onOrderClicked(order) }
         }
     }
@@ -47,6 +52,6 @@ class OrdersAdapter(
         return orders.size
     }
 
-    class ViewHolder(val binding: ListItemOrdersBinding) :
+    class ViewHolder(val binding: OneItemNewListOrderBinding) :
         RecyclerView.ViewHolder(binding.root)
 }
