@@ -34,7 +34,7 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>() {
         }
         binding?.ordersList?.adapter = adapter
 
-        observeResult(viewModel.order) {
+        observeResult(viewModel.order) { // when getting order
             binding?.progressBar?.show(false)
             adapter.updateList(it, viewModel.selectedTab == 1)
         }

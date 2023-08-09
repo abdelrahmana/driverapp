@@ -25,4 +25,14 @@
     <string name="detailed_location">%s - %s</string>
     <string name="order_report_menu_item">Order Report</string>
     <string name="help_menu_item">Help</string>
+    <string name="governate">"Governorate : </string>
+    <string name="region">Region : </string>
+    <string name="street">Street : </string>
+    <string name="block">Block : </string>
+    <string name="home_no">"Home No : </string>
+    <string name="apartment">"Apartment No: </string>
+    <string name="customer_name">Customer Name</string>
+    <string name="order_counts">Orders count</string>
+    <string name="amount">Amount \nUnpaid</string>
+    <string name="kwd">Kwd</string>
 </resources>

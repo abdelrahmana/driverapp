@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:clipToPadding="false">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:navigationIconTint="@android:color/darker_gray"
+        app:title="Orders"
+        app:titleTextAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        app:titleTextColor="@color/blue" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:paddingBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/detailsContainer"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingBottom="30dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/dateTextPurpose"
+                    android:textColor="@color/blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    android:id="@+id/containerPickUp"
+                    app:layout_constraintTop_toBottomOf="@+id/dateTextPurpose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                <ImageView
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/locationPickUp"
+                    android:text="@string/title_pickup_location"
+                    android:textColor="@color/blue"
+                    app:srcCompat="@drawable/ic_location_pickup"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:drawableStartCompat="@drawable/ic_location_pickup" />
+                <TextView
+                    app:layout_constraintTop_toTopOf="@+id/locationPickUp"
+                    app:layout_constraintBottom_toBottomOf="@+id/locationPickUp"
+                    android:id="@+id/location"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/title_pickup_location"
+                    android:textColor="@color/order_subtitle_color"
+                    app:layout_constraintStart_toEndOf="@+id/locationPickUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                  </androidx.constraintlayout.widget.ConstraintLayout>
+
+                 <com.google.android.material.card.MaterialCardView
+                  android:layout_width="match_parent"
+                  android:id="@+id/card"
+                  app:cardElevation="0dp"
+                  android:layout_marginTop="15dp"
+                  android:minHeight="150dp"
+                  app:cardCornerRadius="7dp"
+                  app:layout_constraintTop_toBottomOf="@+id/locationPickUp"
+                  app:cardBackgroundColor="@color/card_color"
+                  android:layout_height="wrap_content">
+
+                  <androidx.constraintlayout.widget.ConstraintLayout
+                      android:layout_width="match_parent"
+                      android:layout_marginTop="15dp"
+                      android:paddingBottom="7dp"
+                      android:layout_marginStart="15dp"
+                      android:layout_marginEnd="15dp"
+                      android:layout_height="wrap_content">
+                      <ImageView
+                          android:id="@+id/imageMap"
+                          android:src="@drawable/image_map"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          android:scaleType="fitXY"
+                          app:layout_constraintTop_toTopOf="parent"
+                          android:layout_width="wrap_content"
+                          android:layout_height="90dp"/>
+
+                      <TextView
+                          android:id="@+id/governate"
+                          android:text="@string/governate"
+                          android:textColor="@color/order_subtitle_color"
+                          android:layout_marginTop="10dp"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toBottomOf="@+id/imageMap"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          android:textColor="@color/black"
+                          app:layout_constraintStart_toEndOf="@+id/governate"
+                          app:layout_constraintTop_toTopOf="@+id/governate"
+                          app:layout_constraintBottom_toBottomOf="@+id/governate"
+                          android:id="@+id/goveranteValuePickUp"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+
+                      <TextView
+                          android:id="@+id/regionTextPickup"
+                          android:text="@string/region"
+                          android:textColor="@color/order_subtitle_color"
+                          android:layout_marginTop="10dp"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toBottomOf="@+id/governate"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          android:textColor="@color/black"
+                          app:layout_constraintStart_toEndOf="@+id/regionTextPickup"
+                          app:layout_constraintTop_toTopOf="@+id/regionTextPickup"
+                          app:layout_constraintBottom_toBottomOf="@+id/regionTextPickup"
+                          android:id="@+id/regionValuePickup"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          android:id="@+id/blockPickUp"
+                          android:text="@string/block"
+                          app:layout_constraintEnd_toStartOf="@+id/blockValuePickUp"
+                          android:textColor="@color/order_subtitle_color"
+                          android:layout_marginTop="10dp"
+                          app:layout_constraintTop_toBottomOf="@+id/governate"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          app:layout_constraintEnd_toEndOf="parent"
+                          android:textColor="@color/black"
+                          app:layout_constraintTop_toTopOf="@+id/blockPickUp"
+                          app:layout_constraintBottom_toBottomOf="@+id/blockPickUp"
+                          android:id="@+id/blockValuePickUp"
+                          android:text=""
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+                      <TextView
+                          android:id="@+id/streetPickup"
+                          android:text="@string/street"
+                          android:textColor="@color/order_subtitle_color"
+                          android:layout_marginTop="10dp"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toBottomOf="@+id/regionTextPickup"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          android:textColor="@color/black"
+                          app:layout_constraintStart_toEndOf="@+id/streetPickup"
+                          app:layout_constraintTop_toTopOf="@+id/streetPickup"
+                          app:layout_constraintBottom_toBottomOf="@+id/streetPickup"
+                          android:id="@+id/streetPickupValue"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          android:id="@+id/homePickUp"
+                          android:text="@string/home_no"
+                          android:textColor="@color/order_subtitle_color"
+                          android:layout_marginTop="10dp"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toBottomOf="@+id/streetPickup"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          android:textColor="@color/black"
+                          app:layout_constraintStart_toEndOf="@+id/homePickUp"
+                          app:layout_constraintTop_toTopOf="@+id/homePickUp"
+                          app:layout_constraintBottom_toBottomOf="@+id/homePickUp"
+                          android:id="@+id/homePickUpValue"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          android:id="@+id/apartmentNo"
+                          android:layout_marginStart="15dp"
+                          android:text="@string/apartment"
+                          android:textColor="@color/order_subtitle_color"
+                          android:layout_marginTop="10dp"
+                          app:layout_constraintStart_toEndOf="@+id/homePickUpValue"
+                          app:layout_constraintTop_toBottomOf="@+id/streetPickup"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          android:textColor="@color/black"
+                          app:layout_constraintStart_toEndOf="@+id/apartmentNo"
+                          app:layout_constraintTop_toTopOf="@+id/apartmentNo"
+                          app:layout_constraintBottom_toBottomOf="@+id/apartmentNo"
+                          android:id="@+id/apartmentPickUp"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+
+                      <TextView
+                          android:id="@+id/floorNo"
+                          android:layout_marginStart="15dp"
+                          android:text="@string/apartment"
+                          android:textColor="@color/order_subtitle_color"
+                          android:layout_marginTop="10dp"
+                          app:layout_constraintStart_toEndOf="@+id/apartmentPickUp"
+                          app:layout_constraintTop_toBottomOf="@+id/streetPickup"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          android:textColor="@color/black"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          app:layout_constraintStart_toEndOf="@+id/floorNo"
+                          app:layout_constraintTop_toTopOf="@+id/floorNo"
+                          app:layout_constraintBottom_toBottomOf="@+id/floorNo"
+                          android:id="@+id/floorNumberValue"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"/>
+
+                  </androidx.constraintlayout.widget.ConstraintLayout>
+
+              </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        app:cardElevation="0dp"
+                        android:layout_marginTop="15dp"
+                        android:minHeight="60dp"
+                        android:id="@+id/cardCustomer"
+                        app:cardCornerRadius="7dp"
+                        app:layout_constraintTop_toBottomOf="@+id/locationPickUp"
+                        app:cardBackgroundColor="@color/card_color"
+                        android:layout_height="wrap_content">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/customer"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:textColor="@color/gray"
+                            android:text="@string/customer_name"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:textColor="@color/blue"
+                            app:layout_constraintStart_toStartOf="@+id/customer"
+                            app:layout_constraintTop_toBottomOf="@+id/customer"
+                            android:id="@+id/nameCustomer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                            <ImageView
+                                android:id="@+id/callPickUp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginEnd="20dp"
+                                android:src="@drawable/call_cell"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"/>
+
+                            <ImageView
+                                android:id="@+id/callDestination"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/callPickUp"
+                                android:layout_marginEnd="7dp"
+                                android:src="@drawable/ic_whats_app"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+<TextView
+    android:visibility="gone"
+    android:id="@+id/orderPickUpCount"
+    android:text="@string/order_counts"
+    android:layout_width="wrap_content"
+    android:layout_marginTop="10dp"
+    android:drawablePadding="10dp"
+    android:layout_height="wrap_content"
+    app:drawableStartCompat="@drawable/order_count_n" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:layout_marginStart="33dp"
+                        android:id="@+id/orderPickupValueNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:drawablePadding="10dp"
+                        android:layout_height="wrap_content"
+                       />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    android:id="@+id/containerDestination"
+                    app:layout_constraintTop_toBottomOf="@+id/containerPickUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:id="@+id/locationDestionation"
+                            android:text="@string/title_pickup_location"
+                            android:textColor="@color/blue"
+                            app:srcCompat="@drawable/ic_location_pickup"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:drawableStartCompat="@drawable/ic_location_pickup" />
+                        <TextView
+                            app:layout_constraintTop_toTopOf="@+id/locationDestionation"
+                            app:layout_constraintBottom_toBottomOf="@+id/locationDestionation"
+                            android:id="@+id/locationDestinationValue"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/title_destination_location"
+                            android:textColor="@color/order_subtitle_color"
+                            app:layout_constraintStart_toEndOf="@+id/locationDestionation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:id="@+id/cardDestionation"
+                        app:cardElevation="0dp"
+                        android:layout_marginTop="15dp"
+                        android:minHeight="150dp"
+                        app:cardCornerRadius="7dp"
+                        app:cardBackgroundColor="@color/card_color"
+                        android:layout_height="wrap_content">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:paddingBottom="7dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:id="@+id/imageMapDestionation"
+                                android:src="@drawable/image_map"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:scaleType="fitXY"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="90dp"/>
+
+                            <TextView
+                                android:id="@+id/governateDestination"
+                                android:text="@string/governate"
+                                android:textColor="@color/order_subtitle_color"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageMapDestionation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@+id/governateDestination"
+                                app:layout_constraintTop_toTopOf="@+id/governateDestination"
+                                app:layout_constraintBottom_toBottomOf="@+id/governateDestination"
+                                android:id="@+id/goveranteValueDestionation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+
+                            <TextView
+                                android:id="@+id/regionTextDestionation"
+                                android:text="@string/region"
+                                android:textColor="@color/order_subtitle_color"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/goveranteValueDestionation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@+id/regionTextDestionation"
+                                app:layout_constraintTop_toTopOf="@+id/regionTextDestionation"
+                                app:layout_constraintBottom_toBottomOf="@+id/regionTextDestionation"
+                                android:id="@+id/regionValueDestionation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:id="@+id/blockDestionation"
+                                android:text="@string/block"
+                                app:layout_constraintEnd_toStartOf="@+id/blockValueDestionation"
+                                android:textColor="@color/order_subtitle_color"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintTop_toBottomOf="@+id/governateDestination"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toTopOf="@+id/blockDestionation"
+                                app:layout_constraintBottom_toBottomOf="@+id/blockDestionation"
+                                android:id="@+id/blockValueDestionation"
+                                android:text=""
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/streetDestionation"
+                                android:text="@string/street"
+                                android:textColor="@color/order_subtitle_color"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/regionTextDestionation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@+id/streetDestionation"
+                                app:layout_constraintTop_toTopOf="@+id/streetDestionation"
+                                app:layout_constraintBottom_toBottomOf="@+id/streetDestionation"
+                                android:id="@+id/streetDestionationValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:id="@+id/homeDestionation"
+                                android:text="@string/home_no"
+                                android:textColor="@color/order_subtitle_color"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/streetDestionation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@+id/homeDestionation"
+                                app:layout_constraintTop_toTopOf="@+id/homeDestionation"
+                                app:layout_constraintBottom_toBottomOf="@+id/homeDestionation"
+                                android:id="@+id/homeDestionationValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:id="@+id/apartmentNoDestionation"
+                                android:layout_marginStart="15dp"
+                                android:text="@string/apartment"
+                                android:textColor="@color/order_subtitle_color"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toEndOf="@+id/homeDestionationValue"
+                                app:layout_constraintTop_toBottomOf="@+id/streetDestionation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@+id/apartmentNoDestionation"
+                                app:layout_constraintTop_toTopOf="@+id/apartmentNoDestionation"
+                                app:layout_constraintBottom_toBottomOf="@+id/apartmentNoDestionation"
+                                android:id="@+id/apartmentDestionationValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+
+                            <TextView
+                                android:id="@+id/floorNoDestionation"
+                                android:layout_marginStart="15dp"
+                                android:text="@string/apartment"
+                                android:textColor="@color/order_subtitle_color"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toEndOf="@+id/apartmentDestionationValue"
+                                app:layout_constraintTop_toBottomOf="@+id/streetDestionation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/floorNoDestionation"
+                                app:layout_constraintTop_toTopOf="@+id/floorNoDestionation"
+                                app:layout_constraintBottom_toBottomOf="@+id/floorNoDestionation"
+                                android:id="@+id/floorDestionationValue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        app:cardElevation="0dp"
+                        android:layout_marginTop="15dp"
+                        android:minHeight="60dp"
+                        android:id="@+id/cardCustomerDestionation"
+                        app:cardCornerRadius="7dp"
+                        app:layout_constraintTop_toBottomOf="@+id/locationPickUp"
+                        app:cardBackgroundColor="@color/card_color"
+                        android:layout_height="wrap_content">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/customerDestionationTitle"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:textColor="@color/gray"
+                                android:text="@string/customer_name"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:textColor="@color/blue"
+                                app:layout_constraintStart_toStartOf="@+id/customerDestionationTitle"
+                                app:layout_constraintTop_toBottomOf="@+id/customerDestionationTitle"
+                                android:id="@+id/nameCustomerDestionationValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <ImageView
+                                android:id="@+id/callDestionationValue"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginEnd="20dp"
+                                android:src="@drawable/call_cell"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"/>
+
+                            <ImageView
+                                android:id="@+id/whatsDestionationValue"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/callDestionationValue"
+                                android:layout_marginEnd="7dp"
+                                android:src="@drawable/ic_whats_app"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="@string/amount"
+                        android:textColor="@color/gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:id="@+id/priceValue"
+                        android:text="3"
+                        android:textColor="@color/blue"
+                        app:layout_constraintEnd_toStartOf="@+id/priceType"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                        <TextView
+                            app:layout_constraintTop_toBottomOf="@+id/priceValue"
+                           app:layout_constraintBottom_toBottomOf="@+id/priceValue"
+                            android:id="@+id/priceType"
+                            android:textColor="@color/blue"
+                            android:text="@string/kwd"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/detailsContainer"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="13dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:cardBackgroundColor="@color/blue"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@id/updateStatusButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/calculatedDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="3kd unpaid" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/updateStatusButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:insetTop="0dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:insetBottom="0dp"
+        android:textSize="16sp"
+        app:backgroundTint="@color/secondary_button_color"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@id/goThereButton"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/goThereButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:insetTop="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:insetBottom="0dp"
+        android:text="@string/goThere"
+        android:textSize="16sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
