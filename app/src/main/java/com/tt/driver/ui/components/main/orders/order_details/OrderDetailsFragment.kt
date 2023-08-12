@@ -13,6 +13,7 @@ import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.data.models.http.OrderDetailsResponse
 import com.tt.driver.databinding.FragmentOrderDetailsBinding
+import com.tt.driver.databinding.FragmentOrderDetailsNewBinding
 import com.tt.driver.ui.base.LocationAwareFragment
 import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
 import com.tt.driver.utils.IntentUtils
@@ -20,7 +21,7 @@ import com.tt.driver.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsBinding>() {
+class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBinding>() {
 
     private val viewModel by viewModels<OrderViewModel>()
 
@@ -35,7 +36,7 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsBinding>(
     override fun initBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ) = FragmentOrderDetailsBinding.inflate(inflater, container, false)
+    ) = FragmentOrderDetailsNewBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         observeResult(viewModel.order) {
@@ -74,14 +75,14 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsBinding>(
 
             container.show()
 
-            card.order = order
+       //     card.order = order
 
-            card.callActions = OrderCallActionsWrapper(requireContext(), card.dropOffCallButton)
+      //      card.callActions = OrderCallActionsWrapper(requireContext(), card.dropOffCallButton)
 
-            order.notes?.let { notes ->
+        /*    order.notes?.let { notes ->
                 card.alert.show()
                 card.alertMessage.text = notes
-            }
+            }*/
 
             val currentDestination = order.getHeadedLocation()
 
@@ -152,8 +153,8 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsBinding>(
             }
             else -> {
                 binding?.updateStatusButton?.visibility = View.GONE
-                binding?.card?.pickUpCallButton?.show(false)
-                binding?.card?.dropOffCallButton?.show(false)
+              //  binding?.card?.pickUpCallButton?.show(false)
+              //  binding?.card?.dropOffCallButton?.show(false)
                 binding?.goThereButton?.show(false)
             }
         }

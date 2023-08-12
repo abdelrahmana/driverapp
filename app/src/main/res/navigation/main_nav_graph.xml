@@ -52,6 +52,14 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_order_details_pickup"
+            app:destination="@id/orderPickUpFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_orderDetailsFragment_to_digitalSignatureFragment"
             app:destination="@id/digitalSignatureFragment" />
@@ -60,6 +68,18 @@
         android:id="@+id/orderDestinationFragment"
         android:name="com.tt.driver.ui.components.main.orders.order_details.OrderDestinationFragment"
         android:label="OrderDestinationFragment">
+        <argument
+            android:name="order"
+            app:argType="com.tt.driver.data.models.entities.Order" />
+        <action
+            android:id="@+id/action_orderDestinationFragment_to_onlinePaymentFragment"
+            app:destination="@id/onlinePaymentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderPickUpFragment"
+        android:name="com.tt.driver.ui.components.main.orders.order_details.OrderPickUpFragmentReached"
+        android:label="OrderPickUp">
         <argument
             android:name="order"
             app:argType="com.tt.driver.data.models.entities.Order" />

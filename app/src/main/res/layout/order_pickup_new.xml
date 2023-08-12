@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:navigationIconTint="@android:color/darker_gray"
+        app:title="Orders"
+        app:titleTextAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        app:titleTextColor="@color/blue" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_height="wrap_content">
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/dateTextPurpose"
+        android:textColor="@color/blue"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/orderType"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/pickup_has_been_reached"
+            android:id="@+id/pickupHasReached"
+            android:textColor="@color/new_gray"
+            android:layout_marginTop="25dp"
+            app:layout_constraintTop_toBottomOf="@+id/dateTextPurpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.card.MaterialCardView
+            app:layout_constraintTop_toBottomOf="@+id/pickupHasReached"
+            app:cardCornerRadius="5dp"
+            android:id="@+id/cardCustomer"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            app:cardBackgroundColor="@color/new_white"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:minHeight="70dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@string/customer_name"
+                    android:textColor="@color/gray"
+                    android:id="@+id/customerName"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/userName"
+                    app:layout_constraintStart_toStartOf="@+id/customerName"
+                    app:layout_constraintTop_toBottomOf="@+id/customerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/callPickUp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/call_cell"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+
+                <ImageView
+                    android:id="@+id/callDestination"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/callPickUp"
+                    android:layout_marginEnd="7dp"
+                    android:src="@drawable/ic_whats_app"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:text="@string/order_image"
+            android:textColor="@color/gray"
+            android:drawablePadding="10dp"
+            android:id="@+id/orderHeaderImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardCustomer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:drawableStartCompat="@drawable/ic_image_order" />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp"
+            android:id="@+id/orderImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderHeaderImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/orderImage"
+            android:src="@color/gray_light"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+                <ImageView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:alpha=".4"
+                    app:srcCompat="@drawable/ic_upload_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/orderImage"
+            tools:visibility="visible"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/orderPickUpCount"
+            android:text="@string/order_counts"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawablePadding="10dp"
+            android:layout_height="wrap_content"
+            app:drawableStartCompat="@drawable/order_count_n" />
+
+        <TextView
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/orderPickUpCount"
+            android:layout_marginStart="33dp"
+            android:id="@+id/orderPickupValueNumber"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="10dp"
+            android:layout_height="wrap_content"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <!-- <androidx.constraintlayout.widget.ConstraintLayout
+         android:id="@+id/constraintLayout"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="#E6FFFFFF"
+         android:clickable="true"
+         android:clipToPadding="false"
+         android:focusable="true"
+         android:paddingBottom="16dp"
+         app:layout_constraintBottom_toBottomOf="parent">
+
+         <TextView
+             android:id="@+id/label"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:paddingHorizontal="10dp"
+             android:paddingTop="10dp"
+             android:text="@string/you_have_reached_your_destination"
+             android:textSize="16sp"
+             app:layout_constraintTop_toTopOf="parent" />
+
+         <include
+             android:id="@+id/infoLayout"
+             layout="@layout/list_item_orders"
+             android:visibility="gone"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             app:layout_constraintTop_toBottomOf="@id/label" />
+
+         <androidx.cardview.widget.CardView
+             android:id="@+id/amountLayout"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="8dp"
+             android:layout_marginTop="8dp"
+             android:layout_marginEnd="16dp"
+             app:cardBackgroundColor="#0D62B8"
+             app:cardCornerRadius="4dp"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintHorizontal_weight="1.5"
+             app:layout_constraintStart_toEndOf="@id/warningsLabel"
+             app:layout_constraintTop_toBottomOf="@id/warningsLabel">
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:clipToPadding="false"
+                 android:gravity="center"
+                 android:padding="12dp">
+
+                 <TextView
+                     android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:gravity="center_vertical"
+                     android:text="@string/label_amount_required"
+                     android:textColor="@color/white"
+                     android:textSize="12sp" />
+
+                 <TextView
+                     android:id="@+id/amount"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="16dp"
+                     android:textColor="@color/white"
+                     android:textSize="18sp"
+                     tools:text="3" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="bottom"
+                     android:layout_marginStart="3dp"
+                     android:text="@string/currency"
+                     android:textColor="@color/white"
+                     android:textSize="12sp" />
+             </LinearLayout>
+         </androidx.cardview.widget.CardView>
+
+
+         <TextView
+             android:id="@+id/warningsLabel"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_margin="16dp"
+             android:text="@string/warnings_label"
+             android:textColor="@color/blue"
+             android:textSize="18sp"
+             android:textStyle="bold"
+             app:layout_constraintEnd_toStartOf="@id/amountLayout"
+             app:layout_constraintHorizontal_weight="1"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/infoLayout" />
+
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/warnings"
+             android:layout_width="0dp"
+             android:layout_height="0dp"
+             android:layout_marginTop="8dp"
+             android:orientation="horizontal"
+             android:overScrollMode="never"
+             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+             app:layout_constraintBottom_toBottomOf="@id/amountLayout"
+             app:layout_constraintEnd_toEndOf="@id/warningsLabel"
+             app:layout_constraintStart_toStartOf="@id/warningsLabel"
+             app:layout_constraintTop_toTopOf="@id/amountLayout"
+             tools:listitem="@layout/list_item_warnings" />
+
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/cashButton"
+             android:layout_width="0dp"
+             android:layout_height="50dp"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="20dp"
+             android:layout_marginEnd="4dp"
+             android:insetTop="0dp"
+             android:insetBottom="0dp"
+             android:text="Cash"
+             android:textAllCaps="false"
+             android:textColor="@color/black"
+             app:backgroundTint="#CDCDCD"
+             app:cornerRadius="8dp"
+             app:layout_constraintEnd_toStartOf="@id/payButton"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/amountLayout" />
+
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/payButton"
+             android:layout_width="0dp"
+             android:layout_height="50dp"
+             android:layout_marginStart="2dp"
+             android:layout_marginEnd="2dp"
+             android:insetTop="0dp"
+             android:insetBottom="0dp"
+             android:text="Pay Now"
+             android:textAllCaps="false"
+             app:cornerRadius="8dp"
+             app:layout_constraintEnd_toStartOf="@id/sendLinkButton"
+             app:layout_constraintStart_toEndOf="@id/cashButton"
+             app:layout_constraintTop_toTopOf="@id/cashButton" />
+
+
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/sendLinkButton"
+             android:layout_width="0dp"
+             android:layout_height="50dp"
+             android:layout_marginStart="4dp"
+             android:layout_marginEnd="16dp"
+             android:insetTop="0dp"
+             android:insetBottom="0dp"
+             android:text="Send a Link"
+             android:textAllCaps="false"
+             android:textColor="@color/black"
+             app:backgroundTint="#CDCDCD"
+             app:cornerRadius="8dp"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toEndOf="@id/payButton"
+             app:layout_constraintTop_toTopOf="@id/cashButton" />
+
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/skipButton"
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:layout_marginHorizontal="16dp"
+             android:layout_marginTop="16dp"
+             android:insetTop="0dp"
+             android:insetBottom="0dp"
+             android:text="Skip"
+             android:textAllCaps="false"
+             app:backgroundTint="#2F9733"
+             app:cornerRadius="8dp"
+             app:layout_constraintTop_toBottomOf="@id/cashButton" />
+     </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/payButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="7dp"
+        app:backgroundTint="@color/sky"
+        app:layout_constraintStart_toEndOf="@+id/cancelButton"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/orderPickUpNext"
+        android:insetTop="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/orderPickUpNext"
+        android:insetBottom="0dp"
+        android:text="@string/pay_now"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+       />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancelButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/payButton"
+        android:insetTop="0dp"
+        app:layout_constraintStart_toStartOf="@+id/orderPickUpNext"
+        app:backgroundTint="@color/app_color"
+        app:layout_constraintBottom_toTopOf="@+id/orderPickUpNext"
+        android:insetBottom="0dp"
+        android:text="@string/cancel"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/orderPickUpNext"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/ordr_pickup"
+        android:textAllCaps="true"
+        app:cornerRadius="8dp"
+        />
+    <LinearLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
