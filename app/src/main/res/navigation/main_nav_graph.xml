@@ -63,6 +63,14 @@
         <action
             android:id="@+id/action_orderDetailsFragment_to_digitalSignatureFragment"
             app:destination="@id/digitalSignatureFragment" />
+        <action
+            android:id="@+id/action_order_destination_reached"
+            app:destination="@id/orderDestinationReached" />
+        <action
+            android:id="@+id/action_destinationPreview"
+            app:destination="@id/orderPrepareDestination" />
+
+
     </fragment>
     <fragment
         android:id="@+id/orderDestinationFragment"
@@ -75,6 +83,33 @@
             android:id="@+id/action_orderDestinationFragment_to_onlinePaymentFragment"
             app:destination="@id/onlinePaymentFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/orderDestinationReached"
+        android:name="com.tt.driver.ui.components.main.orders.order_details.OrderDestinationFragmentReached"
+        android:label="OrderDestinationFragmentReached">
+        <argument
+            android:name="order"
+            app:argType="com.tt.driver.data.models.entities.Order" />
+        <action
+            android:id="@+id/action_orderDestinationFragment_to_onlinePaymentFragment"
+            app:destination="@id/onlinePaymentFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderPrepareDestination"
+        android:name="com.tt.driver.ui.components.main.orders.order_details.OrderPrepareDestination"
+        android:label="orderPrepareDestiantion">
+        <argument
+            android:name="order"
+            app:argType="com.tt.driver.data.models.entities.Order" />
+        <action
+            android:id="@+id/action_to_destination_reached"
+            app:destination="@id/orderDestinationReached" />
+
+    </fragment>
+
 
     <fragment
         android:id="@+id/orderPickUpFragment"

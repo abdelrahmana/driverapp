@@ -12,10 +12,8 @@ import com.tt.driver.R
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.data.models.http.OrderDetailsResponse
-import com.tt.driver.databinding.FragmentOrderDetailsBinding
 import com.tt.driver.databinding.FragmentOrderDetailsNewBinding
 import com.tt.driver.ui.base.LocationAwareFragment
-import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
 import com.tt.driver.utils.IntentUtils
 import com.tt.driver.utils.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,7 +51,7 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
             .currentBackStackEntry
             ?.savedStateHandle
             ?.apply {
-                getLiveData<Boolean>(UPDATE_ORDER_STATE)
+                getLiveData<Boolean>(UPDATE_ORDER_STATE) // listen of observer value
                     .observe(viewLifecycleOwner) {
                         it?.let {
                             if (it)
@@ -71,7 +69,7 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
 
         binding?.run {
 
-            toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
+            toolbar.setOnClickListener { requireActivity().onBackPressed() }
 
             container.show()
 
@@ -122,34 +120,38 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
     }
 
     private fun updateStatusButton(order: Order) {
-        when (order.getStatus()) {
-            OrderStatus.PENDING -> {
+        when (order.getStatus()) { // the current order status
+            OrderStatus.PENDING -> { // pending
                 binding?.updateStatusButton?.text = "Pick Up"
                 nextOrderState = OrderStatus.PICK_UP
                 binding?.updateStatusButton?.setOnClickListener {
+                    //actionOrderDetailsFragmentToOrderDestinationFragment
                     navigateTo(
-                        OrderDetailsFragmentDirections.actionOrderDetailsFragmentToOrderDestinationFragment(
+                        OrderDetailsFragmentDirections.actionOrderDetailsPickup( // to pickup reached
                             order
                         )
                     )
                 }
             }
-            OrderStatus.PICK_UP -> {
-                binding?.updateStatusButton?.text = "On The Way"
-                binding?.updateStatusButton?.setOnClickListener {
-                    viewModel.updateOrderStatus(OrderStatus.ON_THE_WAY)
+            OrderStatus.PICK_UP -> { // pickup reached
+                if (order.to_address.isNullOrEmpty()) // doesn't have destination
+                    goToDestinationReached(OrderStatus.COMPLETED,getString(R.string.status_compelete),order)
+                else { // start the destination
+                    /*
+                    binding?.updateStatusButton?.text = "On The Way"
+                    binding?.updateStatusButton?.setOnClickListener {
+                        viewModel.updateOrderStatus(OrderStatus.ON_THE_WAY)
+                    }*/
+                    // go to destination prepration first
+                    navigateTo( // has destionation
+                        OrderDetailsFragmentDirections.actionDestinationPreview( // to pickup reached
+                            order
+                        ))
+
                 }
             }
             OrderStatus.ON_THE_WAY -> {
-                binding?.updateStatusButton?.text = "Complete"
-                nextOrderState = OrderStatus.COMPLETED
-                binding?.updateStatusButton?.setOnClickListener {
-                    navigateTo(
-                        OrderDetailsFragmentDirections.actionOrderDetailsFragmentToOrderDestinationFragment(
-                            order
-                        )
-                    )
-                }
+                goToDestinationReached(OrderStatus.COMPLETED,getString(R.string.status_compelete),order)
             }
             else -> {
                 binding?.updateStatusButton?.visibility = View.GONE
@@ -158,6 +160,17 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
                 binding?.goThereButton?.show(false)
             }
         }
+    }
+    fun goToDestinationReached(status: OrderStatus,textStatus : String,order: Order) {
+        binding?.updateStatusButton?.text = textStatus
+        nextOrderState = status // not checked the payment here
+        binding?.updateStatusButton?.setOnClickListener {
+            navigateTo(
+                OrderDetailsFragmentDirections.actionOrderDestinationReached( // to pickup reached
+                    order
+                ))
+        }
+
     }
 
     override fun onUserLocationFetched(location: Location) {

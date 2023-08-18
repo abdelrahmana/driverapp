@@ -43,4 +43,5 @@
     <string name="order_details">Order Details</string>
     <string name="order_details_value">"When one door of happiness closes, another opens, but often we look so long at the closed door that we do not see the one that has been opened for us. "</string>
     <string name="order_normal">Order Normal</string>
+    <string name="status_compelete">Complete</string>
 </resources>

@@ -16,6 +16,7 @@ import com.tt.driver.data.models.Success
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.databinding.FragmentOrderDestinationBinding
+import com.tt.driver.databinding.OrderPickUpPreviewBinding
 import com.tt.driver.databinding.OrderPickupNewBinding
 import com.tt.driver.ui.base.MapFragment
 import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
@@ -27,20 +28,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
 @AndroidEntryPoint
-class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
+class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
 
     private val viewModel by viewModels<OrderViewModel>()
 
     private val args by navArgs<OrderDestinationFragmentArgs>()
 
     private var shareLink = false
-    val orderCall : OrderCallActionsWrapper by lazy {
-        OrderCallActionsWrapper(requireContext(),binding!!.root) }
 
     override fun initBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ) = OrderPickupNewBinding.inflate(inflater, container, false)
+    ) = OrderPickUpPreviewBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -68,11 +67,8 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
 
     private fun updateOrderDetailsUI(order: Order) {
         binding {
-            userName.text = order.from_name
-            orderType.text = order.delivery_category?.name
-            orderPickupValueNumber.text = order.orders_count?:"0"
-            dateTextPurpose.text = order.created_at + " | " + order.order_type
-        /*    infoLayout.order = order
+
+          /*  infoLayout.order = order
             infoLayout.callActions =
                 OrderCallActionsWrapper(requireContext(), infoLayout.dropOffCallButton)
 
@@ -82,14 +78,20 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
 
             amount.text = order.price?.toDoubleOrNull()?.let {
                 DecimalFormat("####.#").format(it)
-            } ?: order.price */
+            } ?: order.price*/
         }
     }
 
     private fun setActionButtonsListener() {
         binding {
+        /*    cashButton.setOnClickListener { generatePaymentUrl(PaymentType.CASH) }
 
-            payButton.setOnClickListener {
+            skipButton.setOnClickListener {
+                updateOrderStatus()
+                navigateBack()
+            }*/
+
+        /*    payButton.setOnClickListener {
                 shareLink = false
                 PaymentOptionsDialog(requireContext()) {
                     when (it) {
@@ -97,8 +99,17 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                         PaymentType.VISA -> generatePaymentUrl(PaymentType.VISA)
                     }
                 }.show()
-            }
+            }*/
 
+         /*   sendLinkButton.setOnClickListener {
+                shareLink = true
+                PaymentOptionsDialog(requireContext()) {
+                    when (it) {
+                        PaymentType.KNET -> generatePaymentUrl(PaymentType.KNET)
+                        PaymentType.VISA -> generatePaymentUrl(PaymentType.VISA)
+                    }
+                }.show()
+            }*/
         }
     }
 
@@ -147,7 +158,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
     }
 
     override fun isLoading(status: Boolean) {
-        binding?.progressBar?.show(status)
+      //  binding?.progressBar?.show(status)
     }
 
 }

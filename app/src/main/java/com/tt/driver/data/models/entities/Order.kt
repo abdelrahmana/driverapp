@@ -16,6 +16,7 @@ data class Order(
     val from_governorate: Governorate?,
     val from_lat: String?,
     val from_long: String?,
+    val paid : String?,
     val from_name: String?,
     val from_phone: String?,
     val from_region: FromRegion?,
@@ -49,7 +50,13 @@ data class Order(
     val from_apartment_number: String?,
     val to_apartment_number: String?,
     val from_floor_number: String?,
-    val to_floor_number: String?
+    val to_floor_number: String?,
+    val order_type : String?,
+    val orders_count : String?,
+    val price_per_order : String?,
+    val total_order_price : String?,
+    val total_price_per_hour : String?
+
 ) : Parcelable {
 
     fun getHeadedLocation() = when (getStatus()) {
