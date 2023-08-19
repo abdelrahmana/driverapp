@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,6 +16,7 @@ import com.tt.driver.data.models.Loading
 import com.tt.driver.data.models.Success
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.OrderStatus
+import com.tt.driver.databinding.DestinationReachedBinding
 import com.tt.driver.databinding.FragmentOrderDestinationBinding
 import com.tt.driver.ui.base.MapFragment
 import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
@@ -26,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
 @AndroidEntryPoint
-class OrderDestinationFragmentReached : MapFragment<FragmentOrderDestinationBinding>() {
+class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>() {
 
     private val viewModel by viewModels<OrderViewModel>()
 
@@ -37,7 +39,7 @@ class OrderDestinationFragmentReached : MapFragment<FragmentOrderDestinationBind
     override fun initBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ) = FragmentOrderDestinationBinding.inflate(inflater, container, false)
+    ) = DestinationReachedBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,7 +49,11 @@ class OrderDestinationFragmentReached : MapFragment<FragmentOrderDestinationBind
             map = it
             map?.setPadding(0, 0, 0, 1200)
         }*/
-
+        observeResult(viewModel.order) {
+            binding?.progressBar?.show(false)
+            Toast.makeText(requireContext(),getString(R.string.order_compelete_successfully),Toast.LENGTH_SHORT).show()
+            findNavController().popBackStack(R.id.orderDetailsFragment, false)
+        }
         updateOrderDetailsUI(args.order)
 
         setActionButtonsListener()
@@ -56,25 +62,31 @@ class OrderDestinationFragmentReached : MapFragment<FragmentOrderDestinationBind
 
     }
 
-    private fun updateOrderStatus() {
-        findNavController()
+    private fun updateOrderStatus(orderStatus: OrderStatus) { // to complete order when user click pay
+   /*     findNavController()
             .previousBackStackEntry
             ?.savedStateHandle
-            ?.set(OrderDetailsFragment.UPDATE_ORDER_STATE, true)
+            ?.set(OrderDetailsFragment.UPDATE_ORDER_STATE, true)*/
+        binding?.completeOrder?.show(true)
+        binding?.completeOrder?.setOnClickListener{
+            viewModel.updateOrderStatus(orderStatus)
+        }
     }
 
     private fun updateOrderDetailsUI(order: Order) {
         binding {
             payButton.show(order.paid =="0")
-            infoLayout.order = order
-            infoLayout.callActions =
-                OrderCallActionsWrapper(requireContext(), infoLayout.dropOffCallButton)
+            completeOrder.show(order.paid =="1")
 
-            infoLayout.date.show(false)
+            /*  infoLayout.order = order
+              infoLayout.callActions =
+                  OrderCallActionsWrapper(requireContext(), infoLayout.dropOffCallButton)
 
-            warnings.adapter = WarningsAdapter(order.warnings?.map { it.image } ?: listOf())
+              infoLayout.date.show(false)
 
-            amount.text = order.price?.toDoubleOrNull()?.let {
+              warnings.adapter = WarningsAdapter(order.warnings?.map { it.image } ?: listOf()) */
+
+            priceValue.text = order.price?.toDoubleOrNull()?.let {
                 DecimalFormat("####.#").format(it)
             } ?: order.price
         }
@@ -82,13 +94,6 @@ class OrderDestinationFragmentReached : MapFragment<FragmentOrderDestinationBind
 
     private fun setActionButtonsListener() {
         binding {
-            cashButton.setOnClickListener { generatePaymentUrl(PaymentType.CASH) }
-
-            skipButton.setOnClickListener {
-                updateOrderStatus()
-                navigateBack()
-            }
-
             payButton.setOnClickListener {
                 shareLink = false
                 PaymentOptionsDialog(requireContext()) {
@@ -99,15 +104,7 @@ class OrderDestinationFragmentReached : MapFragment<FragmentOrderDestinationBind
                 }.show()
             }
 
-            sendLinkButton.setOnClickListener {
-                shareLink = true
-                PaymentOptionsDialog(requireContext()) {
-                    when (it) {
-                        PaymentType.KNET -> generatePaymentUrl(PaymentType.KNET)
-                        PaymentType.VISA -> generatePaymentUrl(PaymentType.VISA)
-                    }
-                }.show()
-            }
+
         }
     }
 
@@ -120,7 +117,7 @@ class OrderDestinationFragmentReached : MapFragment<FragmentOrderDestinationBind
                     val url = (it.second as Success).data
                     when (it.first) {
                         PaymentType.CASH -> {
-                            updateOrderStatus()
+                            updateOrderStatus(OrderStatus.COMPLETED)
                             navigateBack()
                         }
                         else -> {

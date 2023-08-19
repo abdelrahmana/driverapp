@@ -79,8 +79,6 @@ data class Order(
             )
         }
     }
-
-
     fun getStatus() = OrderStatus.getByCode(status)
 
     fun isActive() =

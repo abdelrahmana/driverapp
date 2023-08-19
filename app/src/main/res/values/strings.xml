@@ -7,7 +7,7 @@
 
     <string name="google_map_key">AIzaSyAC6VWcqZMKpUOfsON2j0BC3WWwRLHEEl0</string>
     <string name="home_menu_item">Home</string>
-    <string name="orders_menu_item">Orders</string>
+    <string name="orders_menu_item">Order</string>
     <string name="payments_menu_item">Payments</string>
     <string name="client_places_menu_item">Client Places</string>
     <string name="contact_us_menu_item">Contact Us</string>
@@ -44,4 +44,7 @@
     <string name="order_details_value">"When one door of happiness closes, another opens, but often we look so long at the closed door that we do not see the one that has been opened for us. "</string>
     <string name="order_normal">Order Normal</string>
     <string name="status_compelete">Complete</string>
+    <string name="destination_reached">Your Destination Location has been reached</string>
+    <string name="complete">Complete</string>
+    <string name="order_compelete_successfully">Order Completed Successfully\n</string>
 </resources>
