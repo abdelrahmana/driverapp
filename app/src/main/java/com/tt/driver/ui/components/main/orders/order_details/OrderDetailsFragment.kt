@@ -30,7 +30,6 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
     companion object {
         const val UPDATE_ORDER_STATE = "UPDATE_ORDER_STATE"
     }
-
     override fun initBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -153,7 +152,7 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
             OrderStatus.ON_THE_WAY -> {
                 goToDestinationReached(OrderStatus.COMPLETED,getString(R.string.status_compelete),order)
             }
-            else -> {
+            else -> { // in case of order completed
                 binding?.updateStatusButton?.visibility = View.GONE
               //  binding?.card?.pickUpCallButton?.show(false)
               //  binding?.card?.dropOffCallButton?.show(false)

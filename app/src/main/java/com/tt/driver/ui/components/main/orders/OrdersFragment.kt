@@ -58,7 +58,6 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
 
         })
-
         binding?.toolbar?.setNavigationOnClickListener { requireActivity().onBackPressed() }
 
     }

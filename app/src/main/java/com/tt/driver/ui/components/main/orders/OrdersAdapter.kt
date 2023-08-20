@@ -1,5 +1,6 @@
 package com.tt.driver.ui.components.main.orders
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -35,15 +36,19 @@ class OrdersAdapter(
         with(holder.binding) {
             val order = orders[position]
             // this should be changed depend on the order status
-            titleImageHeader.backgroundTintList = ContextCompat.getColorStateList(titleImageHeader.context!!,
-                R.color.normal_order_color)
-         /*   this.order = order
-            this.callActions = OrderCallActionsWrapper(
-                holder.binding.root.context,
-                holder.binding.dropOffCallButton
-            )
-            pickUpCallButton.show(!isHistory)
-            dropOffCallButton.show(!isHistory)*/
+            titleImageHeader.setCardBackgroundColor(Color.parseColor(order.color))//ContextCompat.getColorStateList(titleImageHeader.context!!,
+            dateTime.text = order.time?:""
+            purpose.text = order.order_type?:""
+            orderName.text = order.delivery_category?.name?:""
+            pickUpDestination.text = order.pick_up_address?:""
+            destinationLocation.text = order.destination_address?:""
+            /*   this.order = order
+               this.callActions = OrderCallActionsWrapper(
+                   holder.binding.root.context,
+                   holder.binding.dropOffCallButton
+               )
+               pickUpCallButton.show(!isHistory)
+               dropOffCallButton.show(!isHistory)*/
             root.setOnClickListener { onOrderClicked(order) }
         }
     }

@@ -40,7 +40,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabs"
-        tools:listitem="@layout/list_item_orders" />
+        tools:listitem="@layout/one_item_new_list_order" />
 
     <ProgressBar
         android:id="@+id/progressBar"

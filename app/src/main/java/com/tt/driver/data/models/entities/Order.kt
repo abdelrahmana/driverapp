@@ -13,6 +13,8 @@ data class Order(
     val delivery_category: DeliveryCategory?,
     val driver: Driver?,
     val from_address: String?,
+    val pick_up_address :String?,
+    val destination_address : String?,
     val from_governorate: Governorate?,
     val from_lat: String?,
     val from_long: String?,
@@ -55,7 +57,8 @@ data class Order(
     val orders_count : String?,
     val price_per_order : String?,
     val total_order_price : String?,
-    val total_price_per_hour : String?
+    val total_price_per_hour : String?,
+    val color : String?
 
 ) : Parcelable {
 

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:minHeight="100dp"
+    android:layout_marginTop="15dp"
     app:cardElevation="0dp"
     app:cardBackgroundColor="@color/card_color"
     android:layout_height="wrap_content">
@@ -32,7 +33,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/dateTime"
-            android:text="dasddas"
             android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/white"
@@ -44,16 +44,27 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/dateTime"
             android:text="|"
+            android:id="@+id/splitter"
             android:layout_marginStart="5dp"
             android:layout_width="1dp"
             android:layout_height="12dp"/>
-        
+
+        <TextView
+            app:layout_constraintTop_toTopOf="@+id/dateTime"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/dateTime"
+            app:layout_constraintStart_toEndOf="@+id/splitter"
+            android:id="@+id/purpose"
+            android:layout_marginStart="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <TextView
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="10dp"
             android:text="orderName"
+            android:id="@+id/orderName"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
