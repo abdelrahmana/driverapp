@@ -47,4 +47,8 @@
     <string name="destination_reached">Your Destination Location has been reached</string>
     <string name="complete">Complete</string>
     <string name="order_compelete_successfully">Order Completed Successfully\n</string>
+    <string name="order_canceled">Order is Canceled</string>
+    <string name="camera_option">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="cant_add_image">You Can\'t Add Image .</string>
 </resources>

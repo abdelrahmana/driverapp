@@ -51,8 +51,13 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
         }*/
         observeResult(viewModel.order) {
             binding?.progressBar?.show(false)
-            Toast.makeText(requireContext(),getString(R.string.order_compelete_successfully),Toast.LENGTH_SHORT).show()
-            findNavController().popBackStack(R.id.orderDetailsFragment, false)
+
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.order_compelete_successfully),
+                    Toast.LENGTH_SHORT
+                ).show()
+                findNavController().popBackStack(R.id.orderDetailsFragment, false)
         }
         updateOrderDetailsUI(args.order)
 

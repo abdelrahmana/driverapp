@@ -70,6 +70,9 @@
             android:id="@+id/action_destinationPreview"
             app:destination="@id/orderPrepareDestination" />
 
+        <action
+            android:id="@+id/action_pickup_reached"
+            app:destination="@id/orderPickUpFragment" />
 
     </fragment>
     <fragment

@@ -1,30 +1,36 @@
 package com.tt.driver.ui.components.main.orders.order_details
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.gms.maps.SupportMapFragment
 import com.tt.driver.R
 import com.tt.driver.data.models.Failure
 import com.tt.driver.data.models.Loading
 import com.tt.driver.data.models.Success
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.OrderStatus
-import com.tt.driver.databinding.FragmentOrderDestinationBinding
 import com.tt.driver.databinding.OrderPickupNewBinding
 import com.tt.driver.ui.base.MapFragment
 import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
+import com.tt.driver.utils.Constant
 import com.tt.driver.utils.IntentUtils
+import com.tt.driver.utils.Util
 import com.tt.driver.utils.show
 import com.tt.driver.utils.showToast
 import com.tt.driver.utils.toLatLng
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.DecimalFormat
+import java.io.IOException
 
 @AndroidEntryPoint
 class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
@@ -52,10 +58,19 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
         }*/
 
         updateOrderDetailsUI(args.order)
-
+        observeResult(viewModel.order) {
+            binding?.progressBar?.show(false)
+            if (it.data?.getStatus() == OrderStatus.CANCELED_BY_CUSTOMER) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.order_canceled),
+                    Toast.LENGTH_SHORT
+                ).show()
+                findNavController().popBackStack(R.id.orderDetailsFragment, false)
+            }
+        }
         setActionButtonsListener()
-
-        observePaymentURLGeneration()
+        observePaymentURLGeneration(args.order)
 
     }
 
@@ -65,6 +80,70 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
             ?.savedStateHandle
             ?.set(OrderDetailsFragment.UPDATE_ORDER_STATE, true)
     }
+    private fun setOnClickImage() {
+        if (Util.checkPermssionGrantedForImageAndFile(requireActivity(),
+                registerPicResult)) // if the result ok go submit else on permssion
+            Util.picPhoto(requireActivity(),registerIntentResultCamera,registerGallery)
+    }
+    val registerPicResult = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions())
+    { permissions ->
+        val granted = permissions.entries.all {
+            it.value == true
+        }
+        if (granted)
+            Util.picPhoto(requireActivity(), registerIntentResultCamera,registerGallery)
+        else
+            Util.showSnackMessages(activity, getString(R.string.cant_add_image))
+
+    }
+    var bitMap : Bitmap? =null
+    private fun addImageToList(bitmapUpdatedImage: Bitmap?) {
+       // val file =util.getCreatedFileFromBitmap("image",bitmapUpdatedImage!!,"jpg",requireContext())
+        bitMap = bitmapUpdatedImage
+
+    }
+    val registerIntentResultCamera =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // There are no request codes
+                val data: Intent? = result.data
+                if (data?.getStringExtra(Constant.WHICHSELECTION)?: Constant.CAMERA == Constant.CAMERA)
+                {
+                    addImageToList( data!!.extras!!["data"] as Bitmap?)
+                }
+                else {
+                    val contentURI = data?.data
+                    try {
+                        addImageToList(
+                            BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(contentURI!!)))
+                        //  val file =getCreatedFileFromBitmap("image",bitmapUpdatedImage!!,"jpg",context!!)
+                        //   imageModel.image?.add(file.absolutePath)
+                        //.setImageBitmap(bitmapUpdatedImage)
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
+    val registerGallery =  registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // There are no request codes
+            val data: Intent? = result.data
+
+            val contentURI = data?.data
+            try {
+                addImageToList(BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(contentURI!!))
+                    )
+                //  val file =getCreatedFileFromBitmap("image",bitmapUpdatedImage!!,"jpg",context!!)
+                //   imageModel.image?.add(file.absolutePath)
+                //.setImageBitmap(bitmapUpdatedImage)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+        }
+    }
+
 
     private fun updateOrderDetailsUI(order: Order) {
         binding {
@@ -72,6 +151,15 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
             orderType.text = order.delivery_category?.name
             orderPickupValueNumber.text = order.orders_count?:"0"
             dateTextPurpose.text = order.created_at + " | " + order.order_type
+            orderPickUpNext.setOnClickListener{
+                bitMap?.let { it-> viewModel.uploadImage(order.id?:0,it)}?: kotlin.run{
+                    navigateTo(
+                        OrderDetailsFragmentDirections.actionPickupReached( // to pickup reached
+                            order
+                        )
+                    )
+                }
+            }
         /*    infoLayout.order = order
             infoLayout.callActions =
                 OrderCallActionsWrapper(requireContext(), infoLayout.dropOffCallButton)
@@ -88,7 +176,6 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
 
     private fun setActionButtonsListener() {
         binding {
-
             payButton.setOnClickListener {
                 shareLink = false
                 PaymentOptionsDialog(requireContext()) {
@@ -98,11 +185,18 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                     }
                 }.show()
             }
+            cancelButton.setOnClickListener{
+                viewModel.updateOrderStatus(OrderStatus.CANCELED_BY_CUSTOMER)
+             //   findNavController().popBackStack(R.id.orderDetailsFragment, false)
+            }
+            orderImage.setOnClickListener{
+                setOnClickImage()
+            }
 
         }
     }
 
-    private fun observePaymentURLGeneration() {
+    private fun observePaymentURLGeneration(order: Order) {
         viewModel.onUrlGenerated.observe(viewLifecycleOwner) {
             when (it.second) {
                 is Loading -> isLoading(true)
@@ -129,6 +223,26 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                 is Failure -> {
                     isLoading(false)
                     showToast("something went wrong")
+                }
+            }
+        }
+        viewModel.onImageUploaded.observe(viewLifecycleOwner) {
+            when (it) {
+                is Loading -> {
+                    binding?.progressBar?.show(true)
+                }
+                is Success -> {
+                    binding?.progressBar?.show(false)
+                    //  findNavController().navigate()
+                    order.imagePath = Util.getCreatedFileFromBitmap("image",bitMap!!,"jpg",requireContext()).absolutePath
+                    navigateTo(
+                        OrderDetailsFragmentDirections.actionDestinationPreview( // to pickup reached
+                            order
+                        ))
+                }
+                is Failure -> {
+                    binding?.progressBar?.show(false)
+                    handleError(it.error)
                 }
             }
         }

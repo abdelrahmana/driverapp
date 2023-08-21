@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.google.android.gms.maps.SupportMapFragment
 import com.tt.driver.R
 import com.tt.driver.data.models.Failure
@@ -52,7 +53,7 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
 
         updateOrderDetailsUI(args.order)
 
-        setActionButtonsListener()
+        setActionButtonsListener(args.order)
 
         observePaymentURLGeneration()
 
@@ -82,9 +83,10 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
         }
     }
 
-    private fun setActionButtonsListener() {
+    private fun setActionButtonsListener(order: Order) {
         binding {
-        /*    cashButton.setOnClickListener { generatePaymentUrl(PaymentType.CASH) }
+            Glide.with(context!!).load(order.imagePath)
+                .error(R.color.gray).placeholder(R.color.gray).dontAnimate().into(orderImageContainer)        /*    cashButton.setOnClickListener { generatePaymentUrl(PaymentType.CASH) }
 
             skipButton.setOnClickListener {
                 updateOrderStatus()
