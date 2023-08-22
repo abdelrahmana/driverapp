@@ -68,6 +68,7 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
 
     private fun updateOrderDetailsUI(order: Order) {
         binding {
+            warnings.adapter = WarningsAdapter(order.warnings?.map { it.image } ?: listOf())
 
           /*  infoLayout.order = order
             infoLayout.callActions =
