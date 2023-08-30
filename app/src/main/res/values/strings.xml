@@ -51,4 +51,6 @@
     <string name="camera_option">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="cant_add_image">You Can\'t Add Image .</string>
+    <string name="call">Call</string>
+    <string name="amount_new">Amount</string>
 </resources>

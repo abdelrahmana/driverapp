@@ -611,6 +611,7 @@
                         android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/amountHeader"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:text="@string/amount"

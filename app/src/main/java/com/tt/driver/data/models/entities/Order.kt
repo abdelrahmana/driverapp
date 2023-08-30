@@ -19,6 +19,7 @@ data class Order(
     val from_lat: String?,
     val from_long: String?,
     val paid : String?,
+    var valid_date : String?,
     val from_name: String?,
     val from_phone: String?,
     val from_region: FromRegion?,

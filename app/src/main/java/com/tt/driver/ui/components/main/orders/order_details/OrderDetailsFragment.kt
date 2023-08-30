@@ -1,5 +1,6 @@
 package com.tt.driver.ui.components.main.orders.order_details
 
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.tt.driver.data.models.http.OrderDetailsResponse
 import com.tt.driver.databinding.FragmentOrderDetailsNewBinding
 import com.tt.driver.ui.base.LocationAwareFragment
 import com.tt.driver.utils.IntentUtils
+import com.tt.driver.utils.Util
 import com.tt.driver.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -71,8 +73,48 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
             toolbar.setOnClickListener { requireActivity().onBackPressed() }
 
             container.show()
+            if (order.to_address.isNullOrEmpty())
+                containerDestination.visibility = View.GONE
+            dateTextPurpose.text = order.valid_date + " | " + order.order_type
+            orderType.text = order.delivery_category?.name?:""
 
-       //     card.order = order
+            nameCustomer.text = order.to_name?:""
+            goveranteValuePickUp.text = order.from_governorate?.name?:""
+            regionValuePickup.text = order.from_region?.name?:""
+            blockValuePickUp.text = order.from_block?.name?:""
+            homePickUpValue.text = order.to_home_number?:""
+            apartmentPickUp.text = order.to_apartment_number?:""
+            floorNumberValue.text = order.to_floor_number?:""
+
+
+            nameCustomerDestionationValue.text = order.to_name?:""
+            goveranteValueDestionation.text = order.to_governorate?.name?:""
+            regionValueDestionation.text = order.to_region?.name?:""
+            blockValueDestionation.text = order.to_region?.name?:""
+            homeDestionationValue.text = order.to_home_number?:""
+            apartmentDestionationValue.text = order.to_apartment_number?:""
+            floorDestionationValue.text = order.to_floor_number?:""
+
+            priceValue.text = order.total_order_price?:""
+            amountHeader.text = if (order.paid =="1") getString(R.string.amount_new) else getString(R.string.amount)
+            callDestination.setOnClickListener{
+                val url = "https://api.whatsapp.com/send?phone="+"+965"+order.from_phone?:"0"
+                Util.buildImplictIntentView(requireContext(), url)
+            }
+            callPickUp.setOnClickListener{
+                Util.startIntentAction("+965"+order?.from_phone,requireContext()!!,
+                    requireActivity()!!.getString(R.string.call), Intent.ACTION_DIAL)
+            }
+
+            whatsDestionationValue.setOnClickListener{
+                val url = "https://api.whatsapp.com/send?phone="+"+965"+order.to_phone?:"0"
+                Util.buildImplictIntentView(requireContext(), url)
+            }
+            callDestionationValue.setOnClickListener{
+                Util.startIntentAction("+965"+order?.to_phone,requireContext()!!,
+                    requireActivity()!!.getString(R.string.call), Intent.ACTION_DIAL)
+            }
+            //     card.order = order
 
       //      card.callActions = OrderCallActionsWrapper(requireContext(), card.dropOffCallButton)
 

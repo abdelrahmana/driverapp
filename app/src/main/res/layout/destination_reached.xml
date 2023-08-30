@@ -102,10 +102,22 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/dateTime"
                         android:text="|"
+                        android:id="@+id/spliter"
                         android:layout_marginStart="5dp"
                         android:layout_width="1dp"
                         android:layout_height="12dp"/>
 
+
+                    <TextView
+                        app:layout_constraintStart_toEndOf="@+id/spliter"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="orderName"
+                        android:id="@+id/orderPurpose"
+                        android:layout_marginStart="5dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                     <TextView
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -294,6 +306,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/amount"
             android:textColor="@color/gray"
+            android:id="@+id/amountHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
