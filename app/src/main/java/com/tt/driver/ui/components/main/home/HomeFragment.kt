@@ -14,12 +14,12 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
-import com.tt.driver.R
 import com.tt.driver.data.datastore.UserDataStore
-import com.tt.driver.databinding.FragmentHomeBinding
 import com.tt.driver.ui.base.MapFragment
 import com.tt.driver.ui.components.main.MainActivity
 import com.tt.driver.utils.toLatLng
+import com.waysgroup.t7t_talbk_driver.R
+import com.waysgroup.t7t_talbk_driver.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

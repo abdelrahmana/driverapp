@@ -1,9 +1,9 @@
 package com.tt.driver.data.di
 
-import com.tt.driver.BuildConfig
 import com.tt.driver.data.datastore.AuthDataStore
 import com.tt.driver.data.network.APIsService
 import com.tt.driver.data.network.AuthorizationInterceptor
+import com.waysgroup.t7t_talbk_driver.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

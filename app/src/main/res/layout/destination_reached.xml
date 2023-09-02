@@ -333,7 +333,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
         android:insetTop="0dp"
-        android:visibility=""
+        android:visibility="gone"
         android:insetBottom="0dp"
         android:text="@string/complete"
         android:textAllCaps="true"

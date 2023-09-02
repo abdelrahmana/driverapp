@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.core.content.ContextCompat.startActivity
-import com.tt.driver.R
 
 
 object IntentUtils {

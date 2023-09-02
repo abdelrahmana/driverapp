@@ -12,9 +12,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AlertDialog
 import com.andrognito.flashbar.Flashbar
 import com.andrognito.flashbar.anim.FlashAnim
-import com.tt.driver.R
 import com.tt.driver.utils.Constant.CAMERA
 import com.tt.driver.utils.Constant.GALLERY
+import com.waysgroup.t7t_talbk_driver.R
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream

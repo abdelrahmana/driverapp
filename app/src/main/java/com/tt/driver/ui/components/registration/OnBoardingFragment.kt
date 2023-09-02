@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.tt.driver.R
-import com.tt.driver.databinding.FragmentOnboardingBinding
 import com.tt.driver.ui.base.BaseFragment
+import com.waysgroup.t7t_talbk_driver.R
+import com.waysgroup.t7t_talbk_driver.databinding.FragmentOnboardingBinding
 
 class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
 

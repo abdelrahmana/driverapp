@@ -10,8 +10,8 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.tt.driver.R
 import com.tt.driver.ui.components.main.MainActivity
+import com.waysgroup.t7t_talbk_driver.R
 
 object NotificationHelper {
 
@@ -76,7 +76,7 @@ object NotificationHelper {
             .setContentTitle(title)
             .setContentText(content)
             .setSmallIcon(R.drawable.ic_notification)
-            .setColor(R.color.blue)
+            .setColor(ContextCompat.getColor(context,R.color.blue))
             .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setOngoing(isLocationOngoingNotification)
             .setContentIntent(launchActivityPendingIntent)

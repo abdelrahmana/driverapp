@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.tt.driver.R
 import com.tt.driver.data.models.entities.Order
-import com.tt.driver.databinding.ListItemOrdersBinding
-import com.tt.driver.databinding.OneItemNewListOrderBinding
 import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
 import com.tt.driver.utils.show
+import com.waysgroup.t7t_talbk_driver.databinding.OneItemNewListOrderBinding
 
 class OrdersAdapter(
     private val onOrderClicked: (Order) -> Unit

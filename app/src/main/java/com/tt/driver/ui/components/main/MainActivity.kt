@@ -19,15 +19,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
-import com.tt.driver.R
 import com.tt.driver.data.datastore.AuthDataStore
 import com.tt.driver.data.datastore.UserDataStore
 import com.tt.driver.data.models.Failure
 import com.tt.driver.data.models.Success
 import com.tt.driver.data.services.LocationTrackerService
-import com.tt.driver.databinding.ActivityMainBinding
 import com.tt.driver.ui.components.registration.RegistrationActivity
 import com.tt.driver.utils.IntentUtils
+import com.waysgroup.t7t_talbk_driver.R
+import com.waysgroup.t7t_talbk_driver.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

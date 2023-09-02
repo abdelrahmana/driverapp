@@ -2,8 +2,8 @@ package com.tt.driver.ui.components.main.orders.order_utils
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.tt.driver.R
 import com.tt.driver.data.models.entities.Order
+import com.waysgroup.t7t_talbk_driver.R
 
 
 @BindingAdapter("orderGovernorate", "isSource")

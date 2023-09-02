@@ -12,17 +12,17 @@ data class PaymentReport(
     ) {
         data class Cash(
             val count: Int? = 0,
-            val sum: Int? = 0
+            val sum: Double? = 0.0
         )
 
         data class Knet(
             val count: Int? = 0,
-            val sum: Int? = 0
+            val sum: Double? = 0.0
         )
 
         data class Total(
             val count: Int? = 0,
-            val sum: Int? = 0
+            val sum: Double? = 0.0
         )
     }
 }

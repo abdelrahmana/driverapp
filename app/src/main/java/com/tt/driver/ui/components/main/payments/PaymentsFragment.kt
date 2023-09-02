@@ -8,9 +8,9 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayout
 import com.tt.driver.data.models.entities.PaymentReport
 import com.tt.driver.data.models.http.PaymentsReportResponse
-import com.tt.driver.databinding.FragmentPaymentsBinding
 import com.tt.driver.ui.base.BaseFragment
 import com.tt.driver.utils.show
+import com.waysgroup.t7t_talbk_driver.databinding.FragmentPaymentsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

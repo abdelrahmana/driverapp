@@ -7,6 +7,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.libraries.places.api.Places
 import com.google.firebase.messaging.FirebaseMessaging
 import com.tt.driver.data.datastore.AuthDataStore
+import com.waysgroup.t7t_talbk_driver.R
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.first

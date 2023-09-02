@@ -9,9 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayout
 import com.tt.driver.data.models.entities.OrderStatus
-import com.tt.driver.databinding.FragmentOrdersBinding
 import com.tt.driver.ui.base.BaseFragment
 import com.tt.driver.utils.show
+import com.waysgroup.t7t_talbk_driver.databinding.FragmentOrdersBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
