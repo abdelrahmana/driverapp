@@ -1,11 +1,14 @@
 package com.tt.driver.ui.components.main.orders.order_details
 
+import android.content.Intent
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -18,6 +21,7 @@ import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.ui.base.MapFragment
 import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
 import com.tt.driver.utils.IntentUtils
+import com.tt.driver.utils.Util
 import com.tt.driver.utils.show
 import com.tt.driver.utils.showToast
 import com.tt.driver.utils.toLatLng
@@ -80,8 +84,28 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
     private fun updateOrderDetailsUI(order: Order) {
         binding {
             payButton.show(order.paid =="0")
+            if (order.paid =="1")
+            amountHeader.text = getString(R.string.amount_new)
             completeOrder.show(order.paid =="1")
+            if (order.to_address.isNullOrEmpty())
+                destionationLocationReached.visibility = View.GONE
+            pickUpDestination.text = order.from_address?:""
+            destinationLocation.text = order.to_address?:""
+            dateTime.text = order.valid_date?:""
+            orderPurpose.text = order.order_type?:""
+            orderType.text = order.delivery_category?.name?:""
+            userNameCustomerDest.text = order.to_name?:""
+            userName.text = order.from_name?:""
+            titleImageHeader.setCardBackgroundColor(Color.parseColor(order.color))
+            callDestination.setOnClickListener{
+                val url = "https://api.whatsapp.com/send?phone="+"+965"+order.from_phone?:"0"
+                Util.buildImplictIntentView(requireContext(), url)
+            }
+            callPickUp.setOnClickListener{
+                Util.startIntentAction("+965"+order?.from_phone,requireContext()!!,
+                    requireActivity().getString(R.string.call), Intent.ACTION_DIAL)
 
+            }
             /*  infoLayout.order = order
               infoLayout.callActions =
                   OrderCallActionsWrapper(requireContext(), infoLayout.dropOffCallButton)

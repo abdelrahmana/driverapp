@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import androidx.activity.result.ActivityResultLauncher
@@ -85,6 +86,38 @@ object Util {
 
         }
     }
+    fun buildImplictIntentView(
+        activity: Context,
+        intentData: String
+    ) { // this function is used to go outside the application
+        if (intentData.isNotEmpty()) {
+            val intentFilter = Intent(Intent.ACTION_VIEW)
+            intentFilter.data = Uri.parse(intentData)
+            activity.startActivity(intentFilter)
+        }
+
+    }
+    fun startIntentAction(
+        dataIntent: String,
+        context: Context,
+        headerString: String,
+        intentAction: String
+    ) {
+        val emailIntent = Intent(intentAction).apply {
+            if (intentAction == Intent.ACTION_DIAL)
+                data = Uri.parse("tel:" + dataIntent)
+            else {
+                data = Uri.parse("mailto:" + dataIntent)
+
+                //    this.putExtra(EXTRA_EMAIL, dataIntent)
+                //this.setType("text/plain")
+
+            }
+            // data = Uri.parse(dataIntent)
+        }
+        context.startActivity(Intent.createChooser(emailIntent, headerString))
+    }
+
     fun getCreatedFileFromBitmap(fileName: String, bitmapUpdatedImage: Bitmap, typeOfFile : String?, context: Context) : File {
         val bytes =  ByteArrayOutputStream()
         bitmapUpdatedImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)

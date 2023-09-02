@@ -150,7 +150,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
             userName.text = order.from_name
             orderType.text = order.delivery_category?.name
             orderPickupValueNumber.text = order.orders_count?:"0"
-            dateTextPurpose.text = order.created_at + " | " + order.order_type
+            dateTextPurpose.text = order.valid_date + " | " + order.order_type
             orderPickUpNext.setOnClickListener{
                 bitMap?.let { it-> viewModel.uploadImage(order.id?:0,it)}?: kotlin.run{
                     navigateTo(
@@ -160,6 +160,16 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                     )
                 }
             }
+            callDestination.setOnClickListener{
+                val url = "https://api.whatsapp.com/send?phone="+"+965"+order.from_phone?:"0"
+                Util.buildImplictIntentView(requireContext(), url)
+            }
+            callPickUp.setOnClickListener{
+                Util.startIntentAction("+965"+order?.from_phone,requireContext()!!,
+                    requireActivity().getString(R.string.call), Intent.ACTION_DIAL)
+
+            }
+
         /*    infoLayout.order = order
             infoLayout.callActions =
                 OrderCallActionsWrapper(requireContext(), infoLayout.dropOffCallButton)
