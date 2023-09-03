@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.tt.driver.R
 import com.tt.driver.data.datastore.AuthDataStore
-import com.tt.driver.databinding.FragmentLoginBinding
 import com.tt.driver.ui.base.BaseFragment
 import com.tt.driver.ui.components.main.MainActivity
 import com.tt.driver.utils.show
 import com.tt.driver.utils.showToast
 import com.tt.driver.utils.value
+import com.waysgroup.t7t_talbk_driver.R
+import com.waysgroup.t7t_talbk_driver.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

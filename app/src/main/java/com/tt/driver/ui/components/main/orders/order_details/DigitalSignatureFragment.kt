@@ -8,14 +8,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.github.gcacace.signaturepad.views.SignaturePad
-import com.tt.driver.R
 import com.tt.driver.data.models.Failure
 import com.tt.driver.data.models.Loading
 import com.tt.driver.data.models.Success
 import com.tt.driver.data.models.entities.OrderStatus
-import com.tt.driver.databinding.FragmentDigitalSignatureBinding
 import com.tt.driver.ui.base.BaseFragment
 import com.tt.driver.utils.show
+import com.waysgroup.t7t_talbk_driver.databinding.FragmentDigitalSignatureBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Stack
 

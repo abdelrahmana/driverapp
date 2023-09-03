@@ -5,10 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.tt.driver.R
 import com.tt.driver.data.datastore.AuthDataStore
 import com.tt.driver.ui.components.main.MainActivity
 import com.tt.driver.ui.components.registration.RegistrationActivity
+import com.waysgroup.t7t_talbk_driver.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

@@ -9,15 +9,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.model.LatLng
-import com.tt.driver.R
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.data.models.http.OrderDetailsResponse
-import com.tt.driver.databinding.FragmentOrderDetailsNewBinding
 import com.tt.driver.ui.base.LocationAwareFragment
 import com.tt.driver.utils.IntentUtils
 import com.tt.driver.utils.Util
 import com.tt.driver.utils.show
+import com.waysgroup.t7t_talbk_driver.R
+import com.waysgroup.t7t_talbk_driver.databinding.FragmentOrderDetailsNewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

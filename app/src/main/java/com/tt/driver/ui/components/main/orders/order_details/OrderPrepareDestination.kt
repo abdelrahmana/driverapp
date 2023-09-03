@@ -11,15 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.SupportMapFragment
-import com.tt.driver.R
 import com.tt.driver.data.models.Failure
 import com.tt.driver.data.models.Loading
 import com.tt.driver.data.models.Success
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.OrderStatus
-import com.tt.driver.databinding.FragmentOrderDestinationBinding
-import com.tt.driver.databinding.OrderPickUpPreviewBinding
-import com.tt.driver.databinding.OrderPickupNewBinding
 import com.tt.driver.ui.base.MapFragment
 import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
 import com.tt.driver.utils.IntentUtils
@@ -27,6 +23,8 @@ import com.tt.driver.utils.Util
 import com.tt.driver.utils.show
 import com.tt.driver.utils.showToast
 import com.tt.driver.utils.toLatLng
+import com.waysgroup.t7t_talbk_driver.R
+import com.waysgroup.t7t_talbk_driver.databinding.OrderPickUpPreviewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
