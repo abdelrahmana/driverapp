@@ -14,7 +14,7 @@ interface APIsService {
     @Headers("Accept: application/json")
     @GET("driver/orders/list")
     suspend fun getOrderList(
-        @Query("status") status: Int
+        @Query("status") status: Int,@Query("page") page : Int
     ): OrdersResponse
 
     @Headers("Accept: application/json")

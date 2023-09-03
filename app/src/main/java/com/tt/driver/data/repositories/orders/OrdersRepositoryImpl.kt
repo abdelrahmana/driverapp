@@ -16,8 +16,8 @@ class OrdersRepositoryImpl @Inject constructor(
     private val remoteDataSource: APIsService
 ) : BaseRepository(), OrdersRepository {
 
-    override suspend fun getOrders(orderType: OrderType) =
-        makeApiCall { remoteDataSource.getOrderList(orderType.code).data }
+    override suspend fun getOrders(orderType: OrderType,page : Int) =
+        makeApiCall { remoteDataSource.getOrderList(orderType.code,page) }
 
     override suspend fun getOrderDetails(orderId: Int) =
         makeApiCall { remoteDataSource.getOrderDetails(orderId) }
