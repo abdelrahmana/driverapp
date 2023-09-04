@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.OrderStatus
@@ -35,6 +36,7 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>(),
         adapter = OrdersAdapter {
             navigateTo(OrdersFragmentDirections.actionOrdersFragmentToOrderDetailsFragment(it.id ?: 0))
         }
+        binding!!.ordersList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding?.ordersList?.adapter = adapter
         binding?.nestedScrollPagination?.myScrollChangeListener = this
         observeResult(viewModel.order) { // when getting order

@@ -2,6 +2,7 @@ package com.tt.driver.ui.components.main.orders
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -40,6 +41,8 @@ class OrdersAdapter(
             orderName.text = order.delivery_category?.name?:""
             pickUpDestination.text = order.pick_up_address?:""
             destinationLocation.text = order.destination_address?:""
+            if (order.destination_address==null)
+                containerDestinations.visibility = View.GONE
             /*   this.order = order
                this.callActions = OrderCallActionsWrapper(
                    holder.binding.root.context,

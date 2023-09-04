@@ -155,7 +155,7 @@ data class Order(
         @Parcelize
         data class Car(
             val car_category: String?,
-            val car_category_id: String?,
+            val car_category_id: ArrayList<String>?,
             val car_mark: String?,
             val car_mark_id: String?,
             val car_number: String?,
