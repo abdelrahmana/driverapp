@@ -59,7 +59,7 @@ abstract class BaseFragment<T : Any> : Fragment() {
                         }
                         is Failure -> {
                             isLoading(false)
-                            customErrorHandling?.invoke(it.error) ?: handleError(it.error)
+                             customErrorHandling?.invoke(it.error) ?: handleError(it.error)
                         }
                     }
                 }

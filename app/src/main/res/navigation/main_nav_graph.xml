@@ -85,6 +85,9 @@
         <action
             android:id="@+id/action_orderDestinationFragment_to_onlinePaymentFragment"
             app:destination="@id/onlinePaymentFragment" />
+        <action
+            android:id="@+id/action_destinationPreviewFromOrder"
+            app:destination="@id/orderPrepareDestination" />
     </fragment>
 
     <fragment
@@ -124,6 +127,9 @@
         <action
             android:id="@+id/action_orderDestinationFragment_to_onlinePaymentFragment"
             app:destination="@id/onlinePaymentFragment" />
+        <action
+            android:id="@+id/action_destinationPreviewFromOrdeTwo"
+            app:destination="@id/orderPrepareDestination" />
     </fragment>
     <fragment
         android:id="@+id/onlinePaymentFragment"

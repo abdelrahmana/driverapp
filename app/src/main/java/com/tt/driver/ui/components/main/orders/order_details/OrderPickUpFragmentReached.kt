@@ -154,10 +154,9 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
             orderPickUpNext.setOnClickListener{
                 bitMap?.let { it-> viewModel.uploadImage(order.id?:0,it)}?: kotlin.run{
                     navigateTo(
-                        OrderDetailsFragmentDirections.actionPickupReached( // to pickup reached
+                        OrderPickUpFragmentReachedDirections.actionDestinationPreviewFromOrdeTwo( // to pickup reached
                             order
-                        )
-                    )
+                        ))
                 }
             }
             callDestination.setOnClickListener{
@@ -201,6 +200,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
             }
             orderImage.setOnClickListener{
                 setOnClickImage()
+
             }
 
         }
@@ -209,9 +209,11 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
     private fun observePaymentURLGeneration(order: Order) {
         viewModel.onUrlGenerated.observe(viewLifecycleOwner) {
             when (it.second) {
-                is Loading -> isLoading(true)
+                is Loading ->binding?.progressBar?.show(true)
+// isLoading(true)
                 is Success -> {
-                    isLoading(false)
+                    //isLoading(false)
+                    binding?.progressBar?.show(false)
                     val url = (it.second as Success).data
                     when (it.first) {
                         PaymentType.CASH -> {
@@ -231,7 +233,8 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                     }
                 }
                 is Failure -> {
-                    isLoading(false)
+                    binding?.progressBar?.show(false)
+                   // isLoading(false)
                     showToast("something went wrong")
                 }
             }
@@ -246,7 +249,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                     //  findNavController().navigate()
                     order.imagePath = Util.getCreatedFileFromBitmap("image",bitMap!!,"jpg",requireContext()).absolutePath
                     navigateTo(
-                        OrderDetailsFragmentDirections.actionDestinationPreview( // to pickup reached
+                        OrderPickUpFragmentReachedDirections.actionDestinationPreviewFromOrdeTwo( // to pickup reached
                             order
                         ))
                 }
@@ -271,7 +274,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
     }
 
     override fun isLoading(status: Boolean) {
-        binding?.progressBar?.show(status)
+      //  binding?.progressBar?.show(status)
     }
 
 }

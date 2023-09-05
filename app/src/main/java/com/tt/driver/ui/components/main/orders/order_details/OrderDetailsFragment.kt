@@ -78,14 +78,14 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
             dateTextPurpose.text = order.valid_date + " | " + order.order_type
             orderType.text = order.delivery_category?.name?:""
 
-            nameCustomer.text = order.to_name?:""
+            nameCustomer.text = order.from_name?:""
             goveranteValuePickUp.text = order.from_governorate?.name?:""
             regionValuePickup.text = order.from_region?.name?:""
             blockValuePickUp.text = order.from_block?.name?:""
-            homePickUpValue.text = order.to_home_number?:""
-            apartmentPickUp.text = order.to_apartment_number?:""
-            floorNumberValue.text = order.to_floor_number?:""
-
+            homePickUpValue.text = order.from_home_number?:""
+            apartmentPickUp.text = order.from_apartment_number?:""
+            floorNumberValue.text = order.from_floor_number?:""
+            streetPickupValue.text = order.from_address?:""
 
             nameCustomerDestionationValue.text = order.to_name?:""
             goveranteValueDestionation.text = order.to_governorate?.name?:""
@@ -94,8 +94,8 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
             homeDestionationValue.text = order.to_home_number?:""
             apartmentDestionationValue.text = order.to_apartment_number?:""
             floorDestionationValue.text = order.to_floor_number?:""
-
-            priceValue.text = order.total_order_price?:""
+            streetDestionationValue.text = order.to_address?:""
+            priceValue.text = order.price?:""
             amountHeader.text = if (order.paid =="1") getString(R.string.amount_new) else getString(R.string.amount)
             callDestination.setOnClickListener{
                 val url = "https://api.whatsapp.com/send?phone="+"+965"+order.from_phone?:"0"

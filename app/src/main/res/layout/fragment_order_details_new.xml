@@ -166,11 +166,13 @@
 
                       <TextView
                           android:textColor="@color/black"
+                          android:textAlignment="viewStart"
+                          app:layout_constraintEnd_toStartOf="@+id/blockPickUp"
                           app:layout_constraintStart_toEndOf="@+id/regionTextPickup"
                           app:layout_constraintTop_toTopOf="@+id/regionTextPickup"
                           app:layout_constraintBottom_toBottomOf="@+id/regionTextPickup"
                           android:id="@+id/regionValuePickup"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
                           android:layout_height="wrap_content"/>
 
                       <TextView
@@ -217,7 +219,7 @@
                           android:textColor="@color/order_subtitle_color"
                           android:layout_marginTop="10dp"
                           app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintTop_toBottomOf="@+id/streetPickup"
+                          app:layout_constraintTop_toBottomOf="@+id/streetPickupValue"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"/>
 
@@ -232,12 +234,12 @@
 
                       <TextView
                           android:id="@+id/apartmentNo"
-                          android:layout_marginStart="15dp"
+                          android:layout_marginStart="5dp"
                           android:text="@string/apartment"
                           android:textColor="@color/order_subtitle_color"
                           android:layout_marginTop="10dp"
                           app:layout_constraintStart_toEndOf="@+id/homePickUpValue"
-                          app:layout_constraintTop_toBottomOf="@+id/streetPickup"
+                          app:layout_constraintTop_toBottomOf="@+id/streetPickupValue"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"/>
 
@@ -252,20 +254,20 @@
 
 
                       <TextView
+                          app:layout_constraintEnd_toStartOf="@+id/floorNumberValue"
                           android:id="@+id/floorNo"
-                          android:layout_marginStart="15dp"
-                          android:text="@string/apartment"
+                          android:layout_marginStart="5dp"
+                          android:text="@string/floor_no"
                           android:textColor="@color/order_subtitle_color"
                           android:layout_marginTop="10dp"
                           app:layout_constraintStart_toEndOf="@+id/apartmentPickUp"
-                          app:layout_constraintTop_toBottomOf="@+id/streetPickup"
-                          android:layout_width="wrap_content"
+                          app:layout_constraintTop_toBottomOf="@+id/streetPickupValue"
+                          android:layout_width="0dp"
                           android:layout_height="wrap_content"/>
 
                       <TextView
                           android:textColor="@color/black"
                           app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintStart_toEndOf="@+id/floorNo"
                           app:layout_constraintTop_toTopOf="@+id/floorNo"
                           app:layout_constraintBottom_toBottomOf="@+id/floorNo"
                           android:id="@+id/floorNumberValue"
@@ -442,11 +444,12 @@
 
                             <TextView
                                 android:textColor="@color/black"
+                                app:layout_constraintEnd_toStartOf="@+id/blockDestionation"
                                 app:layout_constraintStart_toEndOf="@+id/regionTextDestionation"
                                 app:layout_constraintTop_toTopOf="@+id/regionTextDestionation"
                                 app:layout_constraintBottom_toBottomOf="@+id/regionTextDestionation"
                                 android:id="@+id/regionValueDestionation"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"/>
 
                             <TextView
@@ -456,7 +459,7 @@
                                 android:textColor="@color/order_subtitle_color"
                                 android:layout_marginTop="10dp"
                                 app:layout_constraintTop_toBottomOf="@+id/governateDestination"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"/>
 
                             <TextView
@@ -508,7 +511,8 @@
 
                             <TextView
                                 android:id="@+id/apartmentNoDestionation"
-                                android:layout_marginStart="15dp"
+                                android:layout_marginStart="5dp"
+                                android:textAlignment="viewStart"
                                 android:text="@string/apartment"
                                 android:textColor="@color/order_subtitle_color"
                                 android:layout_marginTop="10dp"
@@ -518,8 +522,9 @@
                                 android:layout_height="wrap_content"/>
 
                             <TextView
-                                android:textColor="@color/black"
                                 app:layout_constraintStart_toEndOf="@+id/apartmentNoDestionation"
+                                android:textColor="@color/black"
+                                app:layout_constraintEnd_toStartOf="@+id/floorNoDestionation"
                                 app:layout_constraintTop_toTopOf="@+id/apartmentNoDestionation"
                                 app:layout_constraintBottom_toBottomOf="@+id/apartmentNoDestionation"
                                 android:id="@+id/apartmentDestionationValue"
@@ -529,23 +534,23 @@
 
                             <TextView
                                 android:id="@+id/floorNoDestionation"
-                                android:layout_marginStart="15dp"
-                                android:text="@string/apartment"
+                                android:layout_marginStart="5dp"
+                                android:text="@string/floor_no"
                                 android:textColor="@color/order_subtitle_color"
                                 android:layout_marginTop="10dp"
+                                app:layout_constraintEnd_toStartOf="@+id/floorDestionationValue"
                                 app:layout_constraintStart_toEndOf="@+id/apartmentDestionationValue"
-                                app:layout_constraintTop_toBottomOf="@+id/streetDestionation"
-                                android:layout_width="wrap_content"
+                                app:layout_constraintTop_toTopOf="@+id/apartmentDestionationValue"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"/>
 
                             <TextView
                                 android:textColor="@color/black"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/floorNoDestionation"
                                 app:layout_constraintTop_toTopOf="@+id/floorNoDestionation"
                                 app:layout_constraintBottom_toBottomOf="@+id/floorNoDestionation"
                                 android:id="@+id/floorDestionationValue"
-                                android:layout_width="0dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
