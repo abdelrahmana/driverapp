@@ -24,7 +24,7 @@ import com.waysgroup.t7t_talbk_driver.R
 import com.waysgroup.t7t_talbk_driver.databinding.FragmentOrderDestinationBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
-
+ // deprecated
 @AndroidEntryPoint
 class OrderDestinationFragment : MapFragment<FragmentOrderDestinationBinding>() {
 
@@ -121,7 +121,8 @@ class OrderDestinationFragment : MapFragment<FragmentOrderDestinationBinding>() 
                     when (it.first) {
                         PaymentType.CASH -> {
                             updateOrderStatus()
-                            navigateBack()
+                            //navigateBack()
+                            findNavController().popBackStack(R.id.orderDetailsFragment,false)
                         }
                         else -> {
                             if (shareLink) {

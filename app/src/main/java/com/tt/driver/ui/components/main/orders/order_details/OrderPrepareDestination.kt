@@ -36,7 +36,6 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
     private val args by navArgs<OrderDestinationFragmentArgs>()
 
     private var shareLink = false
-
     override fun initBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -50,18 +49,21 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
             map = it
             map?.setPadding(0, 0, 0, 1200)
         }*/
+        binding?.toolbar?.setOnClickListener {
+            findNavController().popBackStack(R.id.orderDetailsFragment, false)
 
+        }
         updateOrderDetailsUI(args.order)
 
         setActionButtonsListener(args.order)
 
-        observePaymentURLGeneration()
+      //  observePaymentURLGeneration()
 
     }
 
     private fun updateOrderStatus() {
         findNavController()
-            .previousBackStackEntry
+            .getBackStackEntry(R.id.orderDetailsFragment)
             ?.savedStateHandle
             ?.set(OrderDetailsFragment.UPDATE_ORDER_STATE, true)
     }
@@ -77,7 +79,8 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
             homePickUpValue.text = order.to_home_number?:""
             apartmentPickUp.text = order.to_apartment_number?:""
             floorNumberValue.text = order.to_floor_number?:""
-            dateTextPurpose.text = (order.valid_date?:"") +"|" +(order.order_type?:"")
+            streetPickupValue.text = order.to_address?:""
+            dateTextPurpose.text = (order.valid_date?:"") +" | " +(order.order_type?:"")
             orderType.text = order.delivery_category?.name
             callDestination.setOnClickListener{
                 val url = "https://api.whatsapp.com/send?phone="+"+965"+order.to_phone?:"0"
@@ -86,6 +89,15 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
             callPickUp.setOnClickListener{
                 Util.startIntentAction("+965"+order?.to_phone,requireContext()!!,
                     requireActivity()!!.getString(R.string.call), Intent.ACTION_DIAL)
+            }
+            orderPickUpNext.setOnClickListener{
+             /*   navigateTo(
+                    OrderPrepareDestinationDirections
+                        .actionToDestinationReached(order)
+                ) */
+                updateOrderStatus()
+                findNavController().popBackStack(R.id.orderDetailsFragment, false)
+
             }
             /*  infoLayout.order = order
               infoLayout.callActions =
@@ -133,7 +145,7 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
         }
     }
 
-    private fun observePaymentURLGeneration() {
+ /*   private fun observePaymentURLGeneration() {
         viewModel.onUrlGenerated.observe(viewLifecycleOwner) {
             when (it.second) {
                 is Loading -> isLoading(true)
@@ -163,7 +175,7 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
                 }
             }
         }
-    }
+    }*/
 
     override fun onUserLocationFetched(location: Location) {
         pinUserLocation(location.toLatLng(), null)
@@ -180,5 +192,6 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
     override fun isLoading(status: Boolean) {
       //  binding?.progressBar?.show(status)
     }
+    // handle backstack to be in order details
 
 }

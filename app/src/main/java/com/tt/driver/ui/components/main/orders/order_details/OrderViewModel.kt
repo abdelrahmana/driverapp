@@ -106,7 +106,7 @@ class OrderViewModel @Inject constructor(
             .apply {
                 val file = FileUtils.writeBitmapToFile(getApplication<Application>().applicationContext, bitmap)
                 val body = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                addPart(MultipartBody.Part.createFormData("signature_image", file.name, body))
+                addPart(MultipartBody.Part.createFormData(/*"signature_image"*/"images[0]", file.name, body))
                 addFormDataPart("order_id", orderId.toString())
             }.build()
     }

@@ -13,7 +13,10 @@ object ErrorHandler {
 
     private fun handleApiResponseError(exception: HttpException): String {
         return try {
-            val errors = JSONObject(exception.response()?.errorBody()?.string() ?: "")
+            val errors = JSONObject(exception.response()?.errorBody()?.string()?: "")
+         //   exception.response()?.errorBody()?.string()?.lowercase()?.contains("already")
+            val string = ""
+            string.lowercase()
             errors.getString("message")
         } catch (e: Exception) {
             "request failed"

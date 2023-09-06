@@ -57,7 +57,7 @@ object Util {
         onActivityResult: ActivityResultLauncher<Intent>,
         registerGallery: ActivityResultLauncher<Intent>
     ) {
-        val str = arrayOf(activity.getString(R.string.camera_option), activity.getString(R.string.gallery)) // which if 1
+        val str = arrayOf(activity.getString(R.string.camera_option), activity.getString(R.string.gallery)) // which
         AlertDialog.Builder(activity).setItems(
             str) { dialog, which -> performImgPicAction(which,onActivityResult,registerGallery)}.show()
 
@@ -70,9 +70,13 @@ object Util {
     ) {
         val intent: Intent?
         if (which == GALLERY) {  // in case we need to get image from gallery
-            intent = Intent(
+            /*intent = Intent(
                 Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            intent.putExtra(Constant.WHICHSELECTION, GALLERY)
+            intent.putExtra("return-data", true); //added snippet
+            intent.putExtra(Constant.WHICHSELECTION, GALLERY)*/
+            intent = Intent()
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
             registerGallery.launch(intent)
 
         }

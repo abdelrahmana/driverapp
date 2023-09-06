@@ -296,8 +296,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         app:layout_constraintBottom_toTopOf="@+id/completeOrder"
         android:layout_width="0dp"
-        app:layout_constraintEnd_toEndOf="@+id/completeOrder"
-        app:layout_constraintStart_toStartOf="@+id/completeOrder"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="10dp"
         android:layout_height="wrap_content">
 
@@ -340,7 +342,7 @@
         app:layout_constraintTop_toTopOf="parent" />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/completeOrder"
-        android:layout_width="370dp"
+        android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
@@ -356,7 +358,7 @@
         app:layout_constraintStart_toStartOf="parent" />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/payButton"
-        android:layout_width="370dp"
+        android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"

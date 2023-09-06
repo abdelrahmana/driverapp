@@ -54,4 +54,5 @@
     <string name="call">Call</string>
     <string name="amount_new">Amount</string>
     <string name="floor_no">Floor No:</string>
+    <string name="destionation_reached">Destionation Reached</string>
 </resources>

@@ -186,6 +186,7 @@
                           android:layout_height="wrap_content"/>
 
                       <TextView
+
                           app:layout_constraintEnd_toEndOf="parent"
                           android:textColor="@color/black"
                           app:layout_constraintTop_toTopOf="@+id/blockPickUp"
@@ -200,7 +201,7 @@
                           android:textColor="@color/order_subtitle_color"
                           android:layout_marginTop="10dp"
                           app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintTop_toBottomOf="@+id/regionTextPickup"
+                          app:layout_constraintTop_toBottomOf="@+id/regionValuePickup"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"/>
 
@@ -208,7 +209,6 @@
                           android:textColor="@color/black"
                           app:layout_constraintStart_toEndOf="@+id/streetPickup"
                           app:layout_constraintTop_toTopOf="@+id/streetPickup"
-                          app:layout_constraintBottom_toBottomOf="@+id/streetPickup"
                           android:id="@+id/streetPickupValue"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"/>
@@ -216,40 +216,49 @@
                       <TextView
                           android:id="@+id/homePickUp"
                           android:text="@string/home_no"
+                          app:layout_constraintEnd_toStartOf="@+id/homePickUpValue"
                           android:textColor="@color/order_subtitle_color"
                           android:layout_marginTop="10dp"
                           app:layout_constraintStart_toStartOf="parent"
                           app:layout_constraintTop_toBottomOf="@+id/streetPickupValue"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          app:layout_constraintHorizontal_weight=".6"
                           android:layout_height="wrap_content"/>
 
                       <TextView
                           android:textColor="@color/black"
+                          app:layout_constraintEnd_toStartOf="@+id/apartmentNo"
                           app:layout_constraintStart_toEndOf="@+id/homePickUp"
                           app:layout_constraintTop_toTopOf="@+id/homePickUp"
                           app:layout_constraintBottom_toBottomOf="@+id/homePickUp"
                           android:id="@+id/homePickUpValue"
-                          android:layout_width="wrap_content"
+                          android:text="dasd"
+                          app:layout_constraintHorizontal_weight=".2"
+                          android:layout_width="0dp"
                           android:layout_height="wrap_content"/>
 
                       <TextView
                           android:id="@+id/apartmentNo"
+                          app:layout_constraintHorizontal_weight=".8"
                           android:layout_marginStart="5dp"
+                          android:gravity="center"
                           android:text="@string/apartment"
+                          app:layout_constraintEnd_toStartOf="@+id/apartmentPickUp"
                           android:textColor="@color/order_subtitle_color"
                           android:layout_marginTop="10dp"
                           app:layout_constraintStart_toEndOf="@+id/homePickUpValue"
                           app:layout_constraintTop_toBottomOf="@+id/streetPickupValue"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
                           android:layout_height="wrap_content"/>
 
                       <TextView
+                          app:layout_constraintEnd_toStartOf="@+id/floorNo"
                           android:textColor="@color/black"
                           app:layout_constraintStart_toEndOf="@+id/apartmentNo"
                           app:layout_constraintTop_toTopOf="@+id/apartmentNo"
-                          app:layout_constraintBottom_toBottomOf="@+id/apartmentNo"
                           android:id="@+id/apartmentPickUp"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          app:layout_constraintHorizontal_weight=".2"
                           android:layout_height="wrap_content"/>
 
 
@@ -258,15 +267,18 @@
                           android:id="@+id/floorNo"
                           android:layout_marginStart="5dp"
                           android:text="@string/floor_no"
+                          app:layout_constraintStart_toEndOf="@+id/apartmentPickUp"
                           android:textColor="@color/order_subtitle_color"
                           android:layout_marginTop="10dp"
-                          app:layout_constraintStart_toEndOf="@+id/apartmentPickUp"
+                          app:layout_constraintHorizontal_weight=".5"
                           app:layout_constraintTop_toBottomOf="@+id/streetPickupValue"
                           android:layout_width="0dp"
                           android:layout_height="wrap_content"/>
 
                       <TextView
+                          app:layout_constraintHorizontal_weight=".2"
                           android:textColor="@color/black"
+                          app:layout_constraintStart_toEndOf="@+id/floorNo"
                           app:layout_constraintEnd_toEndOf="parent"
                           app:layout_constraintTop_toTopOf="@+id/floorNo"
                           app:layout_constraintBottom_toBottomOf="@+id/floorNo"
@@ -485,7 +497,6 @@
                                 android:textColor="@color/black"
                                 app:layout_constraintStart_toEndOf="@+id/streetDestionation"
                                 app:layout_constraintTop_toTopOf="@+id/streetDestionation"
-                                app:layout_constraintBottom_toBottomOf="@+id/streetDestionation"
                                 android:id="@+id/streetDestionationValue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -493,11 +504,13 @@
                             <TextView
                                 android:id="@+id/homeDestionation"
                                 android:text="@string/home_no"
+                                app:layout_constraintEnd_toStartOf="@+id/homeDestionationValue"
                                 android:textColor="@color/order_subtitle_color"
                                 android:layout_marginTop="10dp"
+                                app:layout_constraintHorizontal_weight=".6"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/streetDestionation"
-                                android:layout_width="wrap_content"
+                                app:layout_constraintTop_toBottomOf="@+id/streetDestionationValue"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"/>
 
                             <TextView
@@ -506,7 +519,9 @@
                                 app:layout_constraintTop_toTopOf="@+id/homeDestionation"
                                 app:layout_constraintBottom_toBottomOf="@+id/homeDestionation"
                                 android:id="@+id/homeDestionationValue"
-                                android:layout_width="wrap_content"
+                                app:layout_constraintEnd_toStartOf="@+id/apartmentNoDestionation"
+                                android:layout_width="0dp"
+                                app:layout_constraintHorizontal_weight=".2"
                                 android:layout_height="wrap_content"/>
 
                             <TextView
@@ -514,21 +529,24 @@
                                 android:layout_marginStart="5dp"
                                 android:textAlignment="viewStart"
                                 android:text="@string/apartment"
+                                app:layout_constraintHorizontal_weight=".7"
+                                app:layout_constraintEnd_toStartOf="@+id/apartmentDestionationValue"
                                 android:textColor="@color/order_subtitle_color"
                                 android:layout_marginTop="10dp"
                                 app:layout_constraintStart_toEndOf="@+id/homeDestionationValue"
-                                app:layout_constraintTop_toBottomOf="@+id/streetDestionation"
+                                app:layout_constraintTop_toBottomOf="@+id/streetDestionationValue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
 
                             <TextView
                                 app:layout_constraintStart_toEndOf="@+id/apartmentNoDestionation"
                                 android:textColor="@color/black"
+                                app:layout_constraintHorizontal_weight=".2"
                                 app:layout_constraintEnd_toStartOf="@+id/floorNoDestionation"
                                 app:layout_constraintTop_toTopOf="@+id/apartmentNoDestionation"
                                 app:layout_constraintBottom_toBottomOf="@+id/apartmentNoDestionation"
                                 android:id="@+id/apartmentDestionationValue"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"/>
 
 
@@ -537,20 +555,22 @@
                                 android:layout_marginStart="5dp"
                                 android:text="@string/floor_no"
                                 android:textColor="@color/order_subtitle_color"
-                                android:layout_marginTop="10dp"
-                                app:layout_constraintEnd_toStartOf="@+id/floorDestionationValue"
+                                app:layout_constraintHorizontal_weight=".5"
                                 app:layout_constraintStart_toEndOf="@+id/apartmentDestionationValue"
+                                app:layout_constraintEnd_toStartOf="@+id/floorDestionationValue"
                                 app:layout_constraintTop_toTopOf="@+id/apartmentDestionationValue"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"/>
 
                             <TextView
                                 android:textColor="@color/black"
+                                app:layout_constraintHorizontal_weight=".2"
+                                app:layout_constraintStart_toEndOf="@+id/floorNoDestionation"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/floorNoDestionation"
                                 app:layout_constraintBottom_toBottomOf="@+id/floorNoDestionation"
                                 android:id="@+id/floorDestionationValue"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"/>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>

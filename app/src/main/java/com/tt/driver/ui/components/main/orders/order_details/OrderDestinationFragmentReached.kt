@@ -54,13 +54,14 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
         }*/
         observeResult(viewModel.order) {
             binding?.progressBar?.show(false)
-
+            if (it.data?.getStatus() == OrderStatus.COMPLETED) {
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.order_compelete_successfully),
                     Toast.LENGTH_SHORT
                 ).show()
                 findNavController().popBackStack(R.id.orderDetailsFragment, false)
+            }
         }
         updateOrderDetailsUI(args.order)
 
@@ -139,14 +140,14 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
     private fun observePaymentURLGeneration() {
         viewModel.onUrlGenerated.observe(viewLifecycleOwner) {
             when (it.second) {
-                is Loading -> isLoading(true)
+                is Loading ->  binding?.progressBar?.show(true)
                 is Success -> {
-                    isLoading(false)
+                    binding?.progressBar?.show(false)
                     val url = (it.second as Success).data
                     when (it.first) {
                         PaymentType.CASH -> {
                             updateOrderStatus(OrderStatus.COMPLETED)
-                            navigateBack()
+                       //     navigateBack()
                         }
                         else -> {
                             if (shareLink) {
@@ -161,7 +162,7 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
                     }
                 }
                 is Failure -> {
-                    isLoading(false)
+                    binding?.progressBar?.show(false)
                     showToast("something went wrong")
                 }
             }
@@ -181,7 +182,7 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
     }
 
     override fun isLoading(status: Boolean) {
-        binding?.progressBar?.show(status)
+    //    binding?.progressBar?.show(status)
     }
 
 }

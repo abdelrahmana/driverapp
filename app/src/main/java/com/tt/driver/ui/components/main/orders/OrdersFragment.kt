@@ -36,6 +36,7 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>(),
         adapter = OrdersAdapter {
             navigateTo(OrdersFragmentDirections.actionOrdersFragmentToOrderDetailsFragment(it.id ?: 0))
         }
+        resetList()
         binding!!.ordersList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding?.ordersList?.adapter = adapter
         binding?.nestedScrollPagination?.myScrollChangeListener = this

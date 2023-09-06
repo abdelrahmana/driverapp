@@ -6,7 +6,8 @@
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
         android:gravity="center_vertical"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -75,8 +76,8 @@
 
                 <TextView
                     android:id="@+id/userName"
-                    android:layout_width="1dp"
-                    android:layout_height="13dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="@+id/customerName"
                     app:layout_constraintTop_toBottomOf="@+id/customerName" />
                 <ImageView

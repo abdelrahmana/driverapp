@@ -54,8 +54,10 @@ interface APIsService {
     @POST("driver/tracking/store")
     suspend fun emitUserLocation(@Body body: UserLocationRequest): ResponseBody
 
-    @Headers("Accept: multipart/form-data")
+  /*  @Headers("Accept: multipart/form-data")
     @POST("driver/orders/upload-signature")
-    suspend fun uploadImage(@Body body: RequestBody): ResponseBody
-
+    suspend fun uploadImage(@Body body: RequestBody): ResponseBody */
+  @Headers("Accept: multipart/form-data")
+  @POST("driver/orders/upload-images")
+  suspend fun uploadImage(@Body body: RequestBody): ResponseBody
 }

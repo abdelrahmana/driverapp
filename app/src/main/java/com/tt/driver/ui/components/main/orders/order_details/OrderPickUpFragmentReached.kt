@@ -48,37 +48,53 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
         container: ViewGroup?
     ) = OrderPickupNewBinding.inflate(inflater, container, false)
 
+    var order : Order? =null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
       /*  val mapFragment = childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment?
         mapFragment?.getMapAsync {
             map = it
             map?.setPadding(0, 0, 0, 1200)
         }*/
-
-        updateOrderDetailsUI(args.order)
+        order = args.order
+        updateOrderDetailsUI(order!!)
         observeResult(viewModel.order) {
             binding?.progressBar?.show(false)
+            order = it.data
             if (it.data?.getStatus() == OrderStatus.CANCELED_BY_CUSTOMER) {
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.order_canceled),
                     Toast.LENGTH_SHORT
                 ).show()
+               // updateOrderStatus()
+                updateOrderStatusInDetails(false)
                 findNavController().popBackStack(R.id.orderDetailsFragment, false)
             }
         }
         setActionButtonsListener()
         observePaymentURLGeneration(args.order)
+        binding?.toolbar?.setOnClickListener {
+            findNavController().popBackStack(R.id.orderDetailsFragment, false)
 
+        }
+        customBackPress {
+            findNavController().popBackStack(R.id.orderDetailsFragment, false)
+        }
     }
-
-    private fun updateOrderStatus() {
+    fun updateOrderStatusInDetails(orderValue : Boolean){
         findNavController()
             .previousBackStackEntry
             ?.savedStateHandle
-            ?.set(OrderDetailsFragment.UPDATE_ORDER_STATE, true)
+            ?.set(OrderDetailsFragment.UPDATE_ORDER_STATE, orderValue)
+    }
+
+    private fun updateOrderStatus() { // when payment done
+     /*   findNavController()
+            .previousBackStackEntry
+            ?.savedStateHandle
+            ?.set(OrderDetailsFragment.UPDATE_ORDER_STATE, true)*/
+        viewModel.refreshOrderDetails() // to get updated order
     }
     private fun setOnClickImage() {
         if (Util.checkPermssionGrantedForImageAndFile(requireActivity(),
@@ -100,6 +116,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
     private fun addImageToList(bitmapUpdatedImage: Bitmap?) {
        // val file =util.getCreatedFileFromBitmap("image",bitmapUpdatedImage!!,"jpg",requireContext())
         bitMap = bitmapUpdatedImage
+        binding?.orderImage?.setImageBitmap(bitMap)
 
     }
     val registerIntentResultCamera =
@@ -155,7 +172,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                 bitMap?.let { it-> viewModel.uploadImage(order.id?:0,it)}?: kotlin.run{
                     navigateTo(
                         OrderPickUpFragmentReachedDirections.actionDestinationPreviewFromOrdeTwo( // to pickup reached
-                            order
+                            this@OrderPickUpFragmentReached.order!!
                         ))
                 }
             }
@@ -185,6 +202,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
 
     private fun setActionButtonsListener() {
         binding {
+            payButton.show(order?.paid =="0")
             payButton.setOnClickListener {
                 shareLink = false
                 PaymentOptionsDialog(requireContext()) {
@@ -218,7 +236,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                     when (it.first) {
                         PaymentType.CASH -> {
                             updateOrderStatus()
-                            navigateBack()
+                           // navigateBack()
                         }
                         else -> {
                             if (shareLink) {

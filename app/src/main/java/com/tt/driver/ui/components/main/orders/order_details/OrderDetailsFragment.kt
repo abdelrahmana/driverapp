@@ -86,7 +86,6 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
             apartmentPickUp.text = order.from_apartment_number?:""
             floorNumberValue.text = order.from_floor_number?:""
             streetPickupValue.text = order.from_address?:""
-
             nameCustomerDestionationValue.text = order.to_name?:""
             goveranteValueDestionation.text = order.to_governorate?.name?:""
             regionValueDestionation.text = order.to_region?.name?:""
@@ -178,16 +177,25 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
                 if (order.to_address.isNullOrEmpty()) // doesn't have destination
                     goToDestinationReached(OrderStatus.COMPLETED,getString(R.string.status_compelete),order)
                 else { // start the destination
+                    binding?.updateStatusButton?.text = getString(R.string.destionation_reached)
+                    nextOrderState = OrderStatus.COMPLETED
+                    binding?.updateStatusButton?.setOnClickListener {
+                     //   viewModel.updateOrderStatus(OrderStatus.ON_THE_WAY)
+                        navigateTo( // has destionation
+                            OrderDetailsFragmentDirections.actionDestinationPreview( // to pickup reached
+                                order
+                            ))
+                    }
                     /*
                     binding?.updateStatusButton?.text = "On The Way"
                     binding?.updateStatusButton?.setOnClickListener {
                         viewModel.updateOrderStatus(OrderStatus.ON_THE_WAY)
                     }*/
                     // go to destination prepration first
-                    navigateTo( // has destionation
+                /*    navigateTo( // has destionation
                         OrderDetailsFragmentDirections.actionDestinationPreview( // to pickup reached
                             order
-                        ))
+                        ))*/
 
                 }
             }
