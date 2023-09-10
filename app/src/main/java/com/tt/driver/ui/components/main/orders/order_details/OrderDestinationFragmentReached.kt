@@ -138,7 +138,8 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
                 val selectedBlockValue =  if (!selectedBlock.isNullOrEmpty())selectedBlock.get(0).price else null
                 val selectedWaiting =  if (!waitingSelection.isNullOrEmpty())waitingSelection.get(0).price else null
                 val selectedArea =  if (!areaSelection.isNullOrEmpty())areaSelection.get(0).price else null
-                viewModel.updateOrderStatus(OrderStatus.COMPLETED,selectedBlockValue,selectedWaiting,selectedArea,order.id)
+                viewModel.updateOrderStatus(OrderStatus.COMPLETED,selectedBlockValue
+                    ,selectedWaiting,selectedArea,order.id)
             }
         }
     }
