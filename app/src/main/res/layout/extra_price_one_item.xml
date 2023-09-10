@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"/>
 
     <RadioButton
+        android:layout_marginTop="10dp"
         android:id="@+id/currentPrice"
         android:textAlignment="viewEnd"
         android:layoutDirection="rtl"

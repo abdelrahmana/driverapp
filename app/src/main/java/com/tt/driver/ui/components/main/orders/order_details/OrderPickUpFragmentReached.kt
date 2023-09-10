@@ -213,7 +213,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                 }.show()
             }
             cancelButton.setOnClickListener{
-                viewModel.updateOrderStatus(OrderStatus.CANCELED_BY_CUSTOMER)
+                viewModel.updateOrderStatus(OrderStatus.CANCELED_BY_CUSTOMER,null,null,null,order?.id)
              //   findNavController().popBackStack(R.id.orderDetailsFragment, false)
             }
             orderImage.setOnClickListener{

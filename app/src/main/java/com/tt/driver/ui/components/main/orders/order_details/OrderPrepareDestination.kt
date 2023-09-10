@@ -91,12 +91,12 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
                     requireActivity()!!.getString(R.string.call), Intent.ACTION_DIAL)
             }
             orderPickUpNext.setOnClickListener{
-             /*   navigateTo(
+                navigateTo(
                     OrderPrepareDestinationDirections
                         .actionToDestinationReached(order)
-                ) */
-                updateOrderStatus()
-                findNavController().popBackStack(R.id.orderDetailsFragment, false)
+                )
+             /*   updateOrderStatus()
+                findNavController().popBackStack(R.id.orderDetailsFragment, false)*/
 
             }
             /*  infoLayout.order = order

@@ -88,22 +88,15 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
             ?.savedStateHandle
             ?.set(OrderDetailsFragment.UPDATE_ORDER_STATE, true)*/
         binding?.completeOrder?.show(true)
-        val selectedBlock = adaptorExtraPrices?.getListExtra()?.filter { it.type.contains("block") && it.checked }
-        val waitingSelection = adaptorExtraPrices?.getListExtra()?.filter { it.type.contains("waiting") && it.checked }
-        val areaSelection = adaptorExtraPrices?.getListExtra()?.filter { it.type.contains("area") && it.checked }
-       var selectedBlockValue =  if (!selectedBlock.isNullOrEmpty())selectedBlock.get(0).price else null
-        var selectedWaiting =  if (!waitingSelection.isNullOrEmpty())waitingSelection.get(0).price else null
-        var selectedArea =  if (!areaSelection.isNullOrEmpty())areaSelection.get(0).price else null
 
-        binding?.completeOrder?.setOnClickListener{
-            viewModel.updateOrderStatus(orderStatus,selectedBlockValue,selectedWaiting,selectedArea)
-        }
     }
 
     private fun updateOrderDetailsUI(order: Order) {
         binding {
             payButton.show(order.paid =="0")
             if (order.paid =="1")
+          dateTextPurpose.text = order.valid_date + " | " + order.order_type
+
             amountHeader.text = getString(R.string.amount_new)
             completeOrder.show(order.paid =="1")
             if (order.to_address.isNullOrEmpty())
@@ -136,6 +129,17 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
             priceValue.text = order.price?.toDoubleOrNull()?.let {
                 DecimalFormat("####.#").format(it)
             } ?: order.price
+
+
+            binding?.completeOrder?.setOnClickListener{
+                val selectedBlock = adaptorExtraPrices?.getListExtra()?.filter { it.type.contains("block") && it.checked }
+                val waitingSelection = adaptorExtraPrices?.getListExtra()?.filter { it.type.contains("waiting") && it.checked }
+                val areaSelection = adaptorExtraPrices?.getListExtra()?.filter { it.type.contains("area") && it.checked }
+                val selectedBlockValue =  if (!selectedBlock.isNullOrEmpty())selectedBlock.get(0).price else null
+                val selectedWaiting =  if (!waitingSelection.isNullOrEmpty())waitingSelection.get(0).price else null
+                val selectedArea =  if (!areaSelection.isNullOrEmpty())areaSelection.get(0).price else null
+                viewModel.updateOrderStatus(OrderStatus.COMPLETED,selectedBlockValue,selectedWaiting,selectedArea,order.id)
+            }
         }
     }
 

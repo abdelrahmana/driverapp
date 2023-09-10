@@ -62,6 +62,6 @@ interface APIsService {
   @POST("driver/orders/upload-images")
   suspend fun uploadImage(@Body body: RequestBody): ResponseBody
 
-    @POST("list/extra-prices")
+    @GET("list/extra-prices")
     suspend fun getExtraPrices(): ExtraPricesResponse
 }

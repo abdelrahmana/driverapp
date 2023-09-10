@@ -32,6 +32,9 @@ class OrderViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     private val orderId by lazy { savedStateHandle.get<Int?>("orderId") }
+    fun getOrderIds (): Int? {
+        return orderId
+    }
 
     private val _order = MutableStateFlow<RemoteResult<OrderDetailsResponse>>(Loading())
     val order: StateFlow<RemoteResult<OrderDetailsResponse>> get() = _order
@@ -68,7 +71,8 @@ class OrderViewModel @Inject constructor(
                 ordersRepository.getExtraPrices())
         }
     }
-    fun updateOrderStatus(orderStatus: OrderStatus,blockExtra : String?=null,waitingExtra : String? =null, areaExtra : String?=null) {
+    fun updateOrderStatus(orderStatus: OrderStatus
+                          ,blockExtra : String?=null,waitingExtra : String? =null, areaExtra : String?=null,orderId: Int?) {
         viewModelScope.launch {
             if (orderStatus == OrderStatus.COMPLETED)
                 _showDigitalSignature.postValue(orderId)

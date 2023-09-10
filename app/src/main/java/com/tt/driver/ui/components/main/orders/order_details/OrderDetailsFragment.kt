@@ -56,7 +56,8 @@ class OrderDetailsFragment : LocationAwareFragment<FragmentOrderDetailsNewBindin
                     .observe(viewLifecycleOwner) {
                         it?.let {
                             if (it)
-                                viewModel.updateOrderStatus(nextOrderState ?: return@observe)
+                                viewModel.updateOrderStatus(nextOrderState ?: return@observe,null,
+                                    null,null,viewModel.getOrderIds())
                             else viewModel.refreshOrderDetails()
                             this.set(UPDATE_ORDER_STATE, null)  //reset value after updating
                         }
