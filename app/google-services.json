@@ -7,18 +7,34 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:719364935226:android:d43a92795b92085a47ef03",
+        "mobilesdk_app_id": "1:719364935226:android:92f800641978388f47ef03",
         "android_client_info": {
-          "package_name": "com.waysgroup.t7t_talbk_customer"
+          "package_name": "com.tahttalabk.orderapp.delivery"
         }
       },
       "oauth_client": [
         {
-          "client_id": "719364935226-urfv761l8j4oot8brfq509s4hd1j7fkq.apps.googleusercontent.com",
+          "client_id": "719364935226-gp0asms7ij75jea15l78o8ufr90dobe2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.waysgroup.t7t_talbk_customer",
-            "certificate_hash": "1c23dab6b849e3cfab443c2a17ffe7258270bfac"
+            "package_name": "com.tahttalabk.orderapp.delivery",
+            "certificate_hash": "de8a95f2e6bffb87bc501d4efe1af99a0fe01260"
+          }
+        },
+        {
+          "client_id": "719364935226-itkvcrpp5o0f54ge5g6gubmn0f9gdblv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tahttalabk.orderapp.delivery",
+            "certificate_hash": "dedd43911dac85a33ddfd1d0f18ebc7ba8f9d874"
+          }
+        },
+        {
+          "client_id": "719364935226-r7dl6035abg8rraoa6f67an64kfdi496.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tahttalabk.orderapp.delivery",
+            "certificate_hash": "9ad9ffcc4436f122c50442ab6c1935a17c4d7e44"
           }
         },
         {
@@ -31,7 +47,7 @@
           "current_key": "AIzaSyAxJIv55IxTEUCltjUIPW6I3qJvMCk89C8"
         },
         {
-          "current_key": "AIzaSyAC6VWcqZMKpUOfsON2j0BC3WWwRLHEEl0"
+          "current_key": "AIzaSyClw1TFUrc_4aAcJuZATQ-O0S4sk0M1Mhg"
         }
       ],
       "services": {
@@ -42,10 +58,10 @@
               "client_type": 3
             },
             {
-              "client_id": "719364935226-ua51l3fct1jsnmhiso1fbuteloti43m1.apps.googleusercontent.com",
+              "client_id": "719364935226-926v25bnu3p2hj9cvannm5ggpc1onm4r.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.waysgroup.t7ttalbk.customer"
+                "bundle_id": "come.tahttalabk.orderApp"
               }
             }
           ]
@@ -60,6 +76,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "719364935226-87lgmnt87bt5cvfr2arlng5p7phs1meq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.waysgroup.t7t_talbk_driver",
+            "certificate_hash": "9acf64d61ddb9c101310ff40585875c81cb02712"
+          }
+        },
+        {
+          "client_id": "719364935226-etims9e8omt0bi0t8blq9m307saho0vg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.waysgroup.t7t_talbk_driver",
+            "certificate_hash": "4713b3982a9bccb32ed10d7b860295008fbe07ea"
+          }
+        },
         {
           "client_id": "719364935226-gpllpvctavm7l7k0915d7i4megicauvv.apps.googleusercontent.com",
           "client_type": 1,
@@ -77,6 +109,14 @@
           }
         },
         {
+          "client_id": "719364935226-od5dcn7udfpverj9jb2duoka3trtfbcr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.waysgroup.t7t_talbk_driver",
+            "certificate_hash": "3053ced8e1e6da81b1974f0c8331d6cf9aa642ea"
+          }
+        },
+        {
           "client_id": "719364935226-iggi0nqldt9cknbj7etvfld18p4qiqpd.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -86,7 +126,7 @@
           "current_key": "AIzaSyAxJIv55IxTEUCltjUIPW6I3qJvMCk89C8"
         },
         {
-          "current_key": "AIzaSyAC6VWcqZMKpUOfsON2j0BC3WWwRLHEEl0"
+          "current_key": "AIzaSyClw1TFUrc_4aAcJuZATQ-O0S4sk0M1Mhg"
         }
       ],
       "services": {
@@ -97,10 +137,10 @@
               "client_type": 3
             },
             {
-              "client_id": "719364935226-ua51l3fct1jsnmhiso1fbuteloti43m1.apps.googleusercontent.com",
+              "client_id": "719364935226-926v25bnu3p2hj9cvannm5ggpc1onm4r.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.waysgroup.t7ttalbk.customer"
+                "bundle_id": "come.tahttalabk.orderApp"
               }
             }
           ]
