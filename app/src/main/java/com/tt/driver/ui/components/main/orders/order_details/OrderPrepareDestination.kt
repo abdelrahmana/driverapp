@@ -64,8 +64,8 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
     private fun updateOrderStatus() {
         findNavController()
             .getBackStackEntry(R.id.orderDetailsFragment)
-            ?.savedStateHandle
-            ?.set(OrderDetailsFragment.UPDATE_ORDER_STATE, true)
+            .savedStateHandle
+            .set(OrderDetailsFragment.UPDATE_ORDER_STATE, true)
     }
 
     private fun updateOrderDetailsUI(order: Order) {

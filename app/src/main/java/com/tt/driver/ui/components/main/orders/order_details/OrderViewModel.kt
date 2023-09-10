@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import androidx.lifecycle.*
 import com.tt.driver.data.models.Loading
 import com.tt.driver.data.models.RemoteResult
+import com.tt.driver.data.models.entities.ExtraPricesResponse
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.data.models.http.OrderDetailsResponse
@@ -35,6 +36,9 @@ class OrderViewModel @Inject constructor(
     private val _order = MutableStateFlow<RemoteResult<OrderDetailsResponse>>(Loading())
     val order: StateFlow<RemoteResult<OrderDetailsResponse>> get() = _order
 
+    private val _extraPrices = MutableStateFlow<RemoteResult<ExtraPricesResponse>>(Loading())
+    val extraPrices: StateFlow<RemoteResult<ExtraPricesResponse>> get() = _extraPrices
+
     private val _onUrlGenerated = SingleLiveEvent<Pair<PaymentType, RemoteResult<String?>>>()
     val onUrlGenerated get() = _onUrlGenerated
 
@@ -58,15 +62,21 @@ class OrderViewModel @Inject constructor(
             }
         }
     }
-
-    fun updateOrderStatus(orderStatus: OrderStatus) {
+    fun getExtraPrices(){
+        viewModelScope.launch {
+            _extraPrices.emit(
+                ordersRepository.getExtraPrices())
+        }
+    }
+    fun updateOrderStatus(orderStatus: OrderStatus,blockExtra : String?=null,waitingExtra : String? =null, areaExtra : String?=null) {
         viewModelScope.launch {
             if (orderStatus == OrderStatus.COMPLETED)
                 _showDigitalSignature.postValue(orderId)
             _order.emit(Loading())
             orderId?.let {
                 _order.emit(
-                    ordersRepository.updateOrderStatus(it.toString(), orderStatus.code)
+                    ordersRepository.updateOrderStatus(it.toString(), orderStatus.code,"",
+                        blockExtra,waitingExtra,areaExtra)
                 )
             }
         }

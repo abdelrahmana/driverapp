@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.maps.SupportMapFragment
 import com.tt.driver.data.models.Failure
 import com.tt.driver.data.models.Loading
@@ -19,9 +20,11 @@ import com.tt.driver.data.models.Success
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.ui.base.MapFragment
+import com.tt.driver.ui.components.main.orders.adaptor.AdaptorExtraPrices
 import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
 import com.tt.driver.utils.IntentUtils
 import com.tt.driver.utils.Util
+import com.tt.driver.utils.Util.setRecycleView
 import com.tt.driver.utils.show
 import com.tt.driver.utils.showToast
 import com.tt.driver.utils.toLatLng
@@ -38,7 +41,7 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
     private val args by navArgs<OrderDestinationFragmentArgs>()
 
     private var shareLink = false
-
+    var adaptorExtraPrices : AdaptorExtraPrices? = null
     override fun initBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -52,6 +55,7 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
             map = it
             map?.setPadding(0, 0, 0, 1200)
         }*/
+        adaptorExtraPrices= AdaptorExtraPrices(requireContext(), ArrayList())
         observeResult(viewModel.order) {
             binding?.progressBar?.show(false)
             if (it.data?.getStatus() == OrderStatus.COMPLETED) {
@@ -63,6 +67,13 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
                 findNavController().popBackStack(R.id.orderDetailsFragment, false)
             }
         }
+        observeResult(viewModel.extraPrices) {
+         //   binding?.progressBar?.show(false)
+            adaptorExtraPrices?.setArrayList(it.data)
+            setRecycleView(binding!!.extraPricesRecycle,adaptorExtraPrices!!,LinearLayoutManager.VERTICAL,
+                requireContext(),false)
+        }
+        viewModel.getExtraPrices()
         updateOrderDetailsUI(args.order)
 
         setActionButtonsListener()
@@ -77,8 +88,15 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
             ?.savedStateHandle
             ?.set(OrderDetailsFragment.UPDATE_ORDER_STATE, true)*/
         binding?.completeOrder?.show(true)
+        val selectedBlock = adaptorExtraPrices?.getListExtra()?.filter { it.type.contains("block") && it.checked }
+        val waitingSelection = adaptorExtraPrices?.getListExtra()?.filter { it.type.contains("waiting") && it.checked }
+        val areaSelection = adaptorExtraPrices?.getListExtra()?.filter { it.type.contains("area") && it.checked }
+       var selectedBlockValue =  if (!selectedBlock.isNullOrEmpty())selectedBlock.get(0).price else null
+        var selectedWaiting =  if (!waitingSelection.isNullOrEmpty())waitingSelection.get(0).price else null
+        var selectedArea =  if (!areaSelection.isNullOrEmpty())areaSelection.get(0).price else null
+
         binding?.completeOrder?.setOnClickListener{
-            viewModel.updateOrderStatus(orderStatus)
+            viewModel.updateOrderStatus(orderStatus,selectedBlockValue,selectedWaiting,selectedArea)
         }
     }
 

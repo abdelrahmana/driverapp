@@ -1,6 +1,8 @@
 package com.tt.driver.data.repositories.orders
 
 import com.tt.driver.data.models.RemoteResult
+import com.tt.driver.data.models.entities.Data
+import com.tt.driver.data.models.entities.ExtraPricesResponse
 import com.tt.driver.data.models.entities.PaymentReport
 import com.tt.driver.data.models.http.OrdersReportResponse
 import com.tt.driver.data.models.http.PaymentsReportResponse
@@ -25,12 +27,26 @@ class OrdersRepositoryImpl @Inject constructor(
     override suspend fun updateOrderStatus(
         orderId: String,
         status: String,
-        cancellationReason: String
+        cancellationReason: String,blockExtra : String?,waitingExtra :String?,areaExtra : String?
     ) = makeApiCall {
+        val hashMap = HashMap<String,Any>()
+        hashMap.put("status",status)
+        hashMap.put("order_id",orderId)
+        hashMap.put("cancellation_reason",cancellationReason)
+        blockExtra?.let {
+            hashMap.put("block_extra_price", blockExtra)
+        }
+        waitingExtra?.let {
+            hashMap.put("waiting_extra_price", waitingExtra)
+        }
+        areaExtra?.let {
+            hashMap.put("area_extra_price", areaExtra)
+        }
         remoteDataSource.updateOrderStatus(
-            UpdateOrderStatusRequestBody(
+           /* UpdateOrderStatusRequestBody(
                 status, orderId, cancellationReason
-            )
+            )*/
+            hashMap
         )
     }
 
@@ -65,6 +81,12 @@ class OrdersRepositoryImpl @Inject constructor(
     override suspend fun uploadImage(requestBody: RequestBody): RemoteResult<ResponseBody> {
         return makeApiCall {
             remoteDataSource.uploadImage(requestBody)
+        }
+    }
+
+    override suspend fun getExtraPrices(): RemoteResult<ExtraPricesResponse> {
+        return makeApiCall {
+            remoteDataSource.getExtraPrices()
         }
     }
 

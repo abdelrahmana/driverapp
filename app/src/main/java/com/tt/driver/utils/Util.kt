@@ -11,6 +11,9 @@ import android.os.Build
 import android.provider.MediaStore
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.andrognito.flashbar.Flashbar
 import com.andrognito.flashbar.anim.FlashAnim
 import com.tt.driver.utils.Constant.CAMERA
@@ -100,6 +103,17 @@ object Util {
             activity.startActivity(intentFilter)
         }
 
+    }
+    fun setRecycleView(recyclerView: RecyclerView?, adaptor: RecyclerView.Adapter<*>,
+                       verticalOrHorizontal: Int?, context: Context, includeEdge : Boolean) {
+        var layoutManger : RecyclerView.LayoutManager? = null
+            layoutManger = LinearLayoutManager(context, verticalOrHorizontal!!,false)
+        recyclerView?.apply {
+            setLayoutManager(layoutManger)
+            setHasFixedSize(true)
+            adapter = adaptor
+
+        }
     }
     fun startIntentAction(
         dataIntent: String,

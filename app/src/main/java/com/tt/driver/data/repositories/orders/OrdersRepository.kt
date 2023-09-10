@@ -1,6 +1,8 @@
 package com.tt.driver.data.repositories.orders
 
 import com.tt.driver.data.models.RemoteResult
+import com.tt.driver.data.models.entities.Data
+import com.tt.driver.data.models.entities.ExtraPricesResponse
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.data.models.entities.PaymentReport
 import com.tt.driver.data.models.http.OrderDetailsResponse
@@ -19,7 +21,7 @@ interface OrdersRepository {
     suspend fun updateOrderStatus(
         orderId: String,
         status: String,
-        cancellationReason: String = ""
+        cancellationReason: String = "",blockExtra : String?=null,waitingExtra :String?=null,areaExtra : String?=null
     ): RemoteResult<OrderDetailsResponse>
 
     suspend fun generatePaymentUrl(
@@ -34,4 +36,7 @@ interface OrdersRepository {
     suspend fun getOrdersReport(): RemoteResult<OrdersReportResponse.OrderReports>
 
     suspend fun uploadImage(requestBody: RequestBody): RemoteResult<ResponseBody>
+
+    suspend fun getExtraPrices(): RemoteResult<ExtraPricesResponse>
+
 }

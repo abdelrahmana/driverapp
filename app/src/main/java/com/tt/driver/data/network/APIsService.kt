@@ -1,5 +1,6 @@
 package com.tt.driver.data.network
 
+import com.tt.driver.data.models.entities.ExtraPricesResponse
 import com.tt.driver.data.models.http.*
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -23,7 +24,7 @@ interface APIsService {
 
     @Headers("Accept: application/json")
     @POST("driver/orders/update")
-    suspend fun updateOrderStatus(@Body body: UpdateOrderStatusRequestBody): OrderDetailsResponse
+    suspend fun updateOrderStatus(@Body body:HashMap<String,Any> /*UpdateOrderStatusRequestBody*/): OrderDetailsResponse
 
     @Headers("Accept: application/json")
     @GET("generate/pay/url")
@@ -60,4 +61,7 @@ interface APIsService {
   @Headers("Accept: multipart/form-data")
   @POST("driver/orders/upload-images")
   suspend fun uploadImage(@Body body: RequestBody): ResponseBody
+
+    @POST("list/extra-prices")
+    suspend fun getExtraPrices(): ExtraPricesResponse
 }
