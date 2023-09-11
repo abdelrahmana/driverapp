@@ -4,7 +4,7 @@
     <string name="password_hint">Password</string>
     <string name="continue_button">Continue</string>
     <string name="login_button">Login</string>
-
+    <string name="google_map_new">AIzaSyCddMtKMRVbSnGcUViCPSBinUTP5YcTPeg</string>
     <string name="google_map_key">AIzaSyClw1TFUrc_4aAcJuZATQ-O0S4sk0M1Mhg</string>
     <string name="home_menu_item">Home</string>
     <string name="orders_menu_item">Order</string>

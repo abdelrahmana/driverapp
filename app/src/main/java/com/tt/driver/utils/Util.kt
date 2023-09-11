@@ -1,6 +1,6 @@
 package com.tt.driver.utils
 
-import android.Manifest
+    import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -37,6 +37,14 @@ object Util {
             if (context.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
                 context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                 context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (android.os.Build.VERSION.SDK_INT >= 33)
+                    requestPermssions.launch(
+                        arrayOf(
+                           // Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.CAMERA,
+                        )
+                    )
+              else
                 requestPermssions.launch(
                     arrayOf(
                         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -84,23 +92,29 @@ object Util {
 
         }
         else {  // in case we need camera
-            intent = Intent()
-            intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+          //  intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE)
 
-            intent.putExtra(Constant.WHICHSELECTION, CAMERA)
+          //  intent.putExtra(Constant.WHICHSELECTION, CAMERA)
             onActivityResult.launch(intent)
 
 
         }
     }
     fun buildImplictIntentView(
-        activity: Context,
+        context: Context,
         intentData: String
     ) { // this function is used to go outside the application
-        if (intentData.isNotEmpty()) {
+      /*  if (intentData.isNotEmpty()) {
             val intentFilter = Intent(Intent.ACTION_VIEW)
             intentFilter.data = Uri.parse(intentData)
             activity.startActivity(intentFilter)
+        }*/
+        try {
+            context.packageManager.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
+            context.startActivity(Intent(Intent.ACTION_VIEW).apply { data = Uri.parse(intentData) })
+        } catch (e: PackageManager.NameNotFoundException) {
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(intentData)))
         }
 
     }
