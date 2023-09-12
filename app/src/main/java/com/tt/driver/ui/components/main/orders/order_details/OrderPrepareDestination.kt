@@ -116,8 +116,15 @@ class OrderPrepareDestination : MapFragment<OrderPickUpPreviewBinding>() {
     private fun setActionButtonsListener(order: Order) {
         binding {
             Glide.with(context!!).load(order.imagePath)
-                .error(R.color.gray).placeholder(R.color.gray).dontAnimate().into(orderImageContainer)        /*    cashButton.setOnClickListener { generatePaymentUrl(PaymentType.CASH) }
+                .error(R.color.gray).placeholder(R.color.gray).dontAnimate().into(orderImageContainer)
 
+            Glide.with(context!!).load(order.imagePathII)
+                .error(R.color.gray).placeholder(R.color.gray).dontAnimate().into(orderImageContainerII)
+
+        /*    cashButton.setOnClickListener { generatePaymentUrl(PaymentType.CASH) }
+
+   Glide.with(context!!).load(order.imagePath)
+                .error(R.color.gray).placeholder(R.color.gray).dontAnimate().into(orderImageContainer)
             skipButton.setOnClickListener {
                 updateOrderStatus()
                 navigateBack()

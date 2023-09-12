@@ -26,6 +26,7 @@ data class Order(
     val hours: String?,
     val id: Int?,
     var imagePath : String?,
+    var imagePathII : String?,
     val is_order_per_hour: Boolean?,
     val notes: String?,
     val order_category: OrderCategory?,

@@ -42,6 +42,9 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
     private var shareLink = false
     val orderCall : OrderCallActionsWrapper by lazy {
         OrderCallActionsWrapper(requireContext(),binding!!.root) }
+    var imageImplementer : InterfaceImageSelection?=null
+    var secondImageImplementer : InterfaceImageSelection?=null
+    var whichOne = FIRSTIMAGE
 
     override fun initBinding(
         inflater: LayoutInflater,
@@ -113,10 +116,12 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
 
     }
     var bitMap : Bitmap? =null
-    private fun addImageToList(bitmapUpdatedImage: Bitmap?) {
+    var bitMapSecondImage : Bitmap? =null
+    private fun addImageToList(bitmapUpdatedImage: Bitmap?,interfaceImageSelection: InterfaceImageSelection) {
        // val file =util.getCreatedFileFromBitmap("image",bitmapUpdatedImage!!,"jpg",requireContext())
         bitMap = bitmapUpdatedImage
-        binding?.orderImage?.setImageBitmap(bitMap)
+        interfaceImageSelection.setImagePath(bitmapUpdatedImage)
+       // binding?.orderImage?.setImageBitmap(bitMap)
 
     }
     val registerIntentResultCamera =
@@ -126,13 +131,15 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                 val data: Intent? = result.data
                 if (data?.getStringExtra(Constant.WHICHSELECTION)?: Constant.CAMERA == Constant.CAMERA)
                 {
-                    addImageToList( data!!.extras!!["data"] as Bitmap?)
+                    addImageToList( data!!.extras!!["data"] as Bitmap?,if (whichOne == FIRSTIMAGE)imageImplementer!!
+                    else secondImageImplementer!!)
                 }
                 else {
                     val contentURI = data?.data
                     try {
                         addImageToList(
-                            BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(contentURI!!)))
+                            BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(contentURI!!)),if (whichOne == FIRSTIMAGE)imageImplementer!!
+                            else secondImageImplementer!!)
                         //  val file =getCreatedFileFromBitmap("image",bitmapUpdatedImage!!,"jpg",context!!)
                         //   imageModel.image?.add(file.absolutePath)
                         //.setImageBitmap(bitmapUpdatedImage)
@@ -149,7 +156,9 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
 
             val contentURI = data?.data
             try {
-                addImageToList(BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(contentURI!!))
+                addImageToList(BitmapFactory.decodeStream(requireActivity().contentResolver.openInputStream(contentURI!!),
+                ),if (whichOne == FIRSTIMAGE)imageImplementer!!
+                else secondImageImplementer!!
                     )
                 //  val file =getCreatedFileFromBitmap("image",bitmapUpdatedImage!!,"jpg",context!!)
                 //   imageModel.image?.add(file.absolutePath)
@@ -169,7 +178,17 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
             orderPickupValueNumber.text = order.orders_count?:"0"
             dateTextPurpose.text = order.valid_date + " | " + order.order_type
             orderPickUpNext.setOnClickListener{
-                bitMap?.let { it-> viewModel.uploadImage(order.id?:0,it)}?: kotlin.run{
+                var arrayListPathes = ArrayList<String>()
+                imageImplementer?.getImagePath()?.let {
+                    arrayListPathes.add(it)
+                }
+                secondImageImplementer?.getImagePath()?.let {
+                    arrayListPathes.add(it)
+                }
+                if (arrayListPathes.size>0)
+                /*bitMap?.let { it-> */viewModel.uploadImageFromPath(order.id?:0,arrayListPathes)
+                else
+                    kotlin.run{
                     navigateTo(
                         OrderPickUpFragmentReachedDirections.actionDestinationPreviewFromOrdeTwo( // to pickup reached
                             this@OrderPickUpFragmentReached.order!!
@@ -217,6 +236,14 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
              //   findNavController().popBackStack(R.id.orderDetailsFragment, false)
             }
             orderImage.setOnClickListener{
+                whichOne = FIRSTIMAGE
+                imageImplementer = ImplementerSelectedImage(orderImage,requireContext())
+                setOnClickImage()
+
+            }
+            orderImageII.setOnClickListener{
+                whichOne = SECOND_IMAGE // set selection to this
+                secondImageImplementer = ImplementerSelectedImage(orderImageII,requireContext())
                 setOnClickImage()
 
             }
@@ -265,7 +292,12 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                 is Success -> {
                     binding?.progressBar?.show(false)
                     //  findNavController().navigate()
-                    order.imagePath = Util.getCreatedFileFromBitmap("image",bitMap!!,"jpg",requireContext()).absolutePath
+                    imageImplementer?.getImagePath()?.let {
+                        order.imagePath = it//Util.getCreatedFileFromBitmap("image",bitMap!!,"jpg",requireContext()).absolutePath
+                        }
+                    secondImageImplementer?.getImagePath()?.let {
+                        order.imagePathII = it//Util.getCreatedFileFromBitmap("image",bitMap!!,"jpg",requireContext()).absolutePath
+                    }
                     navigateTo(
                         OrderPickUpFragmentReachedDirections.actionDestinationPreviewFromOrdeTwo( // to pickup reached
                             order
@@ -293,6 +325,11 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
 
     override fun isLoading(status: Boolean) {
       //  binding?.progressBar?.show(status)
+    }
+    companion object {
+        var FIRSTIMAGE = "FIRST"
+        var SECOND_IMAGE = "SECOND"
+
     }
 
 }

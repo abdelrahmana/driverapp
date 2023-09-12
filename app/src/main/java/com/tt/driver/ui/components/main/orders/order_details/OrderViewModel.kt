@@ -22,6 +22,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
@@ -113,6 +114,30 @@ class OrderViewModel @Inject constructor(
             _onImageUploaded.postValue(Loading())
             _onImageUploaded.postValue(ordersRepository.uploadImage(createImageFormDataBody(orderId, bitmap)))
         }
+    }
+
+    fun uploadImageFromPath(orderId: Int, pathArrayList: ArrayList<String>) {
+        viewModelScope.launch {
+            _onImageUploaded.postValue(Loading())
+            _onImageUploaded.postValue(ordersRepository.uploadImage(createImageFormDataBody(orderId, pathArrayList)))
+        }
+    }
+
+    private fun createImageFormDataBody(orderId: Int, pathArrayList: ArrayList<String>): MultipartBody {
+        return MultipartBody.Builder().setType(MultipartBody.FORM)
+            .apply {
+                for (i in 0 until pathArrayList.size) {
+                    val file = File(pathArrayList.get(i))
+                    val body = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                    addPart(
+                        MultipartBody.Part.createFormData(/*"signature_image"*/"images[$i]",
+                            file.name,
+                            body
+                        )
+                    )
+                }
+                addFormDataPart("order_id", orderId.toString())
+            }.build()
     }
 
     private fun createImageFormDataBody(orderId: Int, bitmap: Bitmap): MultipartBody {
