@@ -5,6 +5,8 @@ pluginManagement {
         mavenCentral()
         jcenter()
         maven { url "https://jitpack.io" }
+        maven { setUrl("https://maven.aliyun.com/repository/jcenter") }
+
     }
 }
 dependencyResolutionManagement {
@@ -14,6 +16,8 @@ dependencyResolutionManagement {
         mavenCentral()
         jcenter()
         maven { url "https://jitpack.io" }
+        maven { setUrl("https://maven.aliyun.com/repository/jcenter") }
+
     }
 }
 rootProject.name = "Driver"

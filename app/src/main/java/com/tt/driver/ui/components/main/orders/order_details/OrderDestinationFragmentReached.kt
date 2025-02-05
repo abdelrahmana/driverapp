@@ -152,6 +152,7 @@ class OrderDestinationFragmentReached : MapFragment<DestinationReachedBinding>()
                     when (it) {
                         PaymentType.KNET -> generatePaymentUrl(PaymentType.KNET)
                         PaymentType.VISA -> generatePaymentUrl(PaymentType.VISA)
+                        else -> {}
                     }
                 }.show()
             }

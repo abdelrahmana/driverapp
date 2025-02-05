@@ -95,6 +95,7 @@ class OrderDestinationFragment : MapFragment<FragmentOrderDestinationBinding>() 
                     when (it) {
                         PaymentType.KNET -> generatePaymentUrl(PaymentType.KNET)
                         PaymentType.VISA -> generatePaymentUrl(PaymentType.VISA)
+                        else -> {}
                     }
                 }.show()
             }
@@ -105,6 +106,7 @@ class OrderDestinationFragment : MapFragment<FragmentOrderDestinationBinding>() 
                     when (it) {
                         PaymentType.KNET -> generatePaymentUrl(PaymentType.KNET)
                         PaymentType.VISA -> generatePaymentUrl(PaymentType.VISA)
+                        else -> {}
                     }
                 }.show()
             }

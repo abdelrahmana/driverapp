@@ -209,6 +209,7 @@ class OrderPickUpFragmentReached : MapFragment<OrderPickupNewBinding>() {
                     when (it) {
                         PaymentType.KNET -> generatePaymentUrl(PaymentType.KNET)
                         PaymentType.VISA -> generatePaymentUrl(PaymentType.VISA)
+                        else -> {}
                     }
                 }.show()
             }
