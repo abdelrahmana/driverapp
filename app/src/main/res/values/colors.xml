@@ -16,6 +16,7 @@
     <color name="tabColor" />
     <color name="gray_light">#EAEAEA</color>
     <color name="dark_color">#454F63</color>
+    <color name="new_gray_border">#D1D1D1</color>
     <color name="view_color" />
     <color name="secondary_button_color">#0D62B8</color>
     <color name="normal_order_color">#2E2E88</color>
@@ -23,4 +24,7 @@
     <color name="red_color">#FF0000</color>
     <color name="sky">#0D62B8</color>
     <color name="new_color">#78849E</color>
+    <color name="new_red_color">#AF0000</color>
+    <color name="black_new">#140101</color>
+    <color name="new_gray_color">#F4F4F4</color>
 </resources>

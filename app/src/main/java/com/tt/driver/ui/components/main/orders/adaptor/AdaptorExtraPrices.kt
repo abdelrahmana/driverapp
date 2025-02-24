@@ -7,8 +7,8 @@ import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tt.driver.data.models.entities.Data
-import com.waysgroup.t7t_talbk_driver.R
-import com.waysgroup.t7t_talbk_driver.databinding.ExtraPriceOneItemBinding
+import com.waysgroup.speed.R
+import com.waysgroup.speed.databinding.ExtraPriceOneItemBinding
 
 
 class AdaptorExtraPrices( // one selection

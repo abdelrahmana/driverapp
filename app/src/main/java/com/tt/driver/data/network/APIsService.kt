@@ -64,4 +64,8 @@ interface APIsService {
 
     @GET("list/extra-prices")
     suspend fun getExtraPrices(): ExtraPricesResponse
+
+    @GET("driver/runsheet")
+    suspend fun getRunSheetCall(@QueryMap date: HashMap<String,Any>): RunSheetResponse
+
 }

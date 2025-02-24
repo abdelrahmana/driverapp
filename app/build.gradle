@@ -36,10 +36,10 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"https://tahttalabk.com/api/\""
+            buildConfigField "String", "BASE_URL", "\"https://speed.ways-app.com/api/\""
         }
         release {
-            buildConfigField "String", "BASE_URL", "\"https://tahttalabk.com/api/\""
+            buildConfigField "String", "BASE_URL", "\"https://speed.ways-app.com/api/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

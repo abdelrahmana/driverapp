@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tt.driver.data.models.entities.Order
 import com.tt.driver.ui.components.main.orders.order_utils.OrderCallActionsWrapper
 import com.tt.driver.utils.show
-import com.waysgroup.t7t_talbk_driver.databinding.OneItemNewListOrderBinding
+import com.waysgroup.speed.databinding.OneItemNewListOrderBinding
 
 class OrdersAdapter(
     private val onOrderClicked: (Order) -> Unit

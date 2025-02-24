@@ -3,7 +3,8 @@ package com.tt.driver.data.di
 import com.tt.driver.data.datastore.AuthDataStore
 import com.tt.driver.data.network.APIsService
 import com.tt.driver.data.network.AuthorizationInterceptor
-import com.waysgroup.t7t_talbk_driver.BuildConfig
+import com.tt.driver.data.network.SlotService
+import com.waysgroup.speed.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +20,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-
+    val loggingInterceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY // يمكنك تغييره حسب الحاجة
+    }
     @Provides
     @Singleton
     fun provideOkHttpClient(authDataStore: AuthDataStore) =
@@ -28,6 +31,7 @@ class NetworkModule {
             .addInterceptor(
                 HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
             )
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(AuthorizationInterceptor(authDataStore))
             .readTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -49,4 +53,8 @@ class NetworkModule {
     fun providePIsService(retrofit: Retrofit): APIsService =
         retrofit.create(APIsService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideSlotService(retrofit: Retrofit): SlotService =
+        retrofit.create(SlotService::class.java)
 }

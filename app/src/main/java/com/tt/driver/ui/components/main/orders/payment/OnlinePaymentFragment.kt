@@ -12,8 +12,8 @@ import androidx.navigation.fragment.navArgs
 import com.tt.driver.ui.base.BaseFragment
 import com.tt.driver.ui.components.main.orders.order_details.OrderDetailsFragment
 import com.tt.driver.utils.show
-import com.waysgroup.t7t_talbk_driver.R
-import com.waysgroup.t7t_talbk_driver.databinding.FragmentOnlinePaymentBinding
+import com.waysgroup.speed.R
+import com.waysgroup.speed.databinding.FragmentOnlinePaymentBinding
 
 
 class OnlinePaymentFragment : BaseFragment<FragmentOnlinePaymentBinding>() {

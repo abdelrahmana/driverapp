@@ -12,7 +12,7 @@ import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.ui.base.BaseFragment
 import com.tt.driver.utils.NestedScrollPaginationView
 import com.tt.driver.utils.show
-import com.waysgroup.t7t_talbk_driver.databinding.FragmentOrdersBinding
+import com.waysgroup.speed.databinding.FragmentOrdersBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

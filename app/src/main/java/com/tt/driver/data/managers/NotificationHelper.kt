@@ -11,7 +11,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.tt.driver.ui.components.main.MainActivity
-import com.waysgroup.t7t_talbk_driver.R
+import com.waysgroup.speed.R
 
 object NotificationHelper {
 

@@ -14,8 +14,8 @@ import com.tt.driver.ui.components.main.MainActivity
 import com.tt.driver.utils.show
 import com.tt.driver.utils.showToast
 import com.tt.driver.utils.value
-import com.waysgroup.t7t_talbk_driver.R
-import com.waysgroup.t7t_talbk_driver.databinding.FragmentLoginBinding
+import com.waysgroup.speed.R
+import com.waysgroup.speed.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -59,8 +59,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     private fun isValidData(): Boolean {
-        if (binding?.phone?.value()?.length != 8) {
-            showToast("invalid phone")
+        if (binding?.phone?.value()?.length == 0) {
+            showToast("invalid civil id")
             return false
         }
         if ((binding?.password?.value()?.length?:0) < 8) {

@@ -14,7 +14,7 @@ import com.tt.driver.data.models.Success
 import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.ui.base.BaseFragment
 import com.tt.driver.utils.show
-import com.waysgroup.t7t_talbk_driver.databinding.FragmentDigitalSignatureBinding
+import com.waysgroup.speed.databinding.FragmentDigitalSignatureBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Stack
 

@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#2A2E43"
+            android:background="@color/new_red_color"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/layout_drawer_header"
         app:itemIconTint="@color/white"

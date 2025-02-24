@@ -18,7 +18,7 @@ import com.andrognito.flashbar.Flashbar
 import com.andrognito.flashbar.anim.FlashAnim
 import com.tt.driver.utils.Constant.CAMERA
 import com.tt.driver.utils.Constant.GALLERY
-import com.waysgroup.t7t_talbk_driver.R
+import com.waysgroup.speed.R
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -54,6 +54,10 @@ object Util {
 
         }
         return allow
+    }
+    fun getCurrentDate(): String {
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        return sdf.format(Date())
     }
     fun picPhoto(
         activity: Activity,

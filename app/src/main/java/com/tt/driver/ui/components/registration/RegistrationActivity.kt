@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.tt.driver.data.datastore.AuthDataStore
 import com.tt.driver.data.models.Success
-import com.waysgroup.t7t_talbk_driver.R
+import com.waysgroup.speed.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

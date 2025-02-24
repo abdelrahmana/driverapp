@@ -16,8 +16,8 @@ import com.tt.driver.ui.base.LocationAwareFragment
 import com.tt.driver.utils.IntentUtils
 import com.tt.driver.utils.Util
 import com.tt.driver.utils.show
-import com.waysgroup.t7t_talbk_driver.R
-import com.waysgroup.t7t_talbk_driver.databinding.FragmentOrderDetailsNewBinding
+import com.waysgroup.speed.R
+import com.waysgroup.speed.databinding.FragmentOrderDetailsNewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

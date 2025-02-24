@@ -3,7 +3,7 @@ package com.tt.driver.ui.components.main.contact_us
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.tt.driver.ui.base.BaseFragment
-import com.waysgroup.t7t_talbk_driver.databinding.FragmentContactUsBinding
+import com.waysgroup.speed.databinding.FragmentContactUsBinding
 
 class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
 

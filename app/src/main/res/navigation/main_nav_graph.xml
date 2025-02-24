@@ -20,6 +20,25 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
+        android:id="@+id/runSheetFragment"
+        android:name="com.tt.driver.ui.components.main.runsheet.RunSheetFragment"
+        android:label="RunSheet"
+        tools:layout="@layout/fragment_run_sheet" >
+
+        <action
+            android:id="@+id/action_run_sheet_to_slot"
+            app:destination="@id/orderDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/slotFragment"
+        android:name="com.tt.driver.ui.components.slots.SlotsFragment"
+        android:label="slotFragment"
+        tools:layout="@layout/fragment_run_sheet" />
+    <fragment
         android:id="@+id/ordersFragment"
         android:name="com.tt.driver.ui.components.main.orders.OrdersFragment"
         android:label="OrdersFragment">

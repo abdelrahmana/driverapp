@@ -26,8 +26,8 @@ import com.tt.driver.data.models.Success
 import com.tt.driver.data.services.LocationTrackerService
 import com.tt.driver.ui.components.registration.RegistrationActivity
 import com.tt.driver.utils.IntentUtils
-import com.waysgroup.t7t_talbk_driver.R
-import com.waysgroup.t7t_talbk_driver.databinding.ActivityMainBinding
+import com.waysgroup.speed.R
+import com.waysgroup.speed.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -66,12 +66,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.navView.setupWithNavController(getNavController())
 
-        binding.navView.menu[4].setOnMenuItemClickListener {
+        binding.navView.menu[5].setOnMenuItemClickListener {
             IntentUtils.dialPhone(this, "94129624")
             true
         }
 
-        binding.navView.menu[5].setOnMenuItemClickListener {
+        binding.navView.menu[6].setOnMenuItemClickListener {
             fetchHelpContact()
             true
         }

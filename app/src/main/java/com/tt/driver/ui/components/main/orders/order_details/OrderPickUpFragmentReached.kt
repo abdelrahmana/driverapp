@@ -27,8 +27,8 @@ import com.tt.driver.utils.Util
 import com.tt.driver.utils.show
 import com.tt.driver.utils.showToast
 import com.tt.driver.utils.toLatLng
-import com.waysgroup.t7t_talbk_driver.R
-import com.waysgroup.t7t_talbk_driver.databinding.OrderPickupNewBinding
+import com.waysgroup.speed.R
+import com.waysgroup.speed.databinding.OrderPickupNewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 

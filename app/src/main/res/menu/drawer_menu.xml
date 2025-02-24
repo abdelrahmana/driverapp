@@ -5,6 +5,10 @@
         android:icon="@drawable/ic_side_menu_home"
         android:title="@string/home_menu_item" />
     <item
+        android:id="@+id/runSheetFragment"
+        android:icon="@drawable/ic_side_menu_orders"
+        android:title="@string/run_sheet" />
+    <item
         android:id="@+id/ordersFragment"
         android:icon="@drawable/ic_side_menu_orders"
         android:title="@string/orders_menu_item" />

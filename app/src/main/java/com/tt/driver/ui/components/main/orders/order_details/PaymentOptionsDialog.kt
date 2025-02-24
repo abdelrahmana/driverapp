@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.button.MaterialButton
-import com.waysgroup.t7t_talbk_driver.R
+import com.waysgroup.speed.R
 
 class PaymentOptionsDialog(
     context: Context,

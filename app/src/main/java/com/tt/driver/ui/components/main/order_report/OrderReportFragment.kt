@@ -11,7 +11,7 @@ import com.tt.driver.data.models.entities.PaymentReport
 import com.tt.driver.data.models.http.OrdersReportResponse
 import com.tt.driver.ui.base.BaseFragment
 import com.tt.driver.utils.show
-import com.waysgroup.t7t_talbk_driver.databinding.FragmentOrderReportBinding
+import com.waysgroup.speed.databinding.FragmentOrderReportBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -28,8 +28,8 @@ import com.tt.driver.utils.Util.setRecycleView
 import com.tt.driver.utils.show
 import com.tt.driver.utils.showToast
 import com.tt.driver.utils.toLatLng
-import com.waysgroup.t7t_talbk_driver.R
-import com.waysgroup.t7t_talbk_driver.databinding.DestinationReachedBinding
+import com.waysgroup.speed.R
+import com.waysgroup.speed.databinding.DestinationReachedBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 

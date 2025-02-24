@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.waysgroup.t7t_talbk_driver.databinding.ListItemWarningsBinding
+import com.waysgroup.speed.databinding.ListItemWarningsBinding
 
 class WarningsAdapter(
     private val images: List<String>
