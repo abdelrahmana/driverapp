@@ -19,9 +19,9 @@ data class DataSlot(
     @SerializedName("label")
     val label: String,
     @SerializedName("mobile_no")
-    val mobileNo: String,
+    val mobileNo: String?,
     @SerializedName("shipment_address")
-    val shipmentAddress: String
+    val shipmentAddress: String?
 )
 
 

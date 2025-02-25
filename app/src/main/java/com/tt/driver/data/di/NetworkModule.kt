@@ -3,6 +3,7 @@ package com.tt.driver.data.di
 import com.tt.driver.data.datastore.AuthDataStore
 import com.tt.driver.data.network.APIsService
 import com.tt.driver.data.network.AuthorizationInterceptor
+import com.tt.driver.data.network.ShipmentServiceApi
 import com.tt.driver.data.network.SlotService
 import com.waysgroup.speed.BuildConfig
 import dagger.Module
@@ -57,4 +58,9 @@ class NetworkModule {
     @Singleton
     fun provideSlotService(retrofit: Retrofit): SlotService =
         retrofit.create(SlotService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideShipmentService(retrofit: Retrofit): ShipmentServiceApi =
+        retrofit.create(ShipmentServiceApi::class.java)
 }

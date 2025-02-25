@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:clipToPadding="false">
+
+    <TextView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        app:contentInsetRight="0dp"
+        app:contentInsetLeft="0dp"
+        android:gravity="center_vertical"
+        app:contentInsetStartWithNavigation="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawablePadding="5dp"
+        android:text="@string/shipment"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_color"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:navigationIconTint="@android:color/darker_gray"
+        app:title="Orders"
+        app:titleTextAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        app:titleTextColor="@color/blue"
+        app:drawableStartCompat="@drawable/ic_baseline_arrow_back_24"
+        app:drawableTint="@android:color/darker_gray" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:paddingBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageMap"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingBottom="30dp"
+                android:layout_marginTop="25dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/shipmentText"
+                    android:textColor="@color/blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/orderType"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    app:cardElevation="0dp"
+                    android:layout_marginTop="15dp"
+                    android:minHeight="60dp"
+                    android:id="@+id/cardCustomer"
+                    app:cardCornerRadius="7dp"
+                    app:layout_constraintTop_toBottomOf="@+id/shipmentText"
+                    app:cardBackgroundColor="@color/card_color"
+                    android:layout_height="wrap_content">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/customer"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:textColor="@color/gray"
+                            android:text="@string/customer_name"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:textColor="@color/blue"
+                            app:layout_constraintStart_toStartOf="@+id/customer"
+                            app:layout_constraintTop_toBottomOf="@+id/customer"
+                            android:id="@+id/nameCustomer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:id="@+id/callPickUp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginEnd="20dp"
+                            android:src="@drawable/call_cell"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"/>
+
+                        <ImageView
+                            android:id="@+id/callDestination"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/callPickUp"
+                            android:layout_marginEnd="7dp"
+                            android:src="@drawable/ic_whats_app"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/containerShpment"
+                    app:layout_constraintTop_toBottomOf="@+id/cardCustomer"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/shipmentName"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/gray"
+                        android:text="@string/shipment_from"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:textColor="@color/blue"
+                        app:layout_constraintStart_toStartOf="@+id/shipmentName"
+                        app:layout_constraintTop_toBottomOf="@+id/shipmentName"
+                        android:id="@+id/shipmentNameValue"
+                        app:layout_constraintEnd_toStartOf="@+id/shipment_details_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/shipment_details_key"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/gray"
+                        android:text="@string/shipment_details"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:textColor="@color/blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/shipment_details_key"
+                        app:layout_constraintTop_toBottomOf="@+id/shipment_details_key"
+                        android:id="@+id/shipment_details_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    android:id="@+id/containerPickUp"
+                    app:layout_constraintTop_toBottomOf="@+id/containerShpment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:id="@+id/card"
+                        app:cardElevation="0dp"
+                        android:layout_marginTop="15dp"
+                        android:minHeight="150dp"
+                        app:cardCornerRadius="7dp"
+                        app:layout_constraintTop_toBottomOf="@+id/locationPickUp"
+                        app:cardBackgroundColor="@color/card_color"
+                        android:layout_height="wrap_content">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:paddingBottom="7dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/shipment_address"
+                                android:text="@string/shipment_address"
+                                android:textColor="@color/order_subtitle_color"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/governate"
+                                android:text="@string/governate"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/shipment_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@+id/governate"
+                                app:layout_constraintTop_toTopOf="@+id/governate"
+                                app:layout_constraintBottom_toBottomOf="@+id/governate"
+                                android:id="@+id/goveranteValuePickUp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+
+                            <TextView
+                                android:id="@+id/regionTextPickup"
+                                android:text="@string/region"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/governate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textColor="@color/black"
+                                android:textAlignment="viewStart"
+                                app:layout_constraintEnd_toStartOf="@+id/blockPickUp"
+                                app:layout_constraintStart_toEndOf="@+id/regionTextPickup"
+                                app:layout_constraintTop_toTopOf="@+id/regionTextPickup"
+                                app:layout_constraintBottom_toBottomOf="@+id/regionTextPickup"
+                                android:id="@+id/regionValuePickup"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:id="@+id/blockPickUp"
+                                android:text="@string/block"
+                                app:layout_constraintEnd_toStartOf="@+id/blockValuePickUp"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintTop_toBottomOf="@+id/governate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:textColor="@color/black"
+                                app:layout_constraintTop_toTopOf="@+id/blockPickUp"
+                                app:layout_constraintBottom_toBottomOf="@+id/blockPickUp"
+                                android:id="@+id/blockValuePickUp"
+                                android:text=""
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/streetPickup"
+                                android:text="@string/street"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/regionValuePickup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@+id/streetPickup"
+                                app:layout_constraintTop_toTopOf="@+id/streetPickup"
+                                android:id="@+id/streetPickupValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:id="@+id/homePickUp"
+                                android:text="@string/home_no"
+                                app:layout_constraintEnd_toStartOf="@+id/homePickUpValue"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/streetPickupValue"
+                                android:layout_width="0dp"
+                                app:layout_constraintHorizontal_weight=".6"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textColor="@color/black"
+                                app:layout_constraintEnd_toStartOf="@+id/apartmentNo"
+                                app:layout_constraintStart_toEndOf="@+id/homePickUp"
+                                app:layout_constraintTop_toTopOf="@+id/homePickUp"
+                                app:layout_constraintBottom_toBottomOf="@+id/homePickUp"
+                                android:id="@+id/homePickUpValue"
+                                android:text="dasd"
+                                app:layout_constraintHorizontal_weight=".2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:id="@+id/apartmentNo"
+                                app:layout_constraintHorizontal_weight=".8"
+                                android:layout_marginStart="5dp"
+                                android:gravity="center"
+                                android:text="@string/apartment"
+                                app:layout_constraintEnd_toStartOf="@+id/apartmentPickUp"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintStart_toEndOf="@+id/homePickUpValue"
+                                app:layout_constraintTop_toBottomOf="@+id/streetPickupValue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                app:layout_constraintEnd_toStartOf="@+id/floorNo"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@+id/apartmentNo"
+                                app:layout_constraintTop_toTopOf="@+id/apartmentNo"
+                                android:id="@+id/apartmentPickUp"
+                                android:layout_width="0dp"
+                                app:layout_constraintHorizontal_weight=".2"
+                                android:layout_height="wrap_content"/>
+
+
+                            <TextView
+                                app:layout_constraintEnd_toStartOf="@+id/floorNumberValue"
+                                android:id="@+id/floorNo"
+                                android:layout_marginStart="5dp"
+                                android:text="@string/floor_no"
+                                app:layout_constraintStart_toEndOf="@+id/apartmentPickUp"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="10dp"
+                                app:layout_constraintHorizontal_weight=".5"
+                                app:layout_constraintTop_toBottomOf="@+id/streetPickupValue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                app:layout_constraintHorizontal_weight=".2"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@+id/floorNo"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/floorNo"
+                                app:layout_constraintBottom_toBottomOf="@+id/floorNo"
+                                android:id="@+id/floorNumberValue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/orderPickUpCount"
+                        android:text="@string/order_counts"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:drawablePadding="10dp"
+                        android:layout_height="wrap_content"
+                        app:drawableStartCompat="@drawable/order_count_n" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:layout_marginStart="33dp"
+                        android:id="@+id/orderPickupValueNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:drawablePadding="10dp"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        android:id="@+id/imageMap"
+        android:layout_marginHorizontal="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/goThereButton"
+        android:src="@drawable/image_map"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="fitXY"
+        android:layout_marginBottom="30dp"
+        android:layout_width="0dp"
+        android:layout_height="150dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/goThereButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:backgroundTint="@color/new_red_color"
+        android:insetTop="0dp"
+        android:textAllCaps="false"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:insetBottom="0dp"
+        android:text="@string/start"
+        android:textSize="16sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+        android:id="@+id/no_result_found"
+        android:visibility="gone"
+        android:text="@string/noresult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

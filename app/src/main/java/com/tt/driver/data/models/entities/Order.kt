@@ -2,6 +2,7 @@ package com.tt.driver.data.models.entities
 
 import android.os.Parcelable
 import com.google.android.gms.maps.model.LatLng
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -9,7 +10,7 @@ data class Order(
     var created_at: String?,
     var email: String?,
     var phone: String?,
-    val customer: Customer?,
+    val customerName: Customer?,
     val delivery_category: DeliveryCategory?,
     val driver: Driver?,
     val from_address: String?,
@@ -35,7 +36,18 @@ data class Order(
     private val status: String?,
     val status_word: String?,
     val time: String?,
-    val to_address: String?,
+    val customer : String?,
+    @SerializedName("customer_phone")
+    val customerPhone : String?,
+    @SerializedName("shipment_from")
+    val shipmentFrom : String?,
+    @SerializedName("shipment_details")
+    val shipmentDetails : String?,
+    val label :String?=null,
+    val callCenter : String?,
+    @SerializedName("delivery_status")
+    val deliveryStatus : String?,
+val to_address: String?,
     val to_governorate: Governorate?,
     val to_lat: String?,
     val to_long: String?,

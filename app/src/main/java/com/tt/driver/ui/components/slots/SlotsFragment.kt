@@ -8,15 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.tt.driver.data.models.entities.Data
 import com.tt.driver.data.models.http.DataSlot
 import com.tt.driver.ui.base.BaseFragment
+import com.tt.driver.ui.components.shipment.ShipmentDetailsFragment
 import com.tt.driver.ui.components.slots.adaptor.AdaptorSlots
 import com.tt.driver.utils.Util
 import com.tt.driver.utils.show
+import com.waysgroup.speed.R
 import com.waysgroup.speed.databinding.FragmentSlotsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,6 +43,7 @@ class SlotsFragment : BaseFragment<FragmentSlotsBinding>() {
         super.onViewCreated(view, savedInstanceState)
         adaptor = AdaptorSlots(requireContext(), arrayListOf()){
             // redirect to start shipment page
+            findNavController().navigate(R.id.shipment_details, bundleOf(ShipmentDetailsFragment.SHIPMENT_ID to it.id))
         }
 
         observeResult(viewModel.slot) {

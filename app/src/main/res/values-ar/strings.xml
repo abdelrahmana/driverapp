@@ -72,4 +72,8 @@
     <string name="delivery_date">Delivery Date: %s</string>
     <string name="delivery_address">Delivery Address: %s</string>
     <string name="mobile_number">Mobile NO: %S</string>
+    <string name="start">Start</string>
+    <string name="shipment_from">Shipment From</string>
+    <string name="shipment_details">Shipment Details</string>
+    <string name="shipment_address">Shipment Address</string>
 </resources>

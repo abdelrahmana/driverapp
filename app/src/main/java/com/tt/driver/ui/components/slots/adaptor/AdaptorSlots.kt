@@ -11,6 +11,7 @@ import com.tt.driver.data.models.entities.Data
 import com.tt.driver.data.models.http.DataSlot
 import com.tt.driver.data.models.http.Datax
 import com.tt.driver.data.models.http.Slot
+import com.tt.driver.utils.show
 import com.waysgroup.speed.R
 import com.waysgroup.speed.databinding.AdaptorRunSheetBinding
 import com.waysgroup.speed.databinding.ExtraPriceOneItemBinding
@@ -67,6 +68,7 @@ class AdaptorSlots( // one selection
             itemViews.dateString.text = context.getString(R.string.delivery_date,selectedItem?.deliveryDate.toString())
             itemViews.deliveryAddress.text = context.getString(R.string.delivery_address,selectedItem?.shipmentAddress.toString())
             itemViews.mobileNumber.text = context.getString(R.string.mobile_number,selectedItem?.mobileNo.toString())
+            itemViews.mobileNumber.show(selectedItem?.mobileNo!=null)
             itemViews.containerSlot.setOnClickListener {
                 onSlotClicked(selectedItem!!)
             }

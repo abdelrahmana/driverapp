@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/runSheetFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -38,6 +38,11 @@
         android:name="com.tt.driver.ui.components.slots.SlotsFragment"
         android:label="slotFragment"
         tools:layout="@layout/fragment_run_sheet" />
+    <fragment
+        android:id="@+id/shipment_details"
+        android:name="com.tt.driver.ui.components.shipment.ShipmentDetailsFragment"
+        android:label="shipment_details"
+        tools:layout="@layout/shipment_details_fragment" />
     <fragment
         android:id="@+id/ordersFragment"
         android:name="com.tt.driver.ui.components.main.orders.OrdersFragment"
