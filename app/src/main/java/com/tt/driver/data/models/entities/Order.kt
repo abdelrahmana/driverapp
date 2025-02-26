@@ -44,6 +44,7 @@ data class Order(
     @SerializedName("shipment_details")
     val shipmentDetails : String?,
     val label :String?=null,
+    @SerializedName("call_center_notes")
     val callCenter : String?,
     @SerializedName("delivery_status")
     val deliveryStatus : String?,

@@ -13,5 +13,7 @@ class ShipmentRepoImplemeneter @Inject constructor(
         makeApiCall { remoteDataSource.getShipmentDetails(slotShipmentId,hashMap) }
 
     override suspend fun getShipmentInfoByShipmentNumber(hashMap: HashMap<String,Any>): RemoteResult<ShipmentDetailsResponse> = makeApiCall { remoteDataSource.getShipmentDetailsByShipmentNumber(hashMap) }
-
+    override suspend fun updateShipmentStatus(hashMap: HashMap<String, Any>): RemoteResult<Any> {
+       return makeApiCall { remoteDataSource.postUpdateOrderStatus(hashMap) }
+    }
 }

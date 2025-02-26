@@ -18,6 +18,7 @@ interface ShipmentRepo {
 
     suspend fun getShipmentInfo(slotShipmentId : Int,hashMap: HashMap<String,Any>): RemoteResult<ShipmentDetailsResponse>
     suspend fun getShipmentInfoByShipmentNumber(hashMap: HashMap<String,Any>): RemoteResult<ShipmentDetailsResponse>
+    suspend fun updateShipmentStatus(hashMap: HashMap<String,Any>): RemoteResult<Any>
 
 
 }

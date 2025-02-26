@@ -12,4 +12,6 @@ interface ShipmentServiceApi {
     @POST("driver/search-barcode")
     suspend fun getShipmentDetailsByShipmentNumber(@Body date: HashMap<String,Any>): ShipmentDetailsResponse
 
+    @POST("driver/update-order-status")
+    suspend fun postUpdateOrderStatus(@Body date: HashMap<String,Any>): Any
 }

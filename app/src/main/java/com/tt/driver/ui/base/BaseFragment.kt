@@ -42,7 +42,7 @@ abstract class BaseFragment<T : Any> : Fragment() {
     abstract fun initBinding(inflater: LayoutInflater, container: ViewGroup?): T
 
     fun <T> observeResult(
-        result: StateFlow<RemoteResult<T>>,
+        result: StateFlow<RemoteResult<T>?>,
         customErrorHandling: ((String) -> Unit)? = null,
         successResult: (T) -> Unit
     ) {

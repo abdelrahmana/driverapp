@@ -76,4 +76,6 @@
     <string name="shipment_from">Shipment From</string>
     <string name="shipment_details">Shipment Details</string>
     <string name="shipment_address">Shipment Address</string>
+    <string name="note">Notes</string>
+    <string name="reject">Reject</string>
 </resources>

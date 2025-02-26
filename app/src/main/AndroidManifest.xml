@@ -58,7 +58,7 @@
 
         <activity
             android:name="com.tt.driver.ui.components.main.MainActivity"
-            android:launchMode="singleInstance"
+            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.tt.driver.ui.components.registration.RegistrationActivity"
