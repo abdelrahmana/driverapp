@@ -17,6 +17,7 @@ import com.tt.driver.data.models.http.ShipmentDetailsResponse
 import com.tt.driver.ui.base.LocationAwareFragment
 import com.tt.driver.ui.components.main.MainActivity
 import com.tt.driver.ui.components.main.orders.order_details.OrderDestinationFragmentDirections
+import com.tt.driver.ui.components.main.orders.order_details.OrderDetailsFragmentDirections
 import com.tt.driver.ui.components.main.orders.order_details.PaymentType
 import com.tt.driver.utils.IntentUtils
 import com.tt.driver.utils.Util
@@ -35,12 +36,12 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
     private var currentLocation: Location? = null
 
     private var nextOrderState: OrderStatus? = null;
-
+    var whichSelection =""
     companion object {
         const val UPDATE_ORDER_STATE = "UPDATE_ORDER_STATE"
         const val SHIPMENT_ID = "Shipment_ID"
         const val SCANNERQRCODE: String = "scanner_qr"
-        const val PENDING = "pending";
+        const val PENDING = "out_of_delivery";
         const val DELIVERED = "delivered";
         const val REJECTED = "rejected";
         const val RESCHEDULED = "rescheduled";
@@ -52,6 +53,7 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
     ) = ShipmentDetailsFragmentBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         arguments?.getString(SCANNERQRCODE)?.let { labelShipment ->
             viewModel.getShipmentByQrCode(HashMap<String, Any>().also {
                 it.put("barcode", arguments?.getString(SCANNERQRCODE) ?: "")
@@ -68,12 +70,26 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
         })
         observeResult(viewModel.shipmentUpdateStatus) {
             binding?.progressBar?.show(false)
-            Toast.makeText(requireContext(),getString(R.string.order_compelete_successfully),Toast.LENGTH_SHORT).show()
-            requireActivity().startActivity(Intent(requireActivity(),MainActivity::class.java))
-            requireActivity().finish()
-        }
-        binding?.toolbar?.setOnClickListener { requireActivity().onBackPressed() }
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.order_compelete_successfully),
+                Toast.LENGTH_SHORT
+            ).show()
+            /* */
+            if (whichSelection == DELIVERED || whichSelection == REJECTED)
+                navigateTo(
+                    ShipmentDetailsFragmentDirections.actionShipmentDetailsFragmentToDigitalSignatureFragment(
+                        arguments?.getInt(SHIPMENT_ID) ?: 0
+                    )
+                )
+            else {
+                requireActivity().startActivity(Intent(requireActivity(), MainActivity::class.java))
+                requireActivity().finish()
+            }
 
+            binding?.toolbar?.setOnClickListener { requireActivity().onBackPressed() }
+
+        }
     }
 
     private fun updateUI(shipmentResponse: ShipmentDetailsResponse) {
@@ -143,27 +159,40 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
 
             }
             deliveredContainer.setOnClickListener{
+                whichSelection = DELIVERED
                 viewModel.updateShipmentStatus(HashMap<String, Any>().also {
                     it.put("order_id",id?:0)
                     it.put("status", DELIVERED)
+                    it.put("delivery_status_lat",currentLocation?.latitude?:0.0)
+                    it.put("delivery_status_lng",currentLocation?.longitude?:0.0)
+
                 })
             }
             reschduleContainer.setOnClickListener{
+                whichSelection = RESCHEDULED
                 viewModel.updateShipmentStatus(HashMap<String, Any>().also {
                     it.put("order_id",id?:0)
                     it.put("status", RESCHEDULED)
+                    it.put("delivery_status_lat",currentLocation?.latitude?:0.0)
+                    it.put("delivery_status_lng",currentLocation?.longitude?:0.0)
                 })
             }
             rejectedContainer.setOnClickListener{
+                whichSelection = REJECTED
                 viewModel.updateShipmentStatus(HashMap<String, Any>().also {
                     it.put("order_id",id?:0)
                     it.put("status", REJECTED)
+                    it.put("delivery_status_lat",currentLocation?.latitude?:0.0)
+                    it.put("delivery_status_lng",currentLocation?.longitude?:0.0)
                 })
             }
         }
 
     }
-
+    override fun onLocationPermissionsSatisfied() {
+        super.onLocationPermissionsSatisfied()
+        (requireActivity() as? MainActivity)?.startLocationTrackingService()
+    }
 
     override fun onUserLocationFetched(location: Location) {
         currentLocation = location

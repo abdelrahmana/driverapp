@@ -65,14 +65,14 @@
         app:layout_constraintTop_toBottomOf="@+id/divider"
         android:orientation="horizontal"
         android:minHeight="30dp"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="3dp"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_weight="1"
             android:id="@+id/shipment"
-            android:textSize="11sp"
+            android:textSize="10sp"
             android:text="@string/shipment_number"
             android:drawablePadding="3dp"
             android:drawableStart="@drawable/shipment_icon"
@@ -81,7 +81,7 @@
         <TextView
             android:id="@+id/delivered"
             android:layout_weight="1"
-            android:textSize="11sp"
+            android:textSize="10sp"
             android:text="@string/delivered_number"
             android:drawablePadding="3dp"
             android:drawableStart="@drawable/ic_delivered"
@@ -92,14 +92,14 @@
             android:layout_weight="1"
             android:text="@string/rejected_number"
             android:drawablePadding="3dp"
-            android:textSize="11sp"
+            android:textSize="10sp"
             android:drawableStart="@drawable/ic_rejected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/reschdule"
             android:layout_weight="1"
-            android:textSize="11sp"
+            android:textSize="10sp"
             android:text="@string/reschdule_number"
             android:drawablePadding="3dp"
             android:drawableStart="@drawable/ic_reschdule"

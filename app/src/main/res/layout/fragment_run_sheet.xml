@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardSheet"
         app:cardElevation="5dp"
         android:id="@+id/cardScanner"
-        android:layout_marginHorizontal="15dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
         app:layout_constraintBottom_toBottomOf="@+id/cardSheet"
         android:layout_height="wrap_content">
@@ -95,7 +95,7 @@
         android:id="@+id/shipmentCard"
         android:visibility="gone"
         tools:visibility="visible"
-        android:layout_marginHorizontal="15dp"
+        android:layout_marginHorizontal="10dp"
         app:cardBackgroundColor="@color/new_gray_color"
         android:layout_marginTop="25dp"
         android:layout_height="wrap_content">
@@ -130,7 +130,7 @@
     </com.google.android.material.card.MaterialCardView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewSheets"
-        android:layout_marginHorizontal="15dp"
+        android:layout_marginHorizontal="10dp"
         tools:listitem="@layout/adaptor_run_sheet"
         app:layout_constraintTop_toBottomOf="@+id/shipmentCard"
         android:layout_width="match_parent"

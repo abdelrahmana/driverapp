@@ -1,5 +1,6 @@
 package com.tt.driver.ui.components.main.orders.order_details
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.tt.driver.data.models.Loading
 import com.tt.driver.data.models.Success
 import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.ui.base.BaseFragment
+import com.tt.driver.ui.components.main.MainActivity
 import com.tt.driver.utils.show
 import com.waysgroup.speed.databinding.FragmentDigitalSignatureBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,7 +40,12 @@ class DigitalSignatureFragment : BaseFragment<FragmentDigitalSignatureBinding>()
                     binding?.progressBar?.show(true)
                 }
                 is Success -> {
-                    navigateToPaymentScreen()
+                    requireActivity().startActivity(
+                        Intent(requireActivity(),
+                            MainActivity::class.java)
+                    )
+                    requireActivity().finish()
+                   // navigateToPaymentScreen()
                 }
                 is Failure -> {
                     binding?.progressBar?.show(false)

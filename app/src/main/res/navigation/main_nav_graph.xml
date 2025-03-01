@@ -42,7 +42,11 @@
         android:id="@+id/shipment_details"
         android:name="com.tt.driver.ui.components.shipment.ShipmentDetailsFragment"
         android:label="shipment_details"
-        tools:layout="@layout/shipment_details_fragment" />
+        tools:layout="@layout/shipment_details_fragment">
+        <action
+            android:id="@+id/action_shipmentDetailsFragment_to_digitalSignatureFragment"
+            app:destination="@id/digitalSignatureFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ordersFragment"
         android:name="com.tt.driver.ui.components.main.orders.OrdersFragment"
