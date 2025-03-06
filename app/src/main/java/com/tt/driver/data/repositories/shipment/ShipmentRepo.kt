@@ -8,6 +8,7 @@ import com.tt.driver.data.models.entities.PaymentReport
 import com.tt.driver.data.models.http.OrderDetailsResponse
 import com.tt.driver.data.models.http.OrdersReportResponse
 import com.tt.driver.data.models.http.OrdersResponse
+import com.tt.driver.data.models.http.RejectedReason
 import com.tt.driver.data.models.http.RunSheetResponse
 import com.tt.driver.data.models.http.ShipmentDetailsResponse
 import com.tt.driver.ui.components.main.orders.OrderType
@@ -19,6 +20,7 @@ interface ShipmentRepo {
     suspend fun getShipmentInfo(slotShipmentId : Int,hashMap: HashMap<String,Any>): RemoteResult<ShipmentDetailsResponse>
     suspend fun getShipmentInfoByShipmentNumber(hashMap: HashMap<String,Any>): RemoteResult<ShipmentDetailsResponse>
     suspend fun updateShipmentStatus(hashMap: HashMap<String,Any>): RemoteResult<Any>
+    suspend fun getReasonRejection(): RemoteResult<RejectedReason>
 
 
 }

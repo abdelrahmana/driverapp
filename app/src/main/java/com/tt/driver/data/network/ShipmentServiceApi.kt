@@ -14,4 +14,7 @@ interface ShipmentServiceApi {
 
     @POST("driver/update-order-status")
     suspend fun postUpdateOrderStatus(@Body date: HashMap<String,Any>): Any
+
+    @GET("driver/orders/order-reject-reason")
+    suspend fun getSelectedReasons(): RejectedReason
 }

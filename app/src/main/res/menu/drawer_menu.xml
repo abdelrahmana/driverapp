@@ -8,7 +8,12 @@
         android:id="@+id/runSheetFragment"
         android:icon="@drawable/ic_side_menu_orders"
         android:title="@string/run_sheet" />
+
     <item
+        android:id="@+id/languageFragment"
+        android:icon="@drawable/ic_side_menu_orders"
+        android:title="@string/language" />
+    <!--<item
         android:id="@+id/ordersFragment"
         android:icon="@drawable/ic_side_menu_orders"
         android:title="@string/orders_menu_item" />
@@ -19,7 +24,7 @@
     <item
         android:id="@+id/paymentsFragment"
         android:icon="@drawable/ic_side_menu_payments"
-        android:title="@string/payments_menu_item" />
+        android:title="@string/payments_menu_item" />-->
     <!--    <item-->
     <!--        android:id="@+id/clientPlacesFragment"-->
     <!--        android:icon="@drawable/ic_side_menu_client_places"-->

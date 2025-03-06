@@ -2,6 +2,7 @@ package com.tt.driver.ui.components.main
 
 import android.Manifest
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -26,6 +27,7 @@ import com.tt.driver.data.models.Success
 import com.tt.driver.data.services.LocationTrackerService
 import com.tt.driver.ui.components.registration.RegistrationActivity
 import com.tt.driver.utils.IntentUtils
+import com.tt.driver.utils.Util
 import com.waysgroup.speed.R
 import com.waysgroup.speed.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var authDataStore: AuthDataStore
+    @Inject lateinit var prefs : SharedPreferences
 
     @Inject
     lateinit var userDataStore: UserDataStore
@@ -66,12 +69,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.navView.setupWithNavController(getNavController())
 
-        binding.navView.menu[5].setOnMenuItemClickListener {
+        binding.navView.menu[3].setOnMenuItemClickListener {
             IntentUtils.dialPhone(this, "94129624")
             true
         }
 
-        binding.navView.menu[6].setOnMenuItemClickListener {
+        binding.navView.menu[4].setOnMenuItemClickListener {
             fetchHelpContact()
             true
         }
@@ -111,6 +114,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+    override fun onResume() {
+        Util.setLanguagePerActivity(this,null,prefs)
+        //  UtilKotlin.setLocalLanguage(UtilKotlin.getSharedPrefs(this).getString(PrefsModel.localLanguage,"ar"))
+        super.onResume()
     }
 
     private fun fetchHelpContact() {

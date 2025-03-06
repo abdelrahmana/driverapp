@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tt.driver.data.models.Loading
 import com.tt.driver.data.models.RemoteResult
+import com.tt.driver.data.models.http.RejectedReason
 import com.tt.driver.data.models.http.ShipmentDetailsResponse
 import com.tt.driver.data.repositories.shipment.ShipmentRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,10 +23,19 @@ class ShipmentViewModel @Inject constructor(
     private val _shipmentUpdateStatus = MutableStateFlow<RemoteResult<Any>?>(null)
     val shipmentUpdateStatus: StateFlow<RemoteResult<Any>?> get() = _shipmentUpdateStatus
 
+    private val _getReasons = MutableStateFlow<RemoteResult<RejectedReason>>(Loading())
+    val getReasons: StateFlow<RemoteResult<RejectedReason>> get() = _getReasons
+
     fun getShipment(shipmentId : Int,hashMap: HashMap<String,Any>) {
         viewModelScope.launch {
             _shipment.emit(Loading())
             _shipment.emit(shipmentRepo.getShipmentInfo(shipmentId,hashMap))
+        }
+    }
+    fun getReasonsRejection() {
+        viewModelScope.launch {
+            _getReasons.emit(Loading())
+            _getReasons.emit(shipmentRepo.getReasonRejection())
         }
     }
     fun getShipmentByQrCode(hashMap: HashMap<String,Any>) {

@@ -1,6 +1,7 @@
 package com.tt.driver.data.repositories.shipment
 
 import com.tt.driver.data.models.RemoteResult
+import com.tt.driver.data.models.http.RejectedReason
 import com.tt.driver.data.models.http.ShipmentDetailsResponse
 import com.tt.driver.data.network.ShipmentServiceApi
 import com.tt.driver.data.repositories.BaseRepository
@@ -15,5 +16,8 @@ class ShipmentRepoImplemeneter @Inject constructor(
     override suspend fun getShipmentInfoByShipmentNumber(hashMap: HashMap<String,Any>): RemoteResult<ShipmentDetailsResponse> = makeApiCall { remoteDataSource.getShipmentDetailsByShipmentNumber(hashMap) }
     override suspend fun updateShipmentStatus(hashMap: HashMap<String, Any>): RemoteResult<Any> {
        return makeApiCall { remoteDataSource.postUpdateOrderStatus(hashMap) }
+    }
+    override suspend fun getReasonRejection(): RemoteResult<RejectedReason> {
+        return makeApiCall { remoteDataSource.getSelectedReasons() }
     }
 }

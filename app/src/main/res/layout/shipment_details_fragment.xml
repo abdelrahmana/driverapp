@@ -59,7 +59,7 @@
                 <TextView
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/shipmentText"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/new_red_color"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -67,7 +67,7 @@
                     android:id="@+id/orderType"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/new_red_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <com.google.android.material.card.MaterialCardView
@@ -95,7 +95,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
-                            android:textColor="@color/blue"
+                            android:textColor="@color/new_red_color"
                             app:layout_constraintStart_toStartOf="@+id/customer"
                             app:layout_constraintTop_toBottomOf="@+id/customer"
                             android:id="@+id/nameCustomer"
@@ -140,7 +140,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:textColor="@color/blue"
+                        android:textColor="@color/new_red_color"
                         app:layout_constraintStart_toStartOf="@+id/shipmentName"
                         app:layout_constraintTop_toBottomOf="@+id/shipmentName"
                         android:id="@+id/shipmentNameValue"
@@ -159,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:textColor="@color/blue"
+                        android:textColor="@color/new_red_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/shipment_details_key"
                         app:layout_constraintTop_toBottomOf="@+id/shipment_details_key"
@@ -397,7 +397,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:textColor="@color/blue"
+                        android:textColor="@color/new_red_color"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/noteHeader"
                         android:id="@+id/noteOne"
@@ -406,7 +406,7 @@
                         android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:textColor="@color/blue"
+                        android:textColor="@color/new_red_color"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/noteOne"
                         android:id="@+id/noteII"

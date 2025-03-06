@@ -102,6 +102,7 @@ class SlotsFragment : BaseFragment<FragmentSlotsBinding>() {
             tab?.customView = textView
         }
     }
+
         override fun isLoading(status: Boolean) {
             binding?.progressBar?.show(status)
         }

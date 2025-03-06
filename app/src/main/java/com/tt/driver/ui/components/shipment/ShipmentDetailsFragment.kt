@@ -2,31 +2,22 @@ package com.tt.driver.ui.components.shipment
 
 import android.content.Intent
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import com.tt.driver.data.models.Failure
-import com.tt.driver.data.models.Loading
-import com.tt.driver.data.models.Success
 import com.tt.driver.data.models.entities.OrderStatus
 import com.tt.driver.data.models.http.ShipmentDetailsResponse
 import com.tt.driver.ui.base.LocationAwareFragment
 import com.tt.driver.ui.components.main.MainActivity
-import com.tt.driver.ui.components.main.orders.order_details.OrderDestinationFragmentDirections
-import com.tt.driver.ui.components.main.orders.order_details.OrderDetailsFragmentDirections
-import com.tt.driver.ui.components.main.orders.order_details.PaymentType
-import com.tt.driver.utils.IntentUtils
 import com.tt.driver.utils.Util
 import com.tt.driver.utils.show
-import com.tt.driver.utils.showToast
 import com.waysgroup.speed.R
 import com.waysgroup.speed.databinding.ShipmentDetailsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBinding>() {
@@ -76,7 +67,7 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
                 Toast.LENGTH_SHORT
             ).show()
             /* */
-            if (whichSelection == DELIVERED || whichSelection == REJECTED)
+            if (whichSelection == DELIVERED)
                 navigateTo(
                     ShipmentDetailsFragmentDirections.actionShipmentDetailsFragmentToDigitalSignatureFragment(
                         arguments?.getInt(SHIPMENT_ID) ?: 0
@@ -124,7 +115,7 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
             noteHeader.show(shipment.notes !=null || shipment.callCenter!=null)
             noteOne.text = shipment.notes ?: ""
             noteII.text = shipment.callCenter ?: ""
-            checkDeliveryStatus(shipment.deliveryStatus,shipment.id)
+            checkDeliveryStatus(shipment.deliveryStatus,shipment.id,shipment.to_lat,shipment.to_long)
 
             callDestination.setOnClickListener {
                 val url = "https://api.whatsapp.com/send?phone=" + "+965" + shipment.to_phone ?: "0"
@@ -146,7 +137,12 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
 
     }
 
-    private fun checkDeliveryStatus(deliveryStatus: String?, id: Int?) {
+    private fun checkDeliveryStatus(
+        deliveryStatus: String?,
+        id: Int?,
+        toLat: String?,
+        toLong: String?
+    ) {
         binding?.run {
             goThereButton.show(deliveryStatus == PENDING)
             imageMap.show(deliveryStatus == PENDING)
@@ -157,6 +153,12 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
                 reschduleContainer.show(goThereButton.visibility == View.GONE)
                 rejectedContainer.show(goThereButton.visibility == View.GONE)
 
+            }
+            imageMap.setOnClickListener{
+                val gmmIntentUri = Uri.parse("google.navigation:q=$toLat,$toLong")
+                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                mapIntent.setPackage("com.google.android.apps.maps")
+                startActivity(mapIntent)
             }
             deliveredContainer.setOnClickListener{
                 whichSelection = DELIVERED
@@ -178,13 +180,21 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
                 })
             }
             rejectedContainer.setOnClickListener{
-                whichSelection = REJECTED
-                viewModel.updateShipmentStatus(HashMap<String, Any>().also {
-                    it.put("order_id",id?:0)
-                    it.put("status", REJECTED)
-                    it.put("delivery_status_lat",currentLocation?.latitude?:0.0)
-                    it.put("delivery_status_lng",currentLocation?.longitude?:0.0)
-                })
+                 DialogConfirmActions().also {
+                    it.setCallBack {selectedId->
+                        whichSelection = REJECTED
+                        viewModel.updateShipmentStatus(HashMap<String, Any>().also {
+                            it.put("order_id",id?:0)
+                            it.put("status", REJECTED)
+                            it.put("reject_reason_id",selectedId)
+                            it.put("delivery_status_lat",currentLocation?.latitude?:0.0)
+                            it.put("delivery_status_lng",currentLocation?.longitude?:0.0)
+                        })
+
+                    }
+                     it.show(requireActivity().supportFragmentManager, "DialogConfirmActions")
+                }
+
             }
         }
 

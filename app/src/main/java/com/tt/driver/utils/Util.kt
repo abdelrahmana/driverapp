@@ -4,7 +4,9 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
@@ -18,6 +20,7 @@ import com.andrognito.flashbar.Flashbar
 import com.andrognito.flashbar.anim.FlashAnim
 import com.tt.driver.utils.Constant.CAMERA
 import com.tt.driver.utils.Constant.GALLERY
+import com.tt.driver.utils.Constant.LOCALE_LANGUAGE
 import com.waysgroup.speed.R
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -187,5 +190,40 @@ object Util {
                 )
                 .build().show()
         }
+    }
+    fun setLanguagePerActivity(activity: Activity, intent: Intent?, prefsUtil: SharedPreferences) {
+        val currentLanguage = prefsUtil.getString(Constant.LOCALE_LANGUAGE, "en") ?: "en"
+        //  if (UtilKotlin.getSharedPrefs(activity).getString(PrefsModel.localLanguage, "en").equals("en")) {
+        val locale = Locale(currentLanguage)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.setLocale(locale)
+        activity.getResources().updateConfiguration(config, activity.resources.displayMetrics)
+
+        setApplicationlanguage(
+            activity,
+            currentLanguage
+        )
+        // add current language if default
+        prefsUtil.edit().putString(LOCALE_LANGUAGE, currentLanguage).apply()
+        if (intent != null) // we need to start activity
+        {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            activity.finishAffinity()
+            activity.startActivity(intent) // start redirect activity when you set it
+        }
+    }
+    private fun setApplicationlanguage(context: Context, language: String?) {
+        val res = context.applicationContext.resources
+        val dm = res.displayMetrics
+        val conf = res.configuration
+        // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        conf.setLocale(Locale(language!!)) // API 17+ only.
+        /*  } else {
+              conf.locale = Locale(language)
+          }
+
+         */
+        res.updateConfiguration(conf, dm)
     }
 }

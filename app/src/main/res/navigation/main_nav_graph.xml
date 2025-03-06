@@ -19,6 +19,12 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
+
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.tt.driver.ui.components.main.language.LanguageFragment"
+        android:label="language"
+        tools:layout="@layout/fragment_language" />
     <fragment
         android:id="@+id/runSheetFragment"
         android:name="com.tt.driver.ui.components.main.runsheet.RunSheetFragment"
