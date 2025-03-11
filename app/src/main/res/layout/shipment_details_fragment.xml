@@ -443,10 +443,10 @@
         android:layout_height="150dp"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_marginHorizontal="30dp"
         android:id="@+id/deliveredContainer"
         tools:visibility="visible"
         android:visibility="gone"
+        android:layout_marginHorizontal="15dp"
         app:layout_constraintEnd_toStartOf="@+id/rejectedContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -461,30 +461,36 @@
             android:layout_height="50dp"/>
         <TextView
             android:text="@string/delivered"
+            android:id="@+id/deliveredText"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/deliveredImage"
             app:layout_constraintTop_toBottomOf="@+id/deliveredImage"
             android:textColor="@color/black"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:id="@+id/rejectedContainer"
         app:layout_constraintEnd_toStartOf="@+id/reschduleContainer"
-        android:layout_marginHorizontal="30dp"
+        android:layout_marginHorizontal="15dp"
         tools:visibility="visible"
         android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/deliveredContainer"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/rejectedImages"
-            app:srcCompat="@drawable/ic_reject_draw"
+            android:layout_width="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            app:srcCompat="@drawable/ic_reject_draw" />
+
         <TextView
             app:layout_constraintStart_toStartOf="@+id/rejectedImages"
             app:layout_constraintTop_toBottomOf="@+id/rejectedImages"
@@ -496,9 +502,9 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="30dp"
+        android:layout_marginHorizontal="15dp"
         android:id="@+id/reschduleContainer"
         android:visibility="gone"
         tools:visibility="visible"
@@ -514,11 +520,13 @@
             android:layout_width="50dp"
             android:layout_height="50dp"/>
         <TextView
-            app:layout_constraintStart_toStartOf="@+id/reschduleImage"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/reschduleImage"
             android:textColor="@color/black"
             android:text="@string/reschule"
-            android:layout_width="wrap_content"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.button.MaterialButton

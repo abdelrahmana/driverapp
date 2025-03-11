@@ -15,6 +15,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tt.driver.data.models.Failure
 import com.tt.driver.data.models.Loading
 import com.tt.driver.data.models.Success
@@ -30,7 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DialogConfirmActions : DialogFragment() {
+class DialogConfirmActions : BottomSheetDialogFragment() {
 
     private val shipmentViewModel  : ShipmentViewModel by viewModels()
     private var callBack : ((Int) -> Unit)? =null
@@ -40,6 +41,12 @@ class DialogConfirmActions : DialogFragment() {
     var binding : DialogReasonFragmentBinding? =null
     override fun onAttach(context: Context) {
         super.onAttach(context)
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // for making the bottom sheet background transparent
+        //  webService = ApiManagerDefault(activity!!).apiService
+        setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -83,4 +83,8 @@
     <string name="language">اللغة</string>
     <string name="english">الإنجليزية</string>
     <string name="arabic">العربية</string>
+    <string name="reschule">إعادة الجدولة</string>
+    <string name="log_out">تسجيل الخروج</string>
+    <string name="choose_language">اختر اللغة</string>
+    <string name="slots">الوقت المتاح</string>
 </resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
+   <!-- <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_side_menu_home"
-        android:title="@string/home_menu_item" />
+        android:title="@string/home_menu_item" />-->
     <item
         android:id="@+id/runSheetFragment"
         android:icon="@drawable/ic_side_menu_orders"

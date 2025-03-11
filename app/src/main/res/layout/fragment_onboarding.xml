@@ -28,7 +28,7 @@
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/login_button"
-        app:backgroundTint="#2E2E88"
+        app:backgroundTint="@color/new_red_color"
         app:cornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

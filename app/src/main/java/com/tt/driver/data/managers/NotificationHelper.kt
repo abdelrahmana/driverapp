@@ -26,7 +26,7 @@ object NotificationHelper {
     private const val NOTIFICATION_ID = 1254
 
     fun generateLocationOnGoingNotification(context: Context): Notification {
-        val title = "Taht Talabak"
+        val title = "Speed Delivery"
         val message = "your location is being tracked"
         createLocationNotificationChannel(context)
         return generateNotification(context, title, message, LOCATION_NOTIFICATION_CHANNEL_ID, true)

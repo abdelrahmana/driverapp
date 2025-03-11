@@ -191,16 +191,22 @@ object Util {
                 .build().show()
         }
     }
-    fun setLanguagePerActivity(activity: Activity, intent: Intent?, prefsUtil: SharedPreferences) {
+    fun setLanguagePerActivity(activity: Activity, intent: Intent?, prefsUtil: SharedPreferences): Context? {
         val currentLanguage = prefsUtil.getString(Constant.LOCALE_LANGUAGE, "en") ?: "en"
         //  if (UtilKotlin.getSharedPrefs(activity).getString(PrefsModel.localLanguage, "en").equals("en")) {
         val locale = Locale(currentLanguage)
         Locale.setDefault(locale)
-        val config = Configuration()
+        val config = Configuration(activity.resources.configuration)
         config.setLocale(locale)
-        activity.getResources().updateConfiguration(config, activity.resources.displayMetrics)
+      //  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+         //    activity.createConfigurationContext(config)
+     //   } else {
+            // الجهاز يعمل بإصدار أقدم من Android 8.0
+            activity.getResources().updateConfiguration(config, activity.resources.displayMetrics)
 
-        setApplicationlanguage(
+     //   }
+
+      val context =   setApplicationlanguage(
             activity,
             currentLanguage
         )
@@ -212,8 +218,10 @@ object Util {
             activity.finishAffinity()
             activity.startActivity(intent) // start redirect activity when you set it
         }
+
+        return context
     }
-    private fun setApplicationlanguage(context: Context, language: String?) {
+    private fun setApplicationlanguage(context: Context, language: String?): Context? {
         val res = context.applicationContext.resources
         val dm = res.displayMetrics
         val conf = res.configuration
@@ -225,5 +233,9 @@ object Util {
 
          */
         res.updateConfiguration(conf, dm)
+        val config = Configuration(context.resources.configuration)
+        config.setLocale(Locale(language!!))
+
+        return context.createConfigurationContext(config)
     }
 }

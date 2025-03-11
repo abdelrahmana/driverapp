@@ -66,7 +66,6 @@
     <string name="delivered_number">Delivered: %s</string>
     <string name="noresult">No Result Found</string>
     <string name="shipment">Shipments</string>
-    <string name="slots">Slot</string>
     <string name="delivered">Delieverd</string>
     <string name="reschuled">Reschduled</string>
     <string name="rejected">Rejected</string>
@@ -87,4 +86,7 @@
     <string name="english">English</string>
     <string name="arabic">Arabic</string>
     <string name="choose_language">Choose Language</string>
+    <string name="slots">Slot</string>
+    <string name="log_out">Log Out</string>
+
 </resources>

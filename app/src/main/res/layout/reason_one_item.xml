@@ -9,6 +9,7 @@
     <TextView
         android:textSize="13sp"
         android:text="hello"
+        android:textAlignment="viewStart"
         android:id="@+id/textReason"
         app:layout_constraintEnd_toStartOf="@+id/selectedImage"
         android:layout_width="0dp"

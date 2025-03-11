@@ -1,5 +1,6 @@
 package com.tt.driver.ui.base
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,13 +20,16 @@ import com.tt.driver.data.models.Failure
 import com.tt.driver.data.models.Loading
 import com.tt.driver.data.models.RemoteResult
 import com.tt.driver.data.models.Success
+import com.tt.driver.utils.Util
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 abstract class BaseFragment<T : Any> : Fragment() {
 
     var binding: T? = null
-
+    @Inject lateinit var prefs : SharedPreferences
     fun binding(bind: T.() -> Unit) {
         bind(binding ?: throw Exception("trying to access binding outside fragment lifecycle"))
     }
@@ -36,6 +40,8 @@ abstract class BaseFragment<T : Any> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = initBinding(inflater, container)
+       // Util.setLanguagePerActivity(requireActivity(),null,prefs)
+
         return (binding as? ViewBinding)?.root ?: (binding as? ViewDataBinding)?.root
     }
 

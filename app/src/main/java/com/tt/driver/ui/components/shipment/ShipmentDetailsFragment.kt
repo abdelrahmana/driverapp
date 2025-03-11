@@ -45,6 +45,7 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.toolbar?.setOnClickListener { requireActivity().onBackPressed() }
         arguments?.getString(SCANNERQRCODE)?.let { labelShipment ->
             viewModel.getShipmentByQrCode(HashMap<String, Any>().also {
                 it.put("barcode", arguments?.getString(SCANNERQRCODE) ?: "")
@@ -78,7 +79,6 @@ class ShipmentDetailsFragment : LocationAwareFragment<ShipmentDetailsFragmentBin
                 requireActivity().finish()
             }
 
-            binding?.toolbar?.setOnClickListener { requireActivity().onBackPressed() }
 
         }
     }
