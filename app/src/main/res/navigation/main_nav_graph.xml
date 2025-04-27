@@ -187,6 +187,13 @@
         android:id="@+id/orderReportFragment"
         android:name="com.tt.driver.ui.components.main.order_report.OrderReportFragment"
         android:label="OrderReportFragment" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.tt.driver.ui.components.main.setting.SettingFragment"
+        android:label="SettingFragment">
+
+    </fragment>
     <fragment
         android:id="@+id/digitalSignatureFragment"
         android:name="com.tt.driver.ui.components.main.orders.order_details.DigitalSignatureFragment"

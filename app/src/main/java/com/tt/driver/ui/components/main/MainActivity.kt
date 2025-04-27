@@ -42,7 +42,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<MainActivityViewModel>()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -68,88 +67,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(binding.mainHostFragment.id) as NavHostFragment
+        val navController = navHostFragment.navController
 
+        binding.bottomNavigationView.setupWithNavController(navController)
         requestNotificationPermission()
-
-        binding.navView.setupWithNavController(getNavController())
-
-        binding.navView.menu[2].setOnMenuItemClickListener {
-            IntentUtils.dialPhone(this, "94129624")
-            true
-        }
-
-        binding.navView.menu[3].setOnMenuItemClickListener {
-            fetchHelpContact()
-            true
-        }
-
-        binding.logoutButton.setOnClickListener {
-            logout()
-        }
-
-        updateDrawerUserInfo()
     }
 
-    private fun logout() {
+ /*   private fun logout() {
         authDataStore.changeAuthStatus(lifecycleScope, false)
         startActivity(Intent(this, RegistrationActivity::class.java))
         finish()
-    }
+    }*/
 
-    fun openDrawer() {
-        binding.drawer.open()
-    }
 
     private fun getNavController() =
         (supportFragmentManager.findFragmentById(R.id.mainHostFragment) as NavHostFragment).findNavController()
 
-    private fun updateDrawerUserInfo() {
-        lifecycleScope.launch {
-            userDataStore.getUser().collect {
-                with(binding.navView.getHeaderView(0)) {
-                    findViewById<TextView>(R.id.name).text = it?.name
-                    findViewById<ImageView>(R.id.image).apply {
-                        Glide.with(this).load(it?.image).into(this)
-                    }
-                    findViewById<ImageView>(R.id.menuIcon).setOnClickListener {
-                        binding.drawer.close()
-                    }
-
-                }
-            }
-        }
-    }
     override fun onResume() {
         Util.setLanguagePerActivity(this,null,prefs)
         //  UtilKotlin.setLocalLanguage(UtilKotlin.getSharedPrefs(this).getString(PrefsModel.localLanguage,"ar"))
-        updateDrawerMenu(binding.navView, this)
 
         super.onResume()
-    }
-    fun updateDrawerMenu(navView: NavigationView, context: Context) {
-//        navView.menu.findItem(R.id.homeFragment).title = context.getString(R.string.home_menu_item)
-        navView.menu.findItem(R.id.runSheetFragment).title = context.getString(R.string.run_sheet)
-        navView.menu.findItem(R.id.languageFragment).title = context.getString(R.string.language)
-        navView.menu.findItem(R.id.contactUs).title = context.getString(R.string.contact_us_menu_item)
-        navView.menu.findItem(R.id.help).title = context.getString(R.string.help_menu_item)
-        binding.logoutButton.text = getString(R.string.log_out)
-
-    }
-    private fun fetchHelpContact() {
-        viewModel.getHelpContact().observe(this) {
-            when (it) {
-                is Success -> {
-                    IntentUtils.dialPhone(this@MainActivity, it.data)
-                }
-                is Failure -> {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "something went wrong",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
     }
 
     fun startLocationTrackingService() {

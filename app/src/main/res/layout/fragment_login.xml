@@ -9,56 +9,111 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+
         android:clipToPadding="false">
 
         <ImageView
-            android:id="@+id/background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
-
-        <ImageView
             android:id="@+id/logo"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_width="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
             android:paddingEnd="30dp"
-            android:src="@drawable/logo_new"
-            app:layout_constraintBottom_toTopOf="@id/phone"
+            android:src="@drawable/ic_mint_logo"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             tools:layout_editor_absoluteX="34dp" />
 
-        <EditText
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/logo"
             android:id="@+id/phone"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/input_field_background"
-            android:hint="@string/phone_hint"
-            android:imeOptions="actionNext"
-            android:inputType="phone"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:singleLine="true"
-            app:layout_constraintBottom_toTopOf="@id/password"
-            app:layout_constraintTop_toBottomOf="@id/logo" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="25dp"
+            android:text="@string/phone_number"
+            android:textSize="12sp" />
 
-        <EditText
-            android:id="@+id/password"
+        <RelativeLayout
+            app:layout_constraintTop_toBottomOf="@+id/phone"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="43dp"
+            android:id="@+id/phoneContainer"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/input_field_background"
-            android:hint="@string/password_hint"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:singleLine="true"
-            app:layout_constraintBottom_toBottomOf="@id/continueButton"
-            app:layout_constraintTop_toBottomOf="@id/phone" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/new_round_shape"
+            >
+
+            <EditText
+                android:textAlignment="viewStart"
+                android:id="@+id/edPhone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@color/color_light"
+                android:drawablePadding="5dp"
+                android:hint="@string/phone_number"
+                android:inputType="number"
+                android:maxLength="30"
+                android:paddingStart="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="#B1B1B1"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/passwordHint"
+            app:layout_constraintTop_toBottomOf="@+id/phoneContainer"
+            android:text="@string/password"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordHint"
+            android:layout_height="43dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/new_round_shape"
+            >
+
+            <EditText
+                android:textAlignment="viewStart"
+                android:id="@+id/edPass"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/password"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/cbPassword"
+                android:gravity="center_vertical"
+                android:hint="*************"
+                android:inputType="textPassword"
+                android:maxLength="30"
+                android:paddingStart="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="#B1B1B1"
+                android:textSize="11sp" />
+
+            <ImageView
+                android:id="@+id/cbPassword"
+                android:layout_width="13dp"
+                android:layout_height="23dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:checked="false"
+                android:src="@drawable/bg_password_show_hide"
+                app:tint="#1F1F39" />
+        </RelativeLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/continueButton"
@@ -68,8 +123,9 @@
             android:layout_marginBottom="30dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="@string/continue_button"
-            app:backgroundTint="@color/new_red_color"
+            android:textAllCaps="false"
+            android:text="@string/sign_in"
+            app:backgroundTint="@color/new_color_green"
             app:cornerRadius="4dp"
             app:layout_constraintBottom_toBottomOf="parent" />
 

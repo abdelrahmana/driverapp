@@ -20,5 +20,5 @@ dependencyResolutionManagement {
 
     }
 }
-rootProject.name = "Driver"
+rootProject.name = "Mint_Driver"
 include ':app'

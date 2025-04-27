@@ -71,10 +71,6 @@ class HomeFragment : MapFragment<FragmentHomeBinding>() {
 
         binding {
 
-            menuIcon.setOnClickListener {
-                (requireActivity() as? MainActivity)?.openDrawer()
-            }
-
             statusSwitch.setOnClickListener {
                 val checked = statusSwitch.isChecked
                 statusSwitch.isEnabled = false

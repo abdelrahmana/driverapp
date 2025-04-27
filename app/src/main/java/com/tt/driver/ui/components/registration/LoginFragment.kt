@@ -36,12 +36,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding {
-            Glide.with(requireContext()).load(R.drawable.appbg).into(background)
-
             continueButton.setOnClickListener {
                 if (isValidData()) {
                     observeResult(
-                        viewModel.login(phone.value(), password.value())
+                        viewModel.login(edPhone.value(), edPass.value())
                     ) {
                         startActivity(Intent(requireActivity(), MainActivity::class.java))
                         authDataStore.changeAuthStatus(lifecycleScope, true)
@@ -59,11 +57,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     private fun isValidData(): Boolean {
-        if (binding?.phone?.value()?.length == 0) {
-            showToast("invalid civil id")
+        if (binding?.edPhone?.value()?.length == 0) {
+            showToast("invalid phone number")
             return false
         }
-        if ((binding?.password?.value()?.length?:0) < 8) {
+        if ((binding?.edPass?.value()?.length?:0) < 8) {
             showToast("invalid password")
             return false
         }

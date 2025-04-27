@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/slotIcon"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/new_gray_color"
         app:layout_constraintTop_toBottomOf="@+id/divider"
         android:orientation="horizontal"
@@ -70,8 +70,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:layout_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/delivered"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/shipment"
+            android:gravity="center"
             android:textSize="10sp"
             android:text="@string/shipment_number"
             android:drawablePadding="3dp"
@@ -79,15 +83,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            app:layout_constraintStart_toEndOf="@+id/shipment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/delivered"
-            android:layout_weight="1"
+            android:gravity="center"
             android:textSize="10sp"
             android:text="@string/delivered_number"
             android:drawablePadding="3dp"
             android:drawableStart="@drawable/ic_delivered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <TextView
+        <!--<TextView
             android:id="@+id/reject"
             android:layout_weight="1"
             android:text="@string/rejected_number"
@@ -104,7 +112,7 @@
             android:drawablePadding="3dp"
             android:drawableStart="@drawable/ic_reschdule"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"/>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -88,5 +88,13 @@
     <string name="choose_language">Choose Language</string>
     <string name="slots">Slot</string>
     <string name="log_out">Log Out</string>
+    <string name="setting">Settings</string>
+    <string name="phone_number">Phone</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="change_pas">Change Password</string>
+    <string name="change_lang">Change Language</string>
+    <string name="contact_admin">Contact the admin</string>
+    <string name="road_service">Road Service</string>
 
 </resources>

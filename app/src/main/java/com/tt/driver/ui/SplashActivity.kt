@@ -26,8 +26,6 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        Glide.with(this).load(R.drawable.appbg).into(findViewById(R.id.background))
-
         lifecycleScope.launch(Dispatchers.IO) {
             delay(2000)
             if (authDataStore.isUserLoggedIn().first())

@@ -60,8 +60,8 @@ class AdaptorRunSheet( // one selection
                 (selectedItem?.startTime ?: "") + " - " + (selectedItem?.endTime ?: "")
             itemViews.shipment.text = context.getString(R.string.shipment_number,selectedItem?.shipments.toString())
             itemViews.delivered.text = context.getString(R.string.delivered_number,selectedItem?.delivered.toString())
-            itemViews.reject.text = context.getString(R.string.rejected_number,selectedItem?.reject.toString())
-            itemViews.reschdule.text = context.getString(R.string.reschdule_number,selectedItem?.reschedule.toString())
+           // itemViews.reject.text = context.getString(R.string.rejected_number,selectedItem?.reject.toString())
+           // itemViews.reschdule.text = context.getString(R.string.reschdule_number,selectedItem?.reschedule.toString())
             itemViews.containerSlots.setOnClickListener {
                 onSlotClicked(selectedItem!!)
             }

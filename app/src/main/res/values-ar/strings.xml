@@ -87,4 +87,12 @@
     <string name="log_out">تسجيل الخروج</string>
     <string name="choose_language">اختر اللغة</string>
     <string name="slots">الوقت المتاح</string>
+    <string name="setting">الإعدادات</string>
+    <string name="phone_number">Phone</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="change_pas">Change Password</string>
+    <string name="change_lang">Change Language</string>
+    <string name="contact_admin">Contact the admin</string>
+    <string name="road_service">Road Service</string>
 </resources>

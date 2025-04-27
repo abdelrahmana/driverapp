@@ -7,19 +7,19 @@
     <com.google.android.material.card.MaterialCardView
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:minHeight="130dp"
+        android:minHeight="100dp"
         android:id="@+id/cardSheet"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/new_red_color"
+        app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/menuIcon"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:padding="8dp"
             android:src="@drawable/ic_menu"
@@ -29,12 +29,12 @@
             <TextView
                 android:id="@+id/runSheetText"
                 android:textSize="19sp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/menuIcon"
+                android:textColor="@color/new_color_green"
                 android:text="@string/run_sheet"
                 android:layout_marginStart="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/menuIcon"
+                app:layout_constraintStart_toEndOf="@+id/menuIcon"
+                app:layout_constraintTop_toTopOf="@+id/menuIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -47,13 +47,14 @@
                 app:layout_constraintTop_toTopOf="@+id/runSheetText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:tint="@color/white" />
+                app:tint="@color/new_color_green" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
         app:layout_constraintTop_toBottomOf="@+id/cardSheet"
         app:cardElevation="5dp"
         android:id="@+id/cardScanner"
+        app:cardBackgroundColor="@color/new_gray_color"
         android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
         app:layout_constraintBottom_toBottomOf="@+id/cardSheet"
@@ -89,7 +90,7 @@
                 android:layout_height="wrap_content"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
+  <!--  <com.google.android.material.card.MaterialCardView
         app:layout_constraintTop_toBottomOf="@+id/cardScanner"
         android:layout_width="match_parent"
         android:id="@+id/shipmentCard"
@@ -129,12 +130,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewSheets"
         android:layout_marginHorizontal="10dp"
         tools:listitem="@layout/adaptor_run_sheet"
-        app:layout_constraintTop_toBottomOf="@+id/shipmentCard"
+        app:layout_constraintTop_toBottomOf="@+id/cardScanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <LinearLayout

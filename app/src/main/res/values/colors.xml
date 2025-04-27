@@ -27,4 +27,7 @@
     <color name="new_red_color">#AF0000</color>
     <color name="black_new">#140101</color>
     <color name="new_gray_color">#F4F4F4</color>
+    <color name="new_color_green">#3D7058</color>
+    <color name="color_light">#F8F8F8</color>
+    <color name="unselected_color">#B2B3B9</color>
 </resources>

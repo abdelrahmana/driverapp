@@ -64,9 +64,6 @@ class RunSheetFragment : BaseFragment<FragmentRunSheetBinding>() {
         binding?.calenderSelect?.setOnClickListener{
             datePicker.show()
         }
-        binding?.menuIcon?.setOnClickListener {
-            (requireActivity() as? MainActivity)?.openDrawer()
-        }
         binding?.scannerView?.setOnClickListener{
             startBarcodeScanner()
         }
@@ -100,12 +97,12 @@ class RunSheetFragment : BaseFragment<FragmentRunSheetBinding>() {
         with(binding) {
             this?.recycleViewSheets?.show(it.data.size > 0)
 
-            this?.shipmentCard?.show(it.data.size > 0)
+           // this?.shipmentCard?.show(it.data.size > 0)
             this?.noResultFound?.show(it.data.size == 0)
             if (it.data.size > 0) {
-                this!!.runSheetName.text = it.data?.get(0)?.name
-                date.text = it.data?.get(0)?.date
-                shipmentsNumber.text =
+               // this!!.runSheetName.text = it.data?.get(0)?.name
+               // date.text = it.data?.get(0)?.date
+               // shipmentsNumber.text =
                     getString(R.string.shipment_number, it.data?.get(0)?.shipments.toString())
                 val adapter = AdaptorRunSheet(
                     requireContext(),
@@ -116,9 +113,9 @@ class RunSheetFragment : BaseFragment<FragmentRunSheetBinding>() {
                         bundleOf(SlotsFragment.SLOT_ID to it.id)
                     )
                 }
-                this.recycleViewSheets.layoutManager =
+                this?.recycleViewSheets?.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                this.recycleViewSheets.adapter = adapter
+                this?.recycleViewSheets?.adapter = adapter
             } else
             // no data found
             {
