@@ -59,7 +59,7 @@ object Util {
         return allow
     }
     fun getCurrentDate(): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         return sdf.format(Date())
     }
     fun picPhoto(
