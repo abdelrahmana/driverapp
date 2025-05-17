@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="10dp"
+    android:layout_height="wrap_content">
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/customerName"
+        app:layout_constraintEnd_toStartOf="@+id/whatsApp"
+        android:textColor="@color/new_color_green"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/whatsApp"
+        app:srcCompat="@drawable/ic_whats"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customerName"
+        android:id="@+id/shipment_number"
+        app:layout_constraintBottom_toBottomOf="@+id/whatsApp"
+        app:layout_constraintEnd_toStartOf="@+id/whatsApp"
+        android:textColor="@color/black_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:paddingVertical="10dp"
+        app:cardCornerRadius="5dp"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/new_gray_card"
+        app:layout_constraintTop_toBottomOf="@+id/whatsApp"
+        app:cardElevation="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:minHeight="100dp"
+            android:layout_height="wrap_content">
+            <TextView
+                app:drawableStartCompat="@drawable/ic_alarm"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/timeText"
+                android:textColor="@color/black_list"
+                tools:text="test"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                app:layout_constraintEnd_toStartOf="@+id/dateText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                app:drawableStartCompat="@drawable/ic_date"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/dateText"
+                android:textColor="@color/black_list"
+                tools:text="test"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                app:drawableStartCompat="@drawable/region_ic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timeText"
+                android:id="@+id/regionText"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black_list"
+                tools:text="test"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                app:layout_constraintEnd_toStartOf="@+id/blockText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                app:drawableStartCompat="@drawable/ic_block"
+                app:layout_constraintTop_toBottomOf="@+id/dateText"
+                android:id="@+id/blockText"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black_list"
+                tools:text="test"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                app:drawableStartCompat="@drawable/ic_address"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/regionText"
+                android:id="@+id/streetText"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black_list"
+                tools:text="test"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
